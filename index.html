@@ -149,7 +149,39 @@
         }
         
         .limited-offer-card {
-            border: 2px solid var(--limited-offer);
+            position: relative;
+            overflow: visible;
+            animation: pulse-border 2s infinite;
+        }
+        
+        .limited-offer-card::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 16px;
+            background: var(--limited-offer);
+            z-index: -1;
+            animation: pulse-border 2s infinite;
+        }
+        
+        @keyframes pulse-border {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 204, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 204, 0, 0);
+            }
+        }
+        
+        .part-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
         
         .badge {
@@ -169,6 +201,19 @@
             background: var(--limited-offer);
             color: #000;
             font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
         
         .part-image-container {
@@ -219,11 +264,6 @@
             font-weight: 700;
             font-size: 1.5rem;
             margin: 1rem 0 1.5rem;
-        }
-        
-        .price-unit {
-            font-size: 1rem;
-            color: var(--text-light);
         }
         
         .whatsapp-btn {
@@ -325,28 +365,18 @@
             opacity: 0.7;
         }
         
-        .terms-section {
-            background-color: white;
-            padding: 2rem;
-            margin: 2rem auto;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            max-width: 800px;
-        }
-        
-        .terms-section h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        
-        .terms-section p {
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-        
-        .terms-section ul {
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
+        .legal-warning {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #ff0505;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.8rem;
+            z-index: 1000;
+            display: none;
         }
         
         /* Login Page Styles */
@@ -659,6 +689,11 @@
     </style>
 </head>
 <body>
+    <!-- Legal Warning -->
+    <div id="legal-warning" class="legal-warning">
+        AVISO: Qualquer tentativa de remoção ou alteração não autorizada deste site sujeita o infrator a processo administrativo e legal.
+    </div>
+    
     <!-- Login Page -->
     <div id="login-page" class="login-container">
         <div class="login-form">
@@ -700,20 +735,6 @@
             <section class="catalog" id="catalog">
                 <!-- As peças serão adicionadas aqui via JavaScript -->
                 <p id="no-parts-message" style="grid-column: 1/-1; text-align: center; font-size: 1.2rem; color: var(--text-light);">Nenhuma oferta disponível no momento. Volte em breve!</p>
-            </section>
-            
-            <section class="terms-section">
-                <h3>Termos e Condições</h3>
-                <p>Ao utilizar nosso site e fazer pedidos através do WhatsApp, você concorda com os seguintes termos:</p>
-                <ul>
-                    <li>Os preços exibidos são referências e o valor final será confirmado no WhatsApp.</li>
-                    <li>As ofertas são válidas enquanto durarem os estoques.</li>
-                    <li>Ofertas marcadas como "Oferta" são promocionais e por tempo limitado.</li>
-                    <li>Este site utiliza medidas de segurança para proteger seus dados durante a navegação.</li>
-                    <li>Não armazenamos informações pessoais sem sua permissão explícita.</li>
-                    <li>Qualquer tentativa de acesso não autorizado ao sistema será tratada conforme a lei.</li>
-                </ul>
-                <p>Para mais informações sobre nossa política de privacidade e termos completos, entre em contato conosco.</p>
             </section>
         </main>
         
@@ -822,20 +843,14 @@
     </div>
     
     <script>
-        // Dados das peças (armazenamento local)
+        // Dados das peças (armazenamento local) - Inicialmente vazio
         let parts = JSON.parse(localStorage.getItem('autolatinaParts')) || [];
         
-        // Credenciais de login
-        const ADMIN_CREDENTIALS = [
-            {
-                username: "QXV0b2xhdGluYWNhc2NhdmVs", // Autolatinacascavel codificado em base64
-                password: "QWRtaW4yMDI0UzNjcjN0UzRsdA==" // Admin2024S3cr3tS4lt codificado em base64
-            },
-            {
-                username: "dml0b3JhdXRvbGF0aW5h", // vitorautolatina codificado em base64
-                password: "MTkwNTA4" // 190508 codificado em base64
-            }
-        ];
+        // Credenciais de login (codificadas para segurança básica)
+        const ADMIN_CREDENTIALS = {
+            username: "QXV0b2xhdGluYWNhc2NhdmVs", // Autolatinacascavel codificado em base64
+            password: "QWRtaW4yMDI0UzNjcjN0UzRsdA==" // Admin2024S3cr3tS4lt codificado em base64
+        };
         
         // WhatsApp number
         const WHATSAPP_NUMBER = "5545999711417";
@@ -852,6 +867,17 @@
         const catalogContainer = document.getElementById('catalog');
         const adminPartsList = document.getElementById('admin-parts-list');
         const noPartsMessage = document.getElementById('no-parts-message');
+        const legalWarning = document.getElementById('legal-warning');
+        
+        // Mostrar aviso legal se tentarem inspecionar o código
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+                legalWarning.style.display = 'block';
+                setTimeout(() => {
+                    legalWarning.style.display = 'none';
+                }, 5000);
+            }
+        });
         
         // Mostrar página inicial (catálogo público)
         function showPublicCatalog() {
@@ -878,7 +904,7 @@
             document.getElementById('password').value = '';
         }
         
-        // Exibir peças no catálogo público (com ofertas limitadas primeiro)
+        // Exibir peças no catálogo público
         function displayParts() {
             catalogContainer.innerHTML = '';
             
@@ -889,24 +915,22 @@
             
             noPartsMessage.style.display = 'none';
             
-            // Ordenar para mostrar ofertas limitadas primeiro
-            const sortedParts = [...parts].sort((a, b) => b.isLimited - a.isLimited);
-            
-            sortedParts.forEach(part => {
+            parts.forEach(part => {
                 const partCard = document.createElement('div');
                 partCard.className = `part-card ${part.isLimited ? 'limited-offer-card' : ''}`;
                 
                 const badgeClass = part.isLimited ? 'limited-badge' : 'badge';
+                const badgeText = part.isLimited ? 'OFERTA LIMITADA' : 'OFERTA';
                 
                 partCard.innerHTML = `
                     <div class="part-image-container">
-                        <span class="${badgeClass}">OFERTA</span>
+                        <span class="${badgeClass}">${badgeText}</span>
                         <img src="${part.image}" alt="${part.name}" class="part-image" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Não+Disponível'">
                     </div>
                     <div class="part-info">
                         <h3>${part.name}</h3>
                         <div class="part-code">Código: ${part.code}</div>
-                        <div class="part-price">R$ ${part.price.toFixed(2).replace('.', ',')} <span class="price-unit">(UN)</span></div>
+                        <div class="part-price">R$ ${part.price.toFixed(2).replace('.', ',')}</div>
                         <a href="https://wa.me/${WHATSAPP_NUMBER}?text=Olá, gostaria de saber mais sobre a peça ${part.name} (Código: ${part.code})" class="whatsapp-btn" target="_blank">
                             <i class="fab fa-whatsapp"></i> WhatsApp
                         </a>
@@ -968,6 +992,7 @@
             addPartForm.reset();
             document.getElementById('is-limited').checked = false;
             
+            // Mostrar mensagem de sucesso
             alert('Oferta adicionada com sucesso!');
         }
         
@@ -982,9 +1007,11 @@
             document.getElementById('part-image').value = part.image;
             document.getElementById('is-limited').checked = part.isLimited || false;
             
+            // Remover a peça antiga
             parts = parts.filter(p => p.id != id);
             saveParts();
             
+            // Mostrar mensagem
             alert('Oferta pronta para edição. Modifique os campos e clique em "Adicionar Oferta" para atualizar.');
         }
         
@@ -994,8 +1021,9 @@
                 parts = parts.filter(p => p.id != id);
                 saveParts();
                 displayAdminParts();
-                displayParts();
+                displayParts(); // Atualizar também o catálogo público
                 
+                // Mostrar mensagem de sucesso
                 alert('Oferta excluída com sucesso!');
             }
         }
@@ -1003,7 +1031,29 @@
         // Salvar peças no localStorage
         function saveParts() {
             localStorage.setItem('autolatinaParts', JSON.stringify(parts));
-            displayParts();
+            displayParts(); // Atualizar o catálogo público sempre que os dados mudam
+            
+            // Se estiver usando um backend, você faria uma requisição AJAX aqui
+            // para salvar os dados no servidor também
+            // saveToServer(parts);
+        }
+        
+        // Função para salvar no servidor (exemplo - precisa implementar o backend)
+        function saveToServer(data) {
+            fetch('https://seuservidor.com/api/parts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Dados salvos no servidor:', data);
+            })
+            .catch(error => {
+                console.error('Erro ao salvar no servidor:', error);
+            });
         }
         
         // Event Listeners
@@ -1015,17 +1065,9 @@
             
             // Codificar as credenciais fornecidas para comparação
             const encodedUsername = btoa(username);
-            const encodedPassword = btoa(password);
+            const encodedPassword = btoa(password + "S3cr3tS4lt");
             
-            // Verificar credenciais
-            const isValid = ADMIN_CREDENTIALS.some(cred => 
-                encodedUsername === cred.username && 
-                (cred.password.includes('UzNjcjN0UzRsdA') ? 
-                    encodedPassword + 'UzNjcjN0UzRsdA' === cred.password : 
-                    encodedPassword === cred.password
-            );
-            
-            if (isValid) {
+            if (encodedUsername === ADMIN_CREDENTIALS.username && encodedPassword === ADMIN_CREDENTIALS.password) {
                 showAdminPanel();
             } else {
                 alert('Credenciais incorretas!');
