@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autolatina Truck Service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo i {
+            margin-right: 15px;
+            color: var(--accent-color);
+        }
+        
+        .admin-link {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .intro {
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .intro h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .catalog {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        
+        .part-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .part-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .part-image {
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f1f1;
+        }
+        
+        .part-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+        
+        .part-info {
+            padding: 1.5rem;
+        }
+        
+        .part-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .part-code {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .part-price {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin: 1rem 0;
+        }
+        
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .contact-info {
+            margin-top: 1rem;
+        }
+        
+        .contact-info a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        /* Login Page Styles */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+        
+        .login-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-form h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: #c0392b;
+        }
+        
+        /* Admin Panel Styles */
+        .admin-panel {
+            padding: 2rem 0;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .add-part-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .submit-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .logout-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .admin-parts-list {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .parts-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .parts-table th, .parts-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .parts-table th {
+            background-color: #f5f7fa;
+            color: var(--primary-color);
+        }
+        
+        .action-btn {
+            padding: 0.3rem 0.6rem;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 0.3rem;
+        }
+        
+        .edit-btn {
+            background-color: #f39c12;
+            color: white;
+        }
+        
+        .delete-btn {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .catalog {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .admin-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page" class="login-container">
+        <div class="login-form">
+            <h2><i class="fas fa-user-shield"></i> Painel Administrativo</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="login-btn">Entrar</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Public Catalog -->
+    <div id="public-catalog" class="hidden">
+        <header>
+            <div class="container">
+                <div class="logo">
+                    <i class="fas fa-truck"></i>
+                    <span>Autolatina Truck Service</span>
+                </div>
+                <a href="#" id="admin-login-link" class="admin-link"><i class="fas fa-lock"></i> Área Admin</a>
+            </div>
+        </header>
+        
+        <main class="container">
+            <section class="intro">
+                <h2>Peças de Qualidade para o Seu Caminhão</h2>
+                <p>Confira abaixo nossa seleção de peças disponíveis. Entre em contato para mais informações ou para realizar seu pedido.</p>
+            </section>
+            
+            <section class="catalog" id="catalog">
+                <!-- As peças serão adicionadas aqui via JavaScript -->
+            </section>
+        </main>
+        
+        <footer>
+            <div class="container">
+                <p>&copy; 2023 Autolatina Truck Service. Todos os direitos reservados.</p>
+                <div class="contact-info">
+                    <p>Telefone: (XX) XXXX-XXXX | Email: <a href="mailto:contato@autolatina.com">contato@autolatina.com</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Admin Panel -->
+    <div id="admin-panel" class="hidden">
+        <header>
+            <div class="container">
+                <div class="logo">
+                    <i class="fas fa-truck"></i>
+                    <span>Autolatina Truck Service - Painel Admin</span>
+                </div>
+                <button id="logout-btn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Sair</button>
+            </div>
+        </header>
+        
+        <main class="container admin-panel">
+            <div class="admin-header">
+                <h2>Gerenciamento de Peças</h2>
+                <button id="view-public-catalog" class="submit-btn"><i class="fas fa-eye"></i> Ver Catálogo Público</button>
+            </div>
+            
+            <div class="add-part-form">
+                <h3>Adicionar Nova Peça</h3>
+                <form id="add-part-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="part-name">Nome da Peça</label>
+                            <input type="text" id="part-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="part-code">Código</label>
+                            <input type="text" id="part-code" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="part-price">Preço (R$)</label>
+                            <input type="number" id="part-price" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="part-image">URL da Imagem</label>
+                            <input type="url" id="part-image" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn"><i class="fas fa-plus"></i> Adicionar Peça</button>
+                </form>
+            </div>
+            
+            <div class="admin-parts-list">
+                <h3>Peças Cadastradas</h3>
+                <table class="parts-table">
+                    <thead>
+                        <tr>
+                            <th>Imagem</th>
+                            <th>Nome</th>
+                            <th>Código</th>
+                            <th>Preço</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-parts-list">
+                        <!-- Lista de peças para administração -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // Dados das peças (armazenamento local)
+        let parts = JSON.parse(localStorage.getItem('autolatinaParts')) || [
+            {
+                id: Date.now(),
+                name: "Amortecedor Dianteiro",
+                code: "ATS-AMT-001",
+                price: 450.90,
+                image: "https://via.placeholder.com/300x200?text=Amortecedor+Dianteiro"
+            },
+            {
+                id: Date.now() + 1,
+                name: "Pastilha de Freio",
+                code: "ATS-PST-002",
+                price: 189.50,
+                image: "https://via.placeholder.com/300x200?text=Pastilha+de+Freio"
+            }
+        ];
+        
+        // Credenciais de login
+        const ADMIN_CREDENTIALS = {
+            username: "Autolatinacascavel",
+            password: "Admin2024"
+        };
+        
+        // Elementos da página
+        const loginPage = document.getElementById('login-page');
+        const publicCatalog = document.getElementById('public-catalog');
+        const adminPanel = document.getElementById('admin-panel');
+        const loginForm = document.getElementById('login-form');
+        const adminLoginLink = document.getElementById('admin-login-link');
+        const logoutBtn = document.getElementById('logout-btn');
+        const viewPublicCatalogBtn = document.getElementById('view-public-catalog');
+        const addPartForm = document.getElementById('add-part-form');
+        const catalogContainer = document.getElementById('catalog');
+        const adminPartsList = document.getElementById('admin-parts-list');
+        
+        // Mostrar página inicial (catálogo público)
+        function showPublicCatalog() {
+            loginPage.classList.add('hidden');
+            publicCatalog.classList.remove('hidden');
+            adminPanel.classList.add('hidden');
+            displayParts();
+        }
+        
+        // Mostrar painel admin
+        function showAdminPanel() {
+            loginPage.classList.add('hidden');
+            publicCatalog.classList.add('hidden');
+            adminPanel.classList.remove('hidden');
+            displayAdminParts();
+        }
+        
+        // Exibir peças no catálogo público
+        function displayParts() {
+            catalogContainer.innerHTML = '';
+            
+            parts.forEach(part => {
+                const partCard = document.createElement('div');
+                partCard.className = 'part-card';
+                
+                partCard.innerHTML = `
+                    <div class="part-image">
+                        <img src="${part.image}" alt="${part.name}" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Não+Disponível'">
+                    </div>
+                    <div class="part-info">
+                        <h3>${part.name}</h3>
+                        <div class="part-code">Código: ${part.code}</div>
+                        <div class="part-price">R$ ${part.price.toFixed(2).replace('.', ',')}</div>
+                    </div>
+                `;
+                
+                catalogContainer.appendChild(partCard);
+            });
+        }
+        
+        // Exibir peças no painel admin
+        function displayAdminParts() {
+            adminPartsList.innerHTML = '';
+            
+            parts.forEach(part => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td><img src="${part.image}" alt="${part.name}" style="width: 80px; height: 60px; object-fit: contain;" onerror="this.src='https://via.placeholder.com/80x60?text=Imagem+Não+Disponível'"></td>
+                    <td>${part.name}</td>
+                    <td>${part.code}</td>
+                    <td>R$ ${part.price.toFixed(2).replace('.', ',')}</td>
+                    <td>
+                        <button class="action-btn edit-btn" data-id="${part.id}"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" data-id="${part.id}"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                
+                adminPartsList.appendChild(row);
+            });
+            
+            // Adicionar eventos aos botões de ação
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => editPart(e.target.dataset.id));
+            });
+            
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => deletePart(e.target.dataset.id));
+            });
+        }
+        
+        // Adicionar nova peça
+        function addPart(e) {
+            e.preventDefault();
+            
+            const newPart = {
+                id: Date.now(),
+                name: document.getElementById('part-name').value,
+                code: document.getElementById('part-code').value,
+                price: parseFloat(document.getElementById('part-price').value),
+                image: document.getElementById('part-image').value
+            };
+            
+            parts.push(newPart);
+            saveParts();
+            displayAdminParts();
+            addPartForm.reset();
+        }
+        
+        // Editar peça
+        function editPart(id) {
+            const part = parts.find(p => p.id == id);
+            if (!part) return;
+            
+            document.getElementById('part-name').value = part.name;
+            document.getElementById('part-code').value = part.code;
+            document.getElementById('part-price').value = part.price;
+            document.getElementById('part-image').value = part.image;
+            
+            // Remover a peça antiga
+            parts = parts.filter(p => p.id != id);
+        }
+        
+        // Excluir peça
+        function deletePart(id) {
+            if (confirm('Tem certeza que deseja excluir esta peça?')) {
+                parts = parts.filter(p => p.id != id);
+                saveParts();
+                displayAdminParts();
+            }
+        }
+        
+        // Salvar peças no localStorage
+        function saveParts() {
+            localStorage.setItem('autolatinaParts', JSON.stringify(parts));
+        }
+        
+        // Event Listeners
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                showAdminPanel();
+            } else {
+                alert('Credenciais incorretas!');
+            }
+        });
+        
+        adminLoginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            publicCatalog.classList.add('hidden');
+            loginPage.classList.remove('hidden');
+        });
+        
+        logoutBtn.addEventListener('click', () => {
+            showPublicCatalog();
+        });
+        
+        viewPublicCatalogBtn.addEventListener('click', () => {
+            showPublicCatalog();
+        });
+        
+        addPartForm.addEventListener('submit', addPart);
+        
+        // Inicializar a página
+        showPublicCatalog();
+    </script>
+</body>
+</html>
