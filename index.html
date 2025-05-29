@@ -8,16 +8,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
+            --primary-color: #0c006c;
+            --secondary-color: #0c006c;
+            --accent-color: #ff0505;
             --whatsapp-color: #25D366;
             --light-color: #ecf0f1;
-            --dark-color: #1a252f;
+            --dark-color: #08003a;
             --text-color: #333;
             --text-light: #7f8c8d;
             --card-bg: #ffffff;
-            --gradient-primary: linear-gradient(135deg, #2c3e50, #1a252f);
+            --gradient-primary: linear-gradient(135deg, #0c006c, #08003a);
+            --limited-offer: #ffcc00;
         }
         
         * {
@@ -144,6 +145,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            position: relative;
         }
         
         .part-card:hover {
@@ -162,6 +164,25 @@
             font-size: 0.8rem;
             font-weight: 600;
             z-index: 1;
+        }
+        
+        .limited-badge {
+            background: var(--limited-offer);
+            animation: pulse 2s infinite;
+            color: #000;
+            font-weight: bold;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 204, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 204, 0, 0);
+            }
         }
         
         .part-image-container {
@@ -245,6 +266,7 @@
             text-align: center;
             padding: 3rem 0;
             margin-top: 3rem;
+            position: relative;
         }
         
         .footer-content {
@@ -295,6 +317,11 @@
             color: var(--secondary-color);
         }
         
+        .address {
+            margin: 1rem 0;
+            font-size: 1rem;
+        }
+        
         .copyright {
             margin-top: 2rem;
             font-size: 0.9rem;
@@ -305,6 +332,20 @@
             margin-top: 0.5rem;
             font-size: 0.9rem;
             opacity: 0.7;
+        }
+        
+        .legal-warning {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #ff0505;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.8rem;
+            z-index: 1000;
+            display: none;
         }
         
         /* Login Page Styles */
@@ -385,9 +426,9 @@
         }
         
         .login-btn:hover {
-            background-color: #c0392b;
+            background-color: #d60000;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 5, 5, 0.3);
         }
         
         /* Admin Panel Styles */
@@ -428,6 +469,16 @@
             flex: 1;
         }
         
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+        
         .submit-btn {
             background-color: var(--secondary-color);
             color: white;
@@ -441,9 +492,9 @@
         }
         
         .submit-btn:hover {
-            background-color: #2980b9;
+            background-color: #0a0055;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            box-shadow: 0 5px 15px rgba(12, 0, 108, 0.3);
         }
         
         .logout-btn {
@@ -459,9 +510,9 @@
         }
         
         .logout-btn:hover {
-            background-color: #c0392b;
+            background-color: #d60000;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 5, 5, 0.3);
         }
         
         .admin-parts-list {
@@ -528,8 +579,8 @@
         }
         
         .delete-btn:hover {
-            background-color: #c0392b;
-            box-shadow: 0 3px 10px rgba(231, 76, 60, 0.3);
+            background-color: #d60000;
+            box-shadow: 0 3px 10px rgba(255, 5, 5, 0.3);
         }
         
         .table-img {
@@ -607,6 +658,11 @@
     </style>
 </head>
 <body>
+    <!-- Legal Warning -->
+    <div id="legal-warning" class="legal-warning">
+        AVISO: Qualquer tentativa de remoção ou alteração não autorizada deste site sujeita o infrator a processo administrativo e legal.
+    </div>
+    
     <!-- Login Page -->
     <div id="login-page" class="login-container">
         <div class="login-form">
@@ -647,6 +703,7 @@
             
             <section class="catalog" id="catalog">
                 <!-- As peças serão adicionadas aqui via JavaScript -->
+                <p id="no-parts-message" style="grid-column: 1/-1; text-align: center; font-size: 1.2rem; color: var(--text-light);">Nenhuma oferta disponível no momento. Volte em breve!</p>
             </section>
         </main>
         
@@ -669,11 +726,15 @@
                         </div>
                     </div>
                     
+                    <div class="address">
+                        <i class="fas fa-map-marker-alt"></i> Rua Gurgel 119, Universitário, Cascavel-PR
+                    </div>
+                    
                     <div class="copyright">
-                        &copy; 2023 Autolatina Truck Service. Todos os direitos reservados.
+                        &copy; 2025 Autolatina Truck Service. Todos os direitos reservados.
                     </div>
                     <div class="developer">
-                        Desenvolvido por Vitor Kauã
+                        Desenvolvido por POKAN
                     </div>
                 </div>
             </div>
@@ -721,6 +782,10 @@
                             <input type="url" id="part-image" required>
                         </div>
                     </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="is-limited">
+                        <label for="is-limited">Oferta por tempo limitado (aparecerá em destaque)</label>
+                    </div>
                     <button type="submit" class="submit-btn"><i class="fas fa-plus"></i> Adicionar Oferta</button>
                 </form>
             </div>
@@ -734,6 +799,7 @@
                             <th>Nome</th>
                             <th>Código</th>
                             <th>Preço</th>
+                            <th>Tipo</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -746,42 +812,13 @@
     </div>
     
     <script>
-        // Dados das peças (armazenamento local)
-        let parts = JSON.parse(localStorage.getItem('autolatinaParts')) || [
-            {
-                id: Date.now(),
-                name: "Amortecedor Dianteiro Premium",
-                code: "ATS-AMT-001",
-                price: 450.90,
-                image: "https://via.placeholder.com/300x200?text=Amortecedor+Premium"
-            },
-            {
-                id: Date.now() + 1,
-                name: "Kit Pastilhas de Freio",
-                code: "ATS-PST-002",
-                price: 189.50,
-                image: "https://via.placeholder.com/300x200?text=Pastilhas+Freio"
-            },
-            {
-                id: Date.now() + 2,
-                name: "Filtro de Óleo Sintético",
-                code: "ATS-FLT-003",
-                price: 65.80,
-                image: "https://via.placeholder.com/300x200?text=Filtro+Óleo"
-            },
-            {
-                id: Date.now() + 3,
-                name: "Rolamento de Roda Dianteiro",
-                code: "ATS-RLD-004",
-                price: 320.00,
-                image: "https://via.placeholder.com/300x200?text=Rolamento+Roda"
-            }
-        ];
+        // Dados das peças (armazenamento local) - Inicialmente vazio
+        let parts = JSON.parse(localStorage.getItem('autolatinaParts')) || [];
         
-        // Credenciais de login
+        // Credenciais de login (codificadas para segurança básica)
         const ADMIN_CREDENTIALS = {
-            username: "Autolatinacascavel",
-            password: "Admin2024"
+            username: btoa("Autolatinacascavel"),
+            password: btoa("Admin2024" + "S3cr3tS4lt")
         };
         
         // WhatsApp number
@@ -798,6 +835,18 @@
         const addPartForm = document.getElementById('add-part-form');
         const catalogContainer = document.getElementById('catalog');
         const adminPartsList = document.getElementById('admin-parts-list');
+        const noPartsMessage = document.getElementById('no-parts-message');
+        const legalWarning = document.getElementById('legal-warning');
+        
+        // Mostrar aviso legal se tentarem inspecionar o código
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') {
+                legalWarning.style.display = 'block';
+                setTimeout(() => {
+                    legalWarning.style.display = 'none';
+                }, 5000);
+            }
+        });
         
         // Mostrar página inicial (catálogo público)
         function showPublicCatalog() {
@@ -819,13 +868,23 @@
         function displayParts() {
             catalogContainer.innerHTML = '';
             
+            if (parts.length === 0) {
+                noPartsMessage.style.display = 'block';
+                return;
+            }
+            
+            noPartsMessage.style.display = 'none';
+            
             parts.forEach(part => {
                 const partCard = document.createElement('div');
                 partCard.className = 'part-card';
                 
+                const badgeClass = part.isLimited ? 'limited-badge' : 'badge';
+                const badgeText = part.isLimited ? 'OFERTA LIMITADA' : 'OFERTA';
+                
                 partCard.innerHTML = `
                     <div class="part-image-container">
-                        <span class="badge">OFERTA</span>
+                        <span class="${badgeClass}">${badgeText}</span>
                         <img src="${part.image}" alt="${part.name}" class="part-image" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Não+Disponível'">
                     </div>
                     <div class="part-info">
@@ -854,6 +913,7 @@
                     <td>${part.name}</td>
                     <td>${part.code}</td>
                     <td>R$ ${part.price.toFixed(2).replace('.', ',')}</td>
+                    <td>${part.isLimited ? 'Oferta Limitada' : 'Normal'}</td>
                     <td>
                         <button class="action-btn edit-btn" data-id="${part.id}"><i class="fas fa-edit"></i> Editar</button>
                         <button class="action-btn delete-btn" data-id="${part.id}"><i class="fas fa-trash"></i> Excluir</button>
@@ -882,13 +942,15 @@
                 name: document.getElementById('part-name').value,
                 code: document.getElementById('part-code').value,
                 price: parseFloat(document.getElementById('part-price').value),
-                image: document.getElementById('part-image').value
+                image: document.getElementById('part-image').value,
+                isLimited: document.getElementById('is-limited').checked
             };
             
             parts.push(newPart);
             saveParts();
             displayAdminParts();
             addPartForm.reset();
+            document.getElementById('is-limited').checked = false;
             
             // Mostrar mensagem de sucesso
             alert('Oferta adicionada com sucesso!');
@@ -903,6 +965,7 @@
             document.getElementById('part-code').value = part.code;
             document.getElementById('part-price').value = part.price;
             document.getElementById('part-image').value = part.image;
+            document.getElementById('is-limited').checked = part.isLimited || false;
             
             // Remover a peça antiga
             parts = parts.filter(p => p.id != id);
@@ -936,10 +999,15 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+            // Verificar credenciais codificadas
+            const encodedUsername = btoa(username);
+            const encodedPassword = btoa(password + "S3cr3tS4lt");
+            
+            if (encodedUsername === ADMIN_CREDENTIALS.username && encodedPassword === ADMIN_CREDENTIALS.password) {
                 showAdminPanel();
             } else {
                 alert('Credenciais incorretas!');
+                document.getElementById('password').value = '';
             }
         });
         
@@ -947,6 +1015,8 @@
             e.preventDefault();
             publicCatalog.classList.add('hidden');
             loginPage.classList.remove('hidden');
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
         });
         
         logoutBtn.addEventListener('click', () => {
