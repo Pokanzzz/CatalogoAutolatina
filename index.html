@@ -353,7 +353,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 80vh;
+            min-height: 100vh;
             background: url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
             background-size: cover;
             position: relative;
@@ -817,8 +817,8 @@
         
         // Credenciais de login (codificadas para segurança básica)
         const ADMIN_CREDENTIALS = {
-            username: btoa("Autolatinacascavel"),
-            password: btoa("Admin2024" + "S3cr3tS4lt")
+            username: "QXV0b2xhdGluYWNhc2NhdmVs", // Autolatinacascavel codificado em base64
+            password: "QWRtaW4yMDI0UzNjcjN0UzRsdA==" // Admin2024S3cr3tS4lt codificado em base64
         };
         
         // WhatsApp number
@@ -840,7 +840,7 @@
         
         // Mostrar aviso legal se tentarem inspecionar o código
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
                 legalWarning.style.display = 'block';
                 setTimeout(() => {
                     legalWarning.style.display = 'none';
@@ -862,6 +862,15 @@
             publicCatalog.classList.add('hidden');
             adminPanel.classList.remove('hidden');
             displayAdminParts();
+        }
+        
+        // Mostrar tela de login
+        function showLoginPage() {
+            loginPage.classList.remove('hidden');
+            publicCatalog.classList.add('hidden');
+            adminPanel.classList.add('hidden');
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
         }
         
         // Exibir peças no catálogo público
@@ -981,6 +990,7 @@
                 parts = parts.filter(p => p.id != id);
                 saveParts();
                 displayAdminParts();
+                displayParts(); // Atualizar também o catálogo público
                 
                 // Mostrar mensagem de sucesso
                 alert('Oferta excluída com sucesso!');
@@ -990,6 +1000,7 @@
         // Salvar peças no localStorage
         function saveParts() {
             localStorage.setItem('autolatinaParts', JSON.stringify(parts));
+            displayParts(); // Atualizar o catálogo público sempre que os dados mudam
         }
         
         // Event Listeners
@@ -999,7 +1010,7 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            // Verificar credenciais codificadas
+            // Codificar as credenciais fornecidas para comparação
             const encodedUsername = btoa(username);
             const encodedPassword = btoa(password + "S3cr3tS4lt");
             
@@ -1013,10 +1024,7 @@
         
         adminLoginLink.addEventListener('click', (e) => {
             e.preventDefault();
-            publicCatalog.classList.add('hidden');
-            loginPage.classList.remove('hidden');
-            document.getElementById('username').value = '';
-            document.getElementById('password').value = '';
+            showLoginPage();
         });
         
         logoutBtn.addEventListener('click', () => {
@@ -1029,7 +1037,7 @@
         
         addPartForm.addEventListener('submit', addPart);
         
-        // Inicializar a página
+        // Inicializar a página mostrando o catálogo público
         showPublicCatalog();
     </script>
 </body>
