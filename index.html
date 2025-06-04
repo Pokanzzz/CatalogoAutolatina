@@ -846,19 +846,11 @@
         // Dados das peças (armazenamento local) - Inicialmente vazio
         let parts = JSON.parse(localStorage.getItem('autolatinaParts')) || [];
         
-        // Credenciais de login (codificadas e ofuscadas)
-        const USERS = [
-            {
-                // ADMIN.POKAN:1905@ codificado de forma segmentada
-                username: "QURNSU4uUE9LQU4=", // ADMIN.POKAN em base64
-                password: "MTkwNUB8" + "fDE5MDU=" // 1905@ em partes segmentadas
-            },
-            {
-                // VitorBatista:033001 codificado de forma segmentada
-                username: "Vml0b3JCYXRpc3Rh", // VitorBatista em base64
-                password: "MDMzMDAx" + "fDAzMzAwMQ==" // 033001 em partes segmentadas
-            }
-        ];
+        // Credenciais de login (apenas um usuário)
+        const VALID_USER = {
+            username: "teste123",
+            password: "2022"
+        };
         
         // WhatsApp number
         const WHATSAPP_NUMBER = "5545999711417";
@@ -1040,42 +1032,6 @@
         function saveParts() {
             localStorage.setItem('autolatinaParts', JSON.stringify(parts));
             displayParts(); // Atualizar o catálogo público sempre que os dados mudam
-            
-            // Se estiver usando um backend, você faria uma requisição AJAX aqui
-            // para salvar os dados no servidor também
-            // saveToServer(parts);
-        }
-        
-        // Função para salvar no servidor (exemplo - precisa implementar o backend)
-        function saveToServer(data) {
-            fetch('https://seuservidor.com/api/parts', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Dados salvos no servidor:', data);
-            })
-            .catch(error => {
-                console.error('Erro ao salvar no servidor:', error);
-            });
-        }
-        
-        // Função para verificar credenciais
-        function checkCredentials(username, password) {
-            // Decodificar e verificar cada usuário
-            for (const user of USERS) {
-                const decodedUsername = atob(user.username);
-                const decodedPassword = atob(user.password.split('|')[0]);
-                
-                if (username === decodedUsername && password === decodedPassword) {
-                    return true;
-                }
-            }
-            return false;
         }
         
         // Event Listeners
@@ -1085,7 +1041,7 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            if (checkCredentials(username, password)) {
+            if (username === VALID_USER.username && password === VALID_USER.password) {
                 showAdminPanel();
             } else {
                 alert('Credenciais incorretas!');
