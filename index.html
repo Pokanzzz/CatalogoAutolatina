@@ -846,11 +846,19 @@
         // Dados das peças (armazenamento local) - Inicialmente vazio
         let parts = JSON.parse(localStorage.getItem('autolatinaParts')) || [];
         
-        // Credenciais de login (codificadas para segurança básica)
-        const ADMIN_CREDENTIALS = {
-            username: "QXV0b2xhdGluYWNhc2NhdmVs", // Autolatinacascavel codificado em base64
-            password: "QWRtaW4yMDI0UzNjcjN0UzRsdA==" // Admin2024S3cr3tS4lt codificado em base64
-        };
+        // Credenciais de login (codificadas e ofuscadas)
+        const USERS = [
+            {
+                // ADMIN.POKAN:1905@ codificado de forma segmentada
+                username: "QURNSU4uUE9LQU4=", // ADMIN.POKAN em base64
+                password: "MTkwNUB8" + "fDE5MDU=" // 1905@ em partes segmentadas
+            },
+            {
+                // VitorBatista:033001 codificado de forma segmentada
+                username: "Vml0b3JCYXRpc3Rh", // VitorBatista em base64
+                password: "MDMzMDAx" + "fDAzMzAwMQ==" // 033001 em partes segmentadas
+            }
+        ];
         
         // WhatsApp number
         const WHATSAPP_NUMBER = "5545999711417";
@@ -1056,6 +1064,20 @@
             });
         }
         
+        // Função para verificar credenciais
+        function checkCredentials(username, password) {
+            // Decodificar e verificar cada usuário
+            for (const user of USERS) {
+                const decodedUsername = atob(user.username);
+                const decodedPassword = atob(user.password.split('|')[0]);
+                
+                if (username === decodedUsername && password === decodedPassword) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
         // Event Listeners
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -1063,11 +1085,7 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            // Codificar as credenciais fornecidas para comparação
-            const encodedUsername = btoa(username);
-            const encodedPassword = btoa(password + "S3cr3tS4lt");
-            
-            if (encodedUsername === ADMIN_CREDENTIALS.username && encodedPassword === ADMIN_CREDENTIALS.password) {
+            if (checkCredentials(username, password)) {
                 showAdminPanel();
             } else {
                 alert('Credenciais incorretas!');
