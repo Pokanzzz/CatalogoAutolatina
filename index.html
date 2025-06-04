@@ -18,7 +18,7 @@
             --text-light: #7f8c8d;
             --card-bg: #ffffff;
             --gradient-primary: linear-gradient(135deg, #0c006c, #08003a);
-            --limited-offer: #ffcc00;
+            --flash-offer: #ffcc00;
         }
         
         * {
@@ -148,13 +148,13 @@
             position: relative;
         }
         
-        .limited-offer-card {
+        .flash-offer-card {
             position: relative;
             overflow: visible;
-            animation: pulse-border 2s infinite;
+            animation: flash-border 2s infinite;
         }
         
-        .limited-offer-card::before {
+        .flash-offer-card::before {
             content: '';
             position: absolute;
             top: -5px;
@@ -162,20 +162,44 @@
             right: -5px;
             bottom: -5px;
             border-radius: 16px;
-            background: var(--limited-offer);
+            background: var(--flash-offer);
             z-index: -1;
-            animation: pulse-border 2s infinite;
+            animation: flash-border 2s infinite;
         }
         
-        @keyframes pulse-border {
+        @keyframes flash-border {
             0% {
-                box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7);
+                box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7), 0 0 0 0 rgba(255, 255, 0, 0.7);
             }
-            70% {
-                box-shadow: 0 0 0 15px rgba(255, 204, 0, 0);
+            50% {
+                box-shadow: 0 0 10px 5px rgba(255, 204, 0, 0.3), 0 0 20px 10px rgba(255, 255, 0, 0.2);
             }
             100% {
-                box-shadow: 0 0 0 0 rgba(255, 204, 0, 0);
+                box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7), 0 0 0 0 rgba(255, 255, 0, 0.7);
+            }
+        }
+        
+        .flash-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--flash-offer);
+            color: #000;
+            font-weight: bold;
+            animation: flash 0.5s infinite alternate;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 1;
+        }
+        
+        @keyframes flash {
+            from {
+                opacity: 0.7;
+            }
+            to {
+                opacity: 1;
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
             }
         }
         
@@ -195,25 +219,6 @@
             font-size: 0.8rem;
             font-weight: 600;
             z-index: 1;
-        }
-        
-        .limited-badge {
-            background: var(--limited-offer);
-            color: #000;
-            font-weight: bold;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
         }
         
         .part-image-container {
@@ -255,8 +260,19 @@
         .part-code {
             color: var(--text-light);
             font-size: 0.9rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
             font-weight: 400;
+        }
+        
+        .part-category {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            background: #f1f3f5;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            display: inline-block;
         }
         
         .part-price {
@@ -429,7 +445,7 @@
             font-weight: 500;
         }
         
-        .form-group input {
+        .form-group input, .form-group select {
             width: 100%;
             padding: 0.9rem 1.2rem;
             border: 1px solid #ddd;
@@ -438,7 +454,7 @@
             transition: border 0.3s;
         }
         
-        .form-group input:focus {
+        .form-group input:focus, .form-group select:focus {
             border-color: var(--secondary-color);
             outline: none;
         }
@@ -626,6 +642,29 @@
             display: none;
         }
         
+        .category-filter {
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        
+        .category-btn {
+            padding: 0.5rem 1rem;
+            background: #f1f3f5;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
         @media (max-width: 992px) {
             .catalog {
                 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -732,6 +771,10 @@
                 <p>Confira nossas ofertas especiais desta semana. Peças de qualidade com preços imbatíveis para o seu caminhão.</p>
             </section>
             
+            <div class="category-filter" id="category-filter">
+                <!-- Categorias serão adicionadas via JavaScript -->
+            </div>
+            
             <section class="catalog" id="catalog">
                 <!-- As peças serão adicionadas aqui via JavaScript -->
                 <p id="no-parts-message" style="grid-column: 1/-1; text-align: center; font-size: 1.2rem; color: var(--text-light);">Nenhuma oferta disponível no momento. Volte em breve!</p>
@@ -813,9 +856,28 @@
                             <input type="url" id="part-image" required>
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="part-category">Categoria</label>
+                            <select id="part-category" required>
+                                <option value="">Selecione uma categoria</option>
+                                <option value="Motor">Motor</option>
+                                <option value="Combustível Gás Escape Arrefecimento">Combustível Gás Escape Arrefecimento</option>
+                                <option value="Caixa de Mudança">Caixa de Mudança</option>
+                                <option value="Eixo dianteiro / Caixa de direção">Eixo dianteiro / Caixa de direção</option>
+                                <option value="Eixo Traseiro">Eixo Traseiro</option>
+                                <option value="Roda e Freio">Roda e Freio</option>
+                                <option value="Sistema de alavanca">Sistema de alavanca</option>
+                                <option value="Carroceria">Carroceria</option>
+                                <option value="Sistema Elétrico">Sistema Elétrico</option>
+                                <option value="Acessórios">Acessórios</option>
+                                <option value="Outros">Outros</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="checkbox-group">
-                        <input type="checkbox" id="is-limited">
-                        <label for="is-limited">Oferta por tempo limitado (aparecerá em destaque)</label>
+                        <input type="checkbox" id="is-flash">
+                        <label for="is-flash">Oferta Relâmpago (aparecerá em destaque)</label>
                     </div>
                     <button type="submit" class="submit-btn"><i class="fas fa-plus"></i> Adicionar Oferta</button>
                 </form>
@@ -830,6 +892,7 @@
                             <th>Nome</th>
                             <th>Código</th>
                             <th>Preço</th>
+                            <th>Categoria</th>
                             <th>Tipo</th>
                             <th>Ações</th>
                         </tr>
@@ -855,6 +918,21 @@
         // WhatsApp number
         const WHATSAPP_NUMBER = "5545999711417";
         
+        // Categorias disponíveis
+        const CATEGORIES = [
+            "Motor",
+            "Combustível Gás Escape Arrefecimento",
+            "Caixa de Mudança",
+            "Eixo dianteiro / Caixa de direção",
+            "Eixo Traseiro",
+            "Roda e Freio",
+            "Sistema de alavanca",
+            "Carroceria",
+            "Sistema Elétrico",
+            "Acessórios",
+            "Outros"
+        ];
+        
         // Elementos da página
         const loginPage = document.getElementById('login-page');
         const publicCatalog = document.getElementById('public-catalog');
@@ -868,6 +946,7 @@
         const adminPartsList = document.getElementById('admin-parts-list');
         const noPartsMessage = document.getElementById('no-parts-message');
         const legalWarning = document.getElementById('legal-warning');
+        const categoryFilter = document.getElementById('category-filter');
         
         // Mostrar aviso legal se tentarem inspecionar o código
         document.addEventListener('keydown', function(e) {
@@ -885,6 +964,7 @@
             publicCatalog.classList.remove('hidden');
             adminPanel.classList.add('hidden');
             displayParts();
+            displayCategoryFilters();
         }
         
         // Mostrar painel admin
@@ -904,32 +984,64 @@
             document.getElementById('password').value = '';
         }
         
-        // Exibir peças no catálogo público
-        function displayParts() {
+        // Exibir filtros de categoria
+        function displayCategoryFilters() {
+            categoryFilter.innerHTML = '';
+            
+            // Botão "Todas"
+            const allBtn = document.createElement('button');
+            allBtn.className = 'category-btn active';
+            allBtn.textContent = 'Todas';
+            allBtn.addEventListener('click', () => {
+                document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                allBtn.classList.add('active');
+                displayParts();
+            });
+            categoryFilter.appendChild(allBtn);
+            
+            // Botões para cada categoria
+            CATEGORIES.forEach(category => {
+                const btn = document.createElement('button');
+                btn.className = 'category-btn';
+                btn.textContent = category;
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                    btn.classList.add('active');
+                    displayParts(category);
+                });
+                categoryFilter.appendChild(btn);
+            });
+        }
+        
+        // Exibir peças no catálogo público (com filtro opcional por categoria)
+        function displayParts(category = null) {
             catalogContainer.innerHTML = '';
             
-            if (parts.length === 0) {
+            let filteredParts = parts;
+            if (category) {
+                filteredParts = parts.filter(part => part.category === category);
+            }
+            
+            if (filteredParts.length === 0) {
                 noPartsMessage.style.display = 'block';
                 return;
             }
             
             noPartsMessage.style.display = 'none';
             
-            parts.forEach(part => {
+            filteredParts.forEach(part => {
                 const partCard = document.createElement('div');
-                partCard.className = `part-card ${part.isLimited ? 'limited-offer-card' : ''}`;
-                
-                const badgeClass = part.isLimited ? 'limited-badge' : 'badge';
-                const badgeText = part.isLimited ? 'OFERTA LIMITADA' : 'OFERTA';
+                partCard.className = `part-card ${part.isFlash ? 'flash-offer-card' : ''}`;
                 
                 partCard.innerHTML = `
                     <div class="part-image-container">
-                        <span class="${badgeClass}">${badgeText}</span>
+                        ${part.isFlash ? '<span class="flash-badge"><i class="fas fa-bolt"></i></span>' : '<span class="badge">OFERTA</span>'}
                         <img src="${part.image}" alt="${part.name}" class="part-image" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Não+Disponível'">
                     </div>
                     <div class="part-info">
                         <h3>${part.name}</h3>
                         <div class="part-code">Código: ${part.code}</div>
+                        <div class="part-category">${part.category}</div>
                         <div class="part-price">R$ ${part.price.toFixed(2).replace('.', ',')}</div>
                         <a href="https://wa.me/${WHATSAPP_NUMBER}?text=Olá, gostaria de saber mais sobre a peça ${part.name} (Código: ${part.code})" class="whatsapp-btn" target="_blank">
                             <i class="fab fa-whatsapp"></i> WhatsApp
@@ -953,7 +1065,8 @@
                     <td>${part.name}</td>
                     <td>${part.code}</td>
                     <td>R$ ${part.price.toFixed(2).replace('.', ',')}</td>
-                    <td>${part.isLimited ? 'Oferta Limitada' : 'Normal'}</td>
+                    <td>${part.category}</td>
+                    <td>${part.isFlash ? 'Oferta Relâmpago' : 'Normal'}</td>
                     <td>
                         <button class="action-btn edit-btn" data-id="${part.id}"><i class="fas fa-edit"></i> Editar</button>
                         <button class="action-btn delete-btn" data-id="${part.id}"><i class="fas fa-trash"></i> Excluir</button>
@@ -983,14 +1096,15 @@
                 code: document.getElementById('part-code').value,
                 price: parseFloat(document.getElementById('part-price').value),
                 image: document.getElementById('part-image').value,
-                isLimited: document.getElementById('is-limited').checked
+                category: document.getElementById('part-category').value,
+                isFlash: document.getElementById('is-flash').checked
             };
             
             parts.push(newPart);
             saveParts();
             displayAdminParts();
             addPartForm.reset();
-            document.getElementById('is-limited').checked = false;
+            document.getElementById('is-flash').checked = false;
             
             // Mostrar mensagem de sucesso
             alert('Oferta adicionada com sucesso!');
@@ -1005,7 +1119,8 @@
             document.getElementById('part-code').value = part.code;
             document.getElementById('part-price').value = part.price;
             document.getElementById('part-image').value = part.image;
-            document.getElementById('is-limited').checked = part.isLimited || false;
+            document.getElementById('part-category').value = part.category;
+            document.getElementById('is-flash').checked = part.isFlash || false;
             
             // Remover a peça antiga
             parts = parts.filter(p => p.id != id);
