@@ -131,9 +131,27 @@
         
         .catalog {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(4, 1fr); /* 4 colunas */
+            gap: 1.5rem; /* Espaçamento menor */
             padding: 2rem 0;
+        }
+        
+        @media (max-width: 1200px) {
+            .catalog {
+                grid-template-columns: repeat(3, 1fr); /* 3 colunas em telas menores */
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .catalog {
+                grid-template-columns: repeat(2, 1fr); /* 2 colunas em tablets */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .catalog {
+                grid-template-columns: 1fr; /* 1 coluna em celulares */
+            }
         }
         
         .part-card {
@@ -152,6 +170,7 @@
             position: relative;
             overflow: visible;
             animation: flash-border 2s infinite;
+            order: -1; /* Faz as ofertas relâmpago aparecerem primeiro */
         }
         
         .flash-offer-card::before {
@@ -222,7 +241,7 @@
         }
         
         .part-image-container {
-            height: 180px; /* Diminuído de 220px para 180px */
+            height: 160px; /* Altura reduzida */
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -235,7 +254,7 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            padding: 20px;
+            padding: 15px; /* Padding reduzido */
             transition: transform 0.5s ease;
         }
         
@@ -244,7 +263,7 @@
         }
         
         .part-info {
-            padding: 1.5rem; /* Reduzido de 1.8rem para 1.5rem */
+            padding: 1.2rem; /* Padding reduzido */
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -252,25 +271,26 @@
         
         .part-info h3 {
             color: var(--primary-color);
-            margin-bottom: 0.8rem;
-            font-size: 1.3rem;
+            margin-bottom: 0.6rem; /* Margem reduzida */
+            font-size: 1.2rem; /* Fonte um pouco menor */
             font-weight: 600;
+            line-height: 1.3;
         }
         
         .part-code {
             color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.85rem; /* Fonte menor */
+            margin-bottom: 0.4rem; /* Margem reduzida */
             font-weight: 400;
         }
         
         .part-category {
             color: var(--primary-color);
-            font-size: 0.9rem;
-            margin-bottom: 0.8rem;
+            font-size: 0.85rem; /* Fonte menor */
+            margin-bottom: 0.6rem; /* Margem reduzida */
             font-weight: 500;
             background: #f1f3f5;
-            padding: 0.3rem 0.6rem;
+            padding: 0.2rem 0.5rem; /* Padding reduzido */
             border-radius: 4px;
             display: inline-block;
         }
@@ -278,8 +298,8 @@
         .part-price {
             color: var(--accent-color);
             font-weight: 700;
-            font-size: 1.5rem;
-            margin: 0.8rem 0 1.2rem; /* Reduzido de 1rem 0 1.5rem */
+            font-size: 1.3rem; /* Fonte um pouco menor */
+            margin: 0.6rem 0 1rem; /* Margens reduzidas */
         }
         
         .whatsapp-btn {
@@ -289,9 +309,10 @@
             background-color: var(--whatsapp-color);
             color: white;
             text-decoration: none;
-            padding: 0.8rem 1.5rem;
+            padding: 0.7rem 1.2rem; /* Padding reduzido */
             border-radius: 8px;
             font-weight: 600;
+            font-size: 0.9rem; /* Fonte menor */
             transition: all 0.3s ease;
             margin-top: auto;
         }
@@ -303,8 +324,8 @@
         }
         
         .whatsapp-btn i {
-            margin-right: 10px;
-            font-size: 1.2rem;
+            margin-right: 8px;
+            font-size: 1.1rem;
         }
         
         /* Estilos do carrossel de marcas */
@@ -832,10 +853,6 @@
         }
         
         @media (max-width: 992px) {
-            .catalog {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            }
-            
             .logo {
                 font-size: 2.2rem;
             }
@@ -894,7 +911,7 @@
             }
             
             .part-info {
-                padding: 1.2rem;
+                padding: 1rem;
             }
             
             .intro h2 {
@@ -1344,9 +1361,20 @@
             
             noPartsMessage.style.display = 'none';
             
+            // Ordenar para que ofertas relâmpago apareçam primeiro
+            filteredParts.sort((a, b) => {
+                if (a.isFlash && !b.isFlash) return -1;
+                if (!a.isFlash && b.isFlash) return 1;
+                return 0;
+            });
+            
             filteredParts.forEach(part => {
                 const partCard = document.createElement('div');
                 partCard.className = `part-card ${part.isFlash ? 'flash-offer-card' : ''}`;
+                
+                if (part.isFlash) {
+                    partCard.style.order = '-1'; // Garante que aparece primeiro
+                }
                 
                 partCard.innerHTML = `
                     <div class="part-image-container">
