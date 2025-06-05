@@ -133,7 +133,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2.5rem;
-            padding: 2rem 0 4rem;
+            padding: 2rem 0;
         }
         
         .part-card {
@@ -222,7 +222,7 @@
         }
         
         .part-image-container {
-            height: 220px;
+            height: 180px; /* Diminuído de 220px para 180px */
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -244,7 +244,7 @@
         }
         
         .part-info {
-            padding: 1.8rem;
+            padding: 1.5rem; /* Reduzido de 1.8rem para 1.5rem */
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -279,7 +279,7 @@
             color: var(--accent-color);
             font-weight: 700;
             font-size: 1.5rem;
-            margin: 1rem 0 1.5rem;
+            margin: 0.8rem 0 1.2rem; /* Reduzido de 1rem 0 1.5rem */
         }
         
         .whatsapp-btn {
@@ -305,6 +305,141 @@
         .whatsapp-btn i {
             margin-right: 10px;
             font-size: 1.2rem;
+        }
+        
+        /* Estilos do carrossel de marcas */
+        .brands-section {
+            padding: 2rem 0;
+            margin: 2rem 0;
+        }
+        
+        .brands-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .brands-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+        
+        .brands-carousel-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .brands-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding: 1rem 0;
+            scrollbar-width: none; /* Firefox */
+            justify-content: center;
+        }
+        
+        .brands-carousel::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+        
+        .brand-item {
+            flex: 0 0 auto;
+            width: 120px;
+            margin: 0 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .brand-logo-container {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #eee;
+            overflow: hidden;
+        }
+        
+        .brand-logo {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+        
+        .brand-name {
+            font-weight: 500;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+        
+        /* Termos e condições */
+        .terms-section {
+            background: #f8f9fa;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .terms-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .terms-toggle {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .terms-toggle i {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .terms-toggle.active i {
+            transform: rotate(180deg);
+        }
+        
+        .terms-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-top: 1rem;
+            text-align: left;
+            display: none;
+        }
+        
+        .terms-content.active {
+            display: block;
+        }
+        
+        .terms-content p {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
         
         footer {
@@ -498,6 +633,37 @@
             font-weight: 600;
         }
         
+        .admin-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .admin-tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .admin-tab.active {
+            border-bottom-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        
+        .admin-tab:hover:not(.active) {
+            border-bottom-color: #ddd;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
         .add-part-form {
             background: white;
             padding: 2rem;
@@ -673,6 +839,10 @@
             .logo {
                 font-size: 2.2rem;
             }
+            
+            .brand-item {
+                width: 110px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -706,6 +876,16 @@
             .page-title {
                 font-size: 1.6rem;
             }
+            
+            .brand-item {
+                width: 100px;
+                margin: 0 10px;
+            }
+            
+            .brand-logo-container {
+                width: 80px;
+                height: 80px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -714,7 +894,7 @@
             }
             
             .part-info {
-                padding: 1.5rem;
+                padding: 1.2rem;
             }
             
             .intro h2 {
@@ -723,6 +903,19 @@
             
             .intro p {
                 font-size: 1rem;
+            }
+            
+            .brand-item {
+                width: 90px;
+            }
+            
+            .brand-logo-container {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .brand-name {
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -779,6 +972,32 @@
                 <!-- As peças serão adicionadas aqui via JavaScript -->
                 <p id="no-parts-message" style="grid-column: 1/-1; text-align: center; font-size: 1.2rem; color: var(--text-light);">Nenhuma oferta disponível no momento. Volte em breve!</p>
             </section>
+            
+            <!-- Seção do Carrossel de Marcas -->
+            <section class="brands-section">
+                <h2 class="brands-title">Alguma das marcas com que trabalhamos</h2>
+                <div class="brands-carousel-container">
+                    <div class="brands-carousel" id="brands-carousel">
+                        <!-- As marcas serão adicionadas aqui via JavaScript -->
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Seção de Termos e Condições -->
+            <section class="terms-section">
+                <div class="terms-container">
+                    <button class="terms-toggle" id="terms-toggle">
+                        Termos e Condições <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="terms-content" id="terms-content">
+                        <p><strong>Valores Finais:</strong> Todos os valores finais serão confirmados via WhatsApp após verificação de disponibilidade e condições de pagamento.</p>
+                        <p><strong>Segurança:</strong> Todas as transações são seguras e realizadas com proteção de dados. Não armazenamos informações financeiras em nosso sistema.</p>
+                        <p><strong>Pagamento:</strong> Aceitamos diversas formas de pagamento, incluindo PIX, cartões de crédito/débito e boleto bancário, com condições a serem combinadas no ato da compra.</p>
+                        <p><strong>Entrega:</strong> Prazo de entrega varia conforme localidade e disponibilidade do produto. Será informado no momento da confirmação do pedido.</p>
+                        <p><strong>Garantia:</strong> Todos os produtos possuem garantia conforme determinação do fabricante. Em caso de defeito, entre em contato conosco via WhatsApp.</p>
+                    </div>
+                </div>
+            </section>
         </main>
         
         <footer>
@@ -829,78 +1048,113 @@
         
         <main class="container admin-panel">
             <div class="admin-header">
-                <h2 class="admin-title">Gerenciamento de Ofertas</h2>
+                <h2 class="admin-title">Gerenciamento de Conteúdo</h2>
                 <button id="view-public-catalog" class="submit-btn"><i class="fas fa-eye"></i> Ver Catálogo Público</button>
             </div>
             
-            <div class="add-part-form">
-                <h3>Adicionar Nova Oferta</h3>
-                <form id="add-part-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="part-name">Nome da Peça</label>
-                            <input type="text" id="part-name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="part-code">Código</label>
-                            <input type="text" id="part-code" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="part-price">Preço (R$)</label>
-                            <input type="number" id="part-price" step="0.01" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="part-image">URL da Imagem</label>
-                            <input type="url" id="part-image" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="part-category">Categoria</label>
-                            <select id="part-category" required>
-                                <option value="">Selecione uma categoria</option>
-                                <option value="Motor">Motor</option>
-                                <option value="Combustível Gás Escape Arrefecimento">Combustível Gás Escape Arrefecimento</option>
-                                <option value="Caixa de Mudança">Caixa de Mudança</option>
-                                <option value="Eixo dianteiro / Caixa de direção">Eixo dianteiro / Caixa de direção</option>
-                                <option value="Eixo Traseiro">Eixo Traseiro</option>
-                                <option value="Roda e Freio">Roda e Freio</option>
-                                <option value="Sistema de alavanca">Sistema de alavanca</option>
-                                <option value="Carroceria">Carroceria</option>
-                                <option value="Sistema Elétrico">Sistema Elétrico</option>
-                                <option value="Acessórios">Acessórios</option>
-                                <option value="Outros">Outros</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="is-flash">
-                        <label for="is-flash">Oferta Relâmpago (aparecerá em destaque)</label>
-                    </div>
-                    <button type="submit" class="submit-btn"><i class="fas fa-plus"></i> Adicionar Oferta</button>
-                </form>
+            <div class="admin-tabs">
+                <div class="admin-tab active" data-tab="parts">Ofertas</div>
+                <div class="admin-tab" data-tab="brands">Marcas</div>
             </div>
             
-            <div class="admin-parts-list">
-                <h3>Ofertas Cadastradas</h3>
-                <table class="parts-table">
-                    <thead>
-                        <tr>
-                            <th>Imagem</th>
-                            <th>Nome</th>
-                            <th>Código</th>
-                            <th>Preço</th>
-                            <th>Categoria</th>
-                            <th>Tipo</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="admin-parts-list">
-                        <!-- Lista de peças para administração -->
-                    </tbody>
-                </table>
+            <!-- Conteúdo da aba de Ofertas -->
+            <div id="parts-tab" class="tab-content active">
+                <div class="add-part-form">
+                    <h3>Adicionar Nova Oferta</h3>
+                    <form id="add-part-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="part-name">Nome da Peça</label>
+                                <input type="text" id="part-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="part-code">Código</label>
+                                <input type="text" id="part-code" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="part-price">Preço (R$)</label>
+                                <input type="number" id="part-price" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="part-image">URL da Imagem</label>
+                                <input type="url" id="part-image" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="part-category">Categoria</label>
+                                <select id="part-category" required>
+                                    <option value="">Selecione uma categoria</option>
+                                    <option value="Motor">Motor</option>
+                                    <option value="Combustível Gás Escape Arrefecimento">Combustível Gás Escape Arrefecimento</option>
+                                    <option value="Caixa de Mudança">Caixa de Mudança</option>
+                                    <option value="Eixo dianteiro / Caixa de direção">Eixo dianteiro / Caixa de direção</option>
+                                    <option value="Eixo Traseiro">Eixo Traseiro</option>
+                                    <option value="Roda e Freio">Roda e Freio</option>
+                                    <option value="Sistema de alavanca">Sistema de alavanca</option>
+                                    <option value="Carroceria">Carroceria</option>
+                                    <option value="Sistema Elétrico">Sistema Elétrico</option>
+                                    <option value="Acessórios">Acessórios</option>
+                                    <option value="Outros">Outros</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="is-flash">
+                            <label for="is-flash">Oferta Relâmpago (aparecerá em destaque)</label>
+                        </div>
+                        <button type="submit" class="submit-btn"><i class="fas fa-plus"></i> Adicionar Oferta</button>
+                    </form>
+                </div>
+                
+                <div class="admin-parts-list">
+                    <h3>Ofertas Cadastradas</h3>
+                    <table class="parts-table">
+                        <thead>
+                            <tr>
+                                <th>Imagem</th>
+                                <th>Nome</th>
+                                <th>Código</th>
+                                <th>Preço</th>
+                                <th>Categoria</th>
+                                <th>Tipo</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-parts-list">
+                            <!-- Lista de peças para administração -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Conteúdo da aba de Marcas -->
+            <div id="brands-tab" class="tab-content">
+                <div class="add-brand-form">
+                    <h3>Adicionar Nova Marca</h3>
+                    <form id="add-brand-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="brand-name">Nome da Marca</label>
+                                <input type="text" id="brand-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="brand-image">URL da Imagem</label>
+                                <input type="url" id="brand-image" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn"><i class="fas fa-plus"></i> Adicionar Marca</button>
+                    </form>
+                </div>
+                
+                <div class="admin-parts-list">
+                    <h3>Marcas Cadastradas</h3>
+                    <div class="brands-list" id="admin-brands-list">
+                        <!-- Lista de marcas para administração -->
+                    </div>
+                </div>
             </div>
         </main>
     </div>
@@ -908,6 +1162,9 @@
     <script>
         // Dados das peças (armazenamento local) - Inicialmente vazio
         let parts = JSON.parse(localStorage.getItem('autolatinaParts')) || [];
+        
+        // Dados das marcas (armazenamento local) - Inicialmente vazio
+        let brands = JSON.parse(localStorage.getItem('autolatinaBrands')) || [];
         
         // Credenciais de login (apenas um usuário)
         const VALID_USER = {
@@ -942,11 +1199,16 @@
         const logoutBtn = document.getElementById('logout-btn');
         const viewPublicCatalogBtn = document.getElementById('view-public-catalog');
         const addPartForm = document.getElementById('add-part-form');
+        const addBrandForm = document.getElementById('add-brand-form');
         const catalogContainer = document.getElementById('catalog');
         const adminPartsList = document.getElementById('admin-parts-list');
+        const adminBrandsList = document.getElementById('admin-brands-list');
         const noPartsMessage = document.getElementById('no-parts-message');
         const legalWarning = document.getElementById('legal-warning');
         const categoryFilter = document.getElementById('category-filter');
+        const brandsCarousel = document.getElementById('brands-carousel');
+        const termsToggle = document.getElementById('terms-toggle');
+        const termsContent = document.getElementById('terms-content');
         
         // Mostrar aviso legal se tentarem inspecionar o código
         document.addEventListener('keydown', function(e) {
@@ -964,6 +1226,7 @@
             publicCatalog.classList.remove('hidden');
             adminPanel.classList.add('hidden');
             displayParts();
+            displayBrands();
             displayCategoryFilters();
         }
         
@@ -973,6 +1236,7 @@
             publicCatalog.classList.add('hidden');
             adminPanel.classList.remove('hidden');
             displayAdminParts();
+            displayAdminBrands();
         }
         
         // Mostrar tela de login
@@ -983,6 +1247,26 @@
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
         }
+        
+        // Alternar entre abas no painel admin
+        document.querySelectorAll('.admin-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remover classe active de todas as abas e conteúdos
+                document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Adicionar classe active à aba clicada e ao conteúdo correspondente
+                tab.classList.add('active');
+                const tabId = tab.dataset.tab + '-tab';
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Alternar termos e condições
+        termsToggle.addEventListener('click', () => {
+            termsToggle.classList.toggle('active');
+            termsContent.classList.toggle('active');
+        });
         
         // Exibir filtros de categoria
         function displayCategoryFilters() {
@@ -1010,6 +1294,37 @@
                     displayParts(category);
                 });
                 categoryFilter.appendChild(btn);
+            });
+        }
+        
+        // Exibir marcas no carrossel
+        function displayBrands() {
+            brandsCarousel.innerHTML = '';
+            
+            if (brands.length === 0) {
+                // Se não houver marcas cadastradas, mostrar uma mensagem ou placeholder
+                const placeholder = document.createElement('div');
+                placeholder.className = 'brand-item';
+                placeholder.innerHTML = `
+                    <div class="brand-logo-container">
+                        <img src="https://via.placeholder.com/120x80?text=Sem+Marcas" class="brand-logo">
+                    </div>
+                    <div class="brand-name">Nenhuma marca</div>
+                `;
+                brandsCarousel.appendChild(placeholder);
+                return;
+            }
+            
+            brands.forEach(brand => {
+                const brandItem = document.createElement('div');
+                brandItem.className = 'brand-item';
+                brandItem.innerHTML = `
+                    <div class="brand-logo-container">
+                        <img src="${brand.image}" alt="${brand.name}" class="brand-logo" onerror="this.src='https://via.placeholder.com/120x80?text=Logo+Não+Disponível'">
+                    </div>
+                    <div class="brand-name">${brand.name}</div>
+                `;
+                brandsCarousel.appendChild(brandItem);
             });
         }
         
@@ -1086,6 +1401,35 @@
             });
         }
         
+        // Exibir marcas no painel admin
+        function displayAdminBrands() {
+            adminBrandsList.innerHTML = '';
+            
+            if (brands.length === 0) {
+                adminBrandsList.innerHTML = '<p>Nenhuma marca cadastrada.</p>';
+                return;
+            }
+            
+            brands.forEach(brand => {
+                const brandCard = document.createElement('div');
+                brandCard.className = 'brand-card';
+                brandCard.innerHTML = `
+                    <img src="${brand.image}" alt="${brand.name}" onerror="this.src='https://via.placeholder.com/200x100?text=Logo+Não+Disponível'">
+                    <div class="brand-name">${brand.name}</div>
+                    <div class="brand-actions">
+                        <button class="action-btn delete-btn" data-id="${brand.id}"><i class="fas fa-trash"></i> Excluir</button>
+                    </div>
+                `;
+                
+                adminBrandsList.appendChild(brandCard);
+            });
+            
+            // Adicionar eventos aos botões de exclusão
+            document.querySelectorAll('.brand-actions .delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => deleteBrand(e.target.closest('button').dataset.id));
+            });
+        }
+        
         // Adicionar nova peça
         function addPart(e) {
             e.preventDefault();
@@ -1108,6 +1452,25 @@
             
             // Mostrar mensagem de sucesso
             alert('Oferta adicionada com sucesso!');
+        }
+        
+        // Adicionar nova marca
+        function addBrand(e) {
+            e.preventDefault();
+            
+            const newBrand = {
+                id: Date.now(),
+                name: document.getElementById('brand-name').value,
+                image: document.getElementById('brand-image').value
+            };
+            
+            brands.push(newBrand);
+            saveBrands();
+            displayAdminBrands();
+            addBrandForm.reset();
+            
+            // Mostrar mensagem de sucesso
+            alert('Marca adicionada com sucesso!');
         }
         
         // Editar peça
@@ -1143,10 +1506,29 @@
             }
         }
         
+        // Excluir marca
+        function deleteBrand(id) {
+            if (confirm('Tem certeza que deseja excluir esta marca?')) {
+                brands = brands.filter(b => b.id != id);
+                saveBrands();
+                displayAdminBrands();
+                displayBrands(); // Atualizar também o carrossel público
+                
+                // Mostrar mensagem de sucesso
+                alert('Marca excluída com sucesso!');
+            }
+        }
+        
         // Salvar peças no localStorage
         function saveParts() {
             localStorage.setItem('autolatinaParts', JSON.stringify(parts));
             displayParts(); // Atualizar o catálogo público sempre que os dados mudam
+        }
+        
+        // Salvar marcas no localStorage
+        function saveBrands() {
+            localStorage.setItem('autolatinaBrands', JSON.stringify(brands));
+            displayBrands(); // Atualizar o carrossel sempre que os dados mudam
         }
         
         // Event Listeners
@@ -1178,6 +1560,7 @@
         });
         
         addPartForm.addEventListener('submit', addPart);
+        addBrandForm.addEventListener('submit', addBrand);
         
         // Inicializar a página mostrando o catálogo público
         showPublicCatalog();
