@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ofertas da Semana - Autolatina Truck Service</title>
+    <title>Autolatina Truck Service - Peças para Caminhões</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #0c006c;
-            --secondary-color: #0c006c;
+            --secondary-color: #1a0da8;
             --accent-color: #ff0505;
             --whatsapp-color: #25D366;
-            --light-color: #ecf0f1;
+            --light-color: #f8f9fa;
             --dark-color: #08003a;
             --text-color: #333;
             --text-light: #7f8c8d;
             --card-bg: #ffffff;
-            --gradient-primary: linear-gradient(135deg, #0c006c, #08003a);
+            --gradient-primary: linear-gradient(135deg, #0c006c, #1a0da8);
+            --gradient-accent: linear-gradient(135deg, #ff0505, #ff5e5e);
             --flash-offer: #ffcc00;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
         }
         
         * {
@@ -29,7 +32,7 @@
         }
         
         body {
-            background-color: #f8f9fa;
+            background-color: var(--light-color);
             color: var(--text-color);
             line-height: 1.6;
         }
@@ -39,7 +42,7 @@
             color: white;
             padding: 2rem 0;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow);
             position: relative;
             border-bottom: 4px solid var(--accent-color);
         }
@@ -61,16 +64,18 @@
         }
         
         .page-title {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 0.5rem;
             color: white;
             font-weight: 600;
         }
         
         .page-subtitle {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             opacity: 0.9;
             font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .admin-link {
@@ -97,68 +102,147 @@
             padding: 0 20px;
         }
         
-        .intro {
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 3rem 0 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .intro h2 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 2rem;
             position: relative;
-            display: inline-block;
+            margin-bottom: 3rem;
         }
         
-        .intro h2:after {
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            background: var(--gradient-accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 5, 5, 0.4);
+        }
+        
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 5, 5, 0.5);
+        }
+        
+        /* Seção de Categorias - Design Simplificado */
+        .categories-section {
+            padding: 3rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .section-title:after {
             content: '';
             position: absolute;
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
             width: 80px;
-            height: 3px;
+            height: 4px;
             background: var(--accent-color);
-            border-radius: 3px;
+            border-radius: 2px;
         }
         
-        .intro p {
-            max-width: 700px;
-            margin: 0 auto;
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem 0;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-color);
+        }
+        
+        .category-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .category-name {
             font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        /* Seção de Ofertas */
+        .offers-section {
+            padding: 3rem 0;
+            background-color: var(--light-color);
         }
         
         .catalog {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 colunas */
-            gap: 1.5rem; /* Espaçamento menor */
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
             padding: 2rem 0;
-        }
-        
-        @media (max-width: 1200px) {
-            .catalog {
-                grid-template-columns: repeat(3, 1fr); /* 3 colunas em telas menores */
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .catalog {
-                grid-template-columns: repeat(2, 1fr); /* 2 colunas em tablets */
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .catalog {
-                grid-template-columns: 1fr; /* 1 coluna em celulares */
-            }
         }
         
         .part-card {
             background: var(--card-bg);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
             flex-direction: column;
@@ -170,20 +254,7 @@
             position: relative;
             overflow: visible;
             animation: flash-border 2s infinite;
-            order: -1; /* Faz as ofertas relâmpago aparecerem primeiro */
-        }
-        
-        .flash-offer-card::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border-radius: 16px;
-            background: var(--flash-offer);
-            z-index: -1;
-            animation: flash-border 2s infinite;
+            border: 2px solid var(--flash-offer);
         }
         
         @keyframes flash-border {
@@ -191,7 +262,7 @@
                 box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7), 0 0 0 0 rgba(255, 255, 0, 0.7);
             }
             50% {
-                box-shadow: 0 0 10px 5px rgba(255, 204, 0, 0.3), 0 0 20px 10px rgba(255, 255, 0, 0.2);
+                box-shadow: 0 0 15px 8px rgba(255, 204, 0, 0.3), 0 0 25px 15px rgba(255, 255, 0, 0.2);
             }
             100% {
                 box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7), 0 0 0 0 rgba(255, 255, 0, 0.7);
@@ -206,10 +277,11 @@
             color: #000;
             font-weight: bold;
             animation: flash 0.5s infinite alternate;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
             z-index: 1;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
         @keyframes flash {
@@ -224,7 +296,7 @@
         
         .part-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+            box-shadow: var(--shadow-hover);
         }
         
         .badge {
@@ -233,15 +305,16 @@
             right: 15px;
             background: var(--accent-color);
             color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
             font-weight: 600;
             z-index: 1;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
         .part-image-container {
-            height: 160px; /* Altura reduzida */
+            height: 200px;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -254,7 +327,7 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            padding: 15px; /* Padding reduzido */
+            padding: 20px;
             transition: transform 0.5s ease;
         }
         
@@ -263,7 +336,7 @@
         }
         
         .part-info {
-            padding: 1.2rem; /* Padding reduzido */
+            padding: 1.5rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -271,35 +344,35 @@
         
         .part-info h3 {
             color: var(--primary-color);
-            margin-bottom: 0.6rem; /* Margem reduzida */
-            font-size: 1.2rem; /* Fonte um pouco menor */
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
             font-weight: 600;
             line-height: 1.3;
         }
         
         .part-code {
             color: var(--text-light);
-            font-size: 0.85rem; /* Fonte menor */
-            margin-bottom: 0.4rem; /* Margem reduzida */
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
             font-weight: 400;
         }
         
         .part-category {
             color: var(--primary-color);
-            font-size: 0.85rem; /* Fonte menor */
-            margin-bottom: 0.6rem; /* Margem reduzida */
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
             font-weight: 500;
             background: #f1f3f5;
-            padding: 0.2rem 0.5rem; /* Padding reduzido */
-            border-radius: 4px;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
             display: inline-block;
         }
         
         .part-price {
             color: var(--accent-color);
             font-weight: 700;
-            font-size: 1.3rem; /* Fonte um pouco menor */
-            margin: 0.6rem 0 1rem; /* Margens reduzidas */
+            font-size: 1.5rem;
+            margin: 0.8rem 0 1.2rem;
         }
         
         .whatsapp-btn {
@@ -309,166 +382,200 @@
             background-color: var(--whatsapp-color);
             color: white;
             text-decoration: none;
-            padding: 0.7rem 1.2rem; /* Padding reduzido */
+            padding: 0.8rem 1.5rem;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 0.9rem; /* Fonte menor */
+            font-size: 1rem;
             transition: all 0.3s ease;
             margin-top: auto;
         }
         
         .whatsapp-btn:hover {
             background-color: #128C7E;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(18, 140, 126, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(18, 140, 126, 0.4);
         }
         
         .whatsapp-btn i {
             margin-right: 8px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
         
-        /* Estilos do carrossel de marcas */
+        /* Seção de Marcas */
         .brands-section {
-            padding: 2rem 0;
-            margin: 2rem 0;
+            padding: 3rem 0;
+            background-color: white;
         }
         
-        .brands-title {
-            text-align: center;
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        
-        .brands-title:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--accent-color);
-            border-radius: 3px;
-        }
-        
-        .brands-carousel-container {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .brands-carousel {
+        .brands-grid {
             display: flex;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            padding: 1rem 0;
-            scrollbar-width: none; /* Firefox */
+            flex-wrap: wrap;
             justify-content: center;
-        }
-        
-        .brands-carousel::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
+            gap: 1.5rem;
+            padding: 2rem 0;
         }
         
         .brand-item {
-            flex: 0 0 auto;
-            width: 120px;
-            margin: 0 15px;
+            width: 100px;
             text-align: center;
             transition: transform 0.3s;
         }
         
         .brand-logo-container {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 1rem;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 0.5rem;
             border-radius: 50%;
             background: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
             border: 1px solid #eee;
             overflow: hidden;
+            padding: 10px;
         }
         
         .brand-logo {
-            width: 80%;
-            height: 80%;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
         }
         
         .brand-name {
-            font-weight: 500;
+            font-weight: 600;
             color: var(--primary-color);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
         
-        /* Termos e condições */
-        .terms-section {
-            background: #f8f9fa;
+        /* Seção de Serviços */
+        .services-section {
+            padding: 3rem 0;
+            background-color: var(--light-color);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
             padding: 2rem 0;
-            margin-top: 2rem;
-            border-top: 1px solid #eee;
         }
         
-        .terms-container {
-            max-width: 800px;
-            margin: 0 auto;
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .service-content {
+            padding: 2rem;
             text-align: center;
         }
         
-        .terms-toggle {
-            background: none;
-            border: none;
+        .service-title {
+            font-size: 1.3rem;
             color: var(--primary-color);
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 1rem;
             margin-bottom: 1rem;
-            display: inline-flex;
-            align-items: center;
+            font-weight: 600;
         }
         
-        .terms-toggle i {
-            margin-left: 8px;
+        .service-desc {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Seção Rodapé Superior */
+        .footer-top {
+            padding: 3rem 0;
+            background: white;
+        }
+        
+        .footer-top-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .footer-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .footer-section-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        
+        .footer-section-title i {
             transition: transform 0.3s;
         }
         
-        .terms-toggle.active i {
+        .footer-section-title.active i {
             transform: rotate(180deg);
         }
         
-        .terms-content {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            margin-top: 1rem;
-            text-align: left;
+        .footer-section-content {
             display: none;
         }
         
-        .terms-content.active {
+        .footer-section-content.active {
             display: block;
         }
         
-        .terms-content p {
+        .footer-section p {
             margin-bottom: 1rem;
-            font-size: 0.9rem;
             line-height: 1.6;
+            font-size: 0.9rem;
+        }
+        
+        .contact-info {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .contact-icon {
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+        
+        .contact-link {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-link:hover {
+            color: var(--accent-color);
         }
         
         footer {
-            background: var(--gradient-primary);
+            background: var(--dark-color);
             color: white;
             text-align: center;
             padding: 3rem 0;
-            margin-top: 3rem;
             position: relative;
         }
         
@@ -479,7 +586,7 @@
         }
         
         .footer-logo {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
@@ -490,39 +597,38 @@
             color: var(--accent-color);
         }
         
-        .contact-info {
-            margin: 1.5rem 0;
+        .footer-links {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 1.5rem;
+            margin: 1.5rem 0;
         }
         
-        .contact-item {
-            display: flex;
-            align-items: center;
-            font-size: 1rem;
-        }
-        
-        .contact-item i {
-            margin-right: 8px;
-            color: var(--accent-color);
-            font-size: 1.2rem;
-        }
-        
-        .contact-item a {
+        .footer-link {
             color: white;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: opacity 0.3s;
         }
         
-        .contact-item a:hover {
-            color: var(--secondary-color);
+        .footer-link:hover {
+            opacity: 0.8;
         }
         
-        .address {
-            margin: 1rem 0;
-            font-size: 1rem;
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-link {
+            color: white;
+            font-size: 1.5rem;
+            transition: opacity 0.3s;
+        }
+        
+        .social-link:hover {
+            opacity: 0.8;
         }
         
         .copyright {
@@ -537,6 +643,32 @@
             opacity: 0.7;
         }
         
+        /* Botão fixo do WhatsApp */
+        .whatsapp-fixed {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 100;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .whatsapp-fixed:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+        }
+        
+        /* Legal Warning */
         .legal-warning {
             position: fixed;
             bottom: 0;
@@ -829,36 +961,22 @@
             display: none;
         }
         
-        .category-filter {
-            margin-bottom: 2rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-        
-        .category-btn {
-            padding: 0.5rem 1rem;
-            background: #f1f3f5;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-        
-        .category-btn:hover, .category-btn.active {
-            background: var(--primary-color);
-            color: white;
-        }
-        
+        /* Responsividade */
         @media (max-width: 992px) {
             .logo {
                 font-size: 2.2rem;
             }
             
-            .brand-item {
-                width: 110px;
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .footer-top-container {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -894,14 +1012,16 @@
                 font-size: 1.6rem;
             }
             
-            .brand-item {
-                width: 100px;
-                margin: 0 10px;
+            .hero {
+                height: 300px;
             }
             
-            .brand-logo-container {
-                width: 80px;
-                height: 80px;
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
         }
         
@@ -914,25 +1034,17 @@
                 padding: 1rem;
             }
             
-            .intro h2 {
+            .section-title {
                 font-size: 1.6rem;
             }
             
-            .intro p {
-                font-size: 1rem;
+            .brand-logo-container {
+                width: 60px;
+                height: 60px;
             }
             
             .brand-item {
-                width: 90px;
-            }
-            
-            .brand-logo-container {
-                width: 70px;
-                height: 70px;
-            }
-            
-            .brand-name {
-                font-size: 0.8rem;
+                width: 80px;
             }
         }
     </style>
@@ -942,6 +1054,11 @@
     <div id="legal-warning" class="legal-warning">
         AVISO: Qualquer tentativa de remoção ou alteração não autorizada deste site sujeita o infrator a processo administrativo e legal.
     </div>
+    
+    <!-- Botão fixo do WhatsApp -->
+    <a href="https://wa.me/5545999711417" class="whatsapp-fixed" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
     
     <!-- Login Page -->
     <div id="login-page" class="login-container">
@@ -969,49 +1086,147 @@
                     <i class="fas fa-truck"></i>
                     <span>Autolatina Truck Service</span>
                 </div>
-                <h1 class="page-title">Ofertas da Semana</h1>
-                <p class="page-subtitle">As melhores peças com os melhores preços</p>
+                <h1 class="page-title">Peças para Caminhões</h1>
+                <p class="page-subtitle">As melhores peças e serviços para o seu caminhão com os melhores preços do mercado</p>
                 <a href="#" id="admin-login-link" class="admin-link"><i class="fas fa-lock"></i> Área Admin</a>
             </div>
         </header>
         
-        <main class="container">
-            <section class="intro">
-                <h2>Destaques da Semana</h2>
-                <p>Confira nossas ofertas especiais desta semana. Peças de qualidade com preços imbatíveis para o seu caminhão.</p>
-            </section>
-            
-            <div class="category-filter" id="category-filter">
-                <!-- Categorias serão adicionadas via JavaScript -->
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Peças de Qualidade para Seu Caminhão</h2>
+                <p>Encontre as melhores ofertas e peças originais para manter seu caminhão em perfeito estado</p>
+                <a href="#offers" class="hero-btn">Ver Ofertas</a>
             </div>
-            
-            <section class="catalog" id="catalog">
-                <!-- As peças serão adicionadas aqui via JavaScript -->
-                <p id="no-parts-message" style="grid-column: 1/-1; text-align: center; font-size: 1.2rem; color: var(--text-light);">Nenhuma oferta disponível no momento. Volte em breve!</p>
+        </section>
+        
+        <main class="container">
+            <!-- Seção de Categorias Simplificada -->
+            <section class="categories-section">
+                <h2 class="section-title">Nossas Categorias</h2>
+                <div class="categories-grid" id="categories-grid">
+                    <!-- Categorias serão adicionadas via JavaScript -->
+                </div>
             </section>
             
-            <!-- Seção do Carrossel de Marcas -->
+            <!-- Seção de Ofertas -->
+            <section id="offers" class="offers-section">
+                <h2 class="section-title">Ofertas em Destaque</h2>
+                <div class="catalog" id="catalog">
+                    <!-- As peças serão adicionadas aqui via JavaScript -->
+                    <p id="no-parts-message" style="grid-column: 1/-1; text-align: center; font-size: 1.2rem; color: var(--text-light);">Nenhuma oferta disponível no momento. Volte em breve!</p>
+                </div>
+            </section>
+            
+            <!-- Seção de Marcas -->
             <section class="brands-section">
-                <h2 class="brands-title">Alguma das marcas com que trabalhamos</h2>
-                <div class="brands-carousel-container">
-                    <div class="brands-carousel" id="brands-carousel">
-                        <!-- As marcas serão adicionadas aqui via JavaScript -->
+                <h2 class="section-title">Marcas que Trabalhamos</h2>
+                <div class="brands-grid" id="brands-grid">
+                    <!-- As marcas serão adicionadas aqui via JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Seção de Serviços -->
+            <section class="services-section">
+                <h2 class="section-title">Nossos Serviços</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h3 class="service-title">Oficina</h3>
+                            <p class="service-desc">Serviços especializados em manutenção e reparos para manter seu caminhão sempre em perfeito estado.</p>
+                            <a href="https://wa.me/5545999711417?text=Olá, gostaria de saber mais sobre serviços de oficina" class="whatsapp-btn" target="_blank">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <i class="fas fa-hammer"></i>
+                            </div>
+                            <h3 class="service-title">Chapeação</h3>
+                            <p class="service-desc">Serviços profissionais de chapeação e pintura para recuperação e proteção da carroceria do seu caminhão.</p>
+                            <a href="https://wa.me/5545999711417?text=Olá, gostaria de saber mais sobre serviços de chapeação" class="whatsapp-btn" target="_blank">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3 class="service-title">Autopeças</h3>
+                            <p class="service-desc">Peças originais e de qualidade para todas as marcas e modelos de caminhões com os melhores preços.</p>
+                            <a href="https://wa.me/5545999711417?text=Olá, gostaria de saber mais sobre autopeças" class="whatsapp-btn" target="_blank">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
             
-            <!-- Seção de Termos e Condições -->
-            <section class="terms-section">
-                <div class="terms-container">
-                    <button class="terms-toggle" id="terms-toggle">
-                        Termos e Condições <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="terms-content" id="terms-content">
-                        <p><strong>Valores Finais:</strong> Todos os valores finais serão confirmados via WhatsApp após verificação de disponibilidade e condições de pagamento.</p>
-                        <p><strong>Segurança:</strong> Todas as transações são seguras e realizadas com proteção de dados. Não armazenamos informações financeiras em nosso sistema.</p>
-                        <p><strong>Pagamento:</strong> Aceitamos diversas formas de pagamento, incluindo PIX, cartões de crédito/débito e boleto bancário, com condições a serem combinadas no ato da compra.</p>
-                        <p><strong>Entrega:</strong> Prazo de entrega varia conforme localidade e disponibilidade do produto. Será informado no momento da confirmação do pedido.</p>
-                        <p><strong>Garantia:</strong> Todos os produtos possuem garantia conforme determinação do fabricante. Em caso de defeito, entre em contato conosco via WhatsApp.</p>
+            <!-- Rodapé Superior com Quem Somos, Contato e Termos -->
+            <section class="footer-top">
+                <div class="container footer-top-container">
+                    <!-- Quem Somos -->
+                    <div class="footer-section">
+                        <div class="footer-section-title" id="about-title">
+                            <span>Quem Somos</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="footer-section-content" id="about-content">
+                            <p>A Autolatina Truck Service é especializada em peças e serviços para caminhões, oferecendo produtos de qualidade e atendimento personalizado há mais de 15 anos no mercado.</p>
+                            <p>Nossa equipe de profissionais altamente qualificados está pronta para atender suas necessidades e garantir que seu caminhão tenha o melhor desempenho possível.</p>
+                            <a href="https://wa.me/5545999711417?text=Olá, gostaria de saber mais sobre a Autolatina" class="whatsapp-btn" target="_blank" style="margin-top: 1rem;">
+                                <i class="fab fa-whatsapp"></i> Fale Conosco
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Termos e Condições -->
+                    <div class="footer-section">
+                        <div class="footer-section-title" id="terms-title">
+                            <span>Termos e Condições</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="footer-section-content" id="terms-content">
+                            <p><strong>Valores Finais:</strong> Todos os valores serão confirmados via WhatsApp após verificação de disponibilidade.</p>
+                            <p><strong>Pagamento:</strong> Aceitamos PIX, cartões e boleto, com condições a serem combinadas.</p>
+                            <p><strong>Entrega:</strong> Prazo varia conforme localidade e disponibilidade do produto.</p>
+                            <p><strong>Garantia:</strong> Todos os produtos possuem garantia conforme determinação do fabricante.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Contato -->
+                    <div class="footer-section">
+                        <div class="footer-section-title" id="contact-title">
+                            <span>Contato</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="footer-section-content" id="contact-content">
+                            <div class="contact-info">
+                                <i class="fas fa-phone-alt contact-icon"></i>
+                                <a href="tel:45999492711" class="contact-link">(45) 99949-2711</a>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-envelope contact-icon"></i>
+                                <a href="mailto:autolatinacascavel@gmail.com" class="contact-link">autolatinacascavel@gmail.com</a>
+                            </div>
+                            <div class="contact-info">
+                                <i class="fas fa-map-marker-alt contact-icon"></i>
+                                <span>Rua Gurgel 119, Universitário, Cascavel-PR</span>
+                            </div>
+                            <a href="https://wa.me/5545999711417" class="whatsapp-btn" target="_blank" style="margin-top: 1rem;">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1025,19 +1240,18 @@
                         <span>Autolatina Truck Service</span>
                     </div>
                     
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-phone-alt"></i>
-                            <a href="tel:45999492711">(45) 99949-2711</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:autolatinacascavel@gmail.com">autolatinacascavel@gmail.com</a>
-                        </div>
+                    <div class="footer-links">
+                        <a href="#offers" class="footer-link">Ofertas</a>
+                        <a href="#" class="footer-link">Serviços</a>
+                        <a href="#" class="footer-link">Sobre Nós</a>
+                        <a href="#" class="footer-link">Contato</a>
+                        <a href="#" class="footer-link">Termos</a>
                     </div>
                     
-                    <div class="address">
-                        <i class="fas fa-map-marker-alt"></i> Rua Gurgel 119, Universitário, Cascavel-PR
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
                     </div>
                     
                     <div class="copyright">
@@ -1192,19 +1406,52 @@
         // WhatsApp number
         const WHATSAPP_NUMBER = "5545999711417";
         
-        // Categorias disponíveis
+        // Categorias disponíveis com ícones
         const CATEGORIES = [
-            "Motor",
-            "Combustível Gás Escape Arrefecimento",
-            "Caixa de Mudança",
-            "Eixo dianteiro / Caixa de direção",
-            "Eixo Traseiro",
-            "Roda e Freio",
-            "Sistema de alavanca",
-            "Carroceria",
-            "Sistema Elétrico",
-            "Acessórios",
-            "Outros"
+            {
+                name: "Motor",
+                icon: "fas fa-cog"
+            },
+            {
+                name: "Combustível Gás Escape Arrefecimento",
+                icon: "fas fa-gas-pump"
+            },
+            {
+                name: "Caixa de Mudança",
+                icon: "fas fa-exchange-alt"
+            },
+            {
+                name: "Eixo dianteiro / Caixa de direção",
+                icon: "fas fa-car"
+            },
+            {
+                name: "Eixo Traseiro",
+                icon: "fas fa-truck-moving"
+            },
+            {
+                name: "Roda e Freio",
+                icon: "fas fa-brake-warning"
+            },
+            {
+                name: "Sistema de alavanca",
+                icon: "fas fa-level-up-alt"
+            },
+            {
+                name: "Carroceria",
+                icon: "fas fa-truck-pickup"
+            },
+            {
+                name: "Sistema Elétrico",
+                icon: "fas fa-bolt"
+            },
+            {
+                name: "Acessórios",
+                icon: "fas fa-tools"
+            },
+            {
+                name: "Outros",
+                icon: "fas fa-box-open"
+            }
         ];
         
         // Elementos da página
@@ -1222,10 +1469,16 @@
         const adminBrandsList = document.getElementById('admin-brands-list');
         const noPartsMessage = document.getElementById('no-parts-message');
         const legalWarning = document.getElementById('legal-warning');
-        const categoryFilter = document.getElementById('category-filter');
-        const brandsCarousel = document.getElementById('brands-carousel');
-        const termsToggle = document.getElementById('terms-toggle');
+        const categoriesGrid = document.getElementById('categories-grid');
+        const brandsGrid = document.getElementById('brands-grid');
+        
+        // Elementos do rodapé superior
+        const aboutTitle = document.getElementById('about-title');
+        const aboutContent = document.getElementById('about-content');
+        const termsTitle = document.getElementById('terms-title');
         const termsContent = document.getElementById('terms-content');
+        const contactTitle = document.getElementById('contact-title');
+        const contactContent = document.getElementById('contact-content');
         
         // Mostrar aviso legal se tentarem inspecionar o código
         document.addEventListener('keydown', function(e) {
@@ -1242,9 +1495,9 @@
             loginPage.classList.add('hidden');
             publicCatalog.classList.remove('hidden');
             adminPanel.classList.add('hidden');
+            displayCategories();
             displayParts();
             displayBrands();
-            displayCategoryFilters();
         }
         
         // Mostrar painel admin
@@ -1279,44 +1532,52 @@
             });
         });
         
-        // Alternar termos e condições
-        termsToggle.addEventListener('click', () => {
-            termsToggle.classList.toggle('active');
+        // Alternar seções do rodapé superior
+        aboutTitle.addEventListener('click', () => {
+            aboutTitle.classList.toggle('active');
+            aboutContent.classList.toggle('active');
+        });
+        
+        termsTitle.addEventListener('click', () => {
+            termsTitle.classList.toggle('active');
             termsContent.classList.toggle('active');
         });
         
-        // Exibir filtros de categoria
-        function displayCategoryFilters() {
-            categoryFilter.innerHTML = '';
+        contactTitle.addEventListener('click', () => {
+            contactTitle.classList.toggle('active');
+            contactContent.classList.toggle('active');
+        });
+        
+        // Exibir categorias simplificadas
+        function displayCategories() {
+            categoriesGrid.innerHTML = '';
             
-            // Botão "Todas"
-            const allBtn = document.createElement('button');
-            allBtn.className = 'category-btn active';
-            allBtn.textContent = 'Todas';
-            allBtn.addEventListener('click', () => {
-                document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-                allBtn.classList.add('active');
-                displayParts();
-            });
-            categoryFilter.appendChild(allBtn);
-            
-            // Botões para cada categoria
             CATEGORIES.forEach(category => {
-                const btn = document.createElement('button');
-                btn.className = 'category-btn';
-                btn.textContent = category;
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-                    btn.classList.add('active');
-                    displayParts(category);
+                const categoryCard = document.createElement('div');
+                categoryCard.className = 'category-card';
+                categoryCard.innerHTML = `
+                    <div class="category-icon">
+                        <i class="${category.icon}"></i>
+                    </div>
+                    <div class="category-name">${category.name}</div>
+                `;
+                
+                categoryCard.addEventListener('click', () => {
+                    displayParts(category.name);
+                    
+                    // Rolar suavemente até as ofertas
+                    document.getElementById('offers').scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 });
-                categoryFilter.appendChild(btn);
+                
+                categoriesGrid.appendChild(categoryCard);
             });
         }
         
-        // Exibir marcas no carrossel
+        // Exibir marcas no grid
         function displayBrands() {
-            brandsCarousel.innerHTML = '';
+            brandsGrid.innerHTML = '';
             
             if (brands.length === 0) {
                 // Se não houver marcas cadastradas, mostrar uma mensagem ou placeholder
@@ -1328,7 +1589,7 @@
                     </div>
                     <div class="brand-name">Nenhuma marca</div>
                 `;
-                brandsCarousel.appendChild(placeholder);
+                brandsGrid.appendChild(placeholder);
                 return;
             }
             
@@ -1341,7 +1602,7 @@
                     </div>
                     <div class="brand-name">${brand.name}</div>
                 `;
-                brandsCarousel.appendChild(brandItem);
+                brandsGrid.appendChild(brandItem);
             });
         }
         
@@ -1378,7 +1639,7 @@
                 
                 partCard.innerHTML = `
                     <div class="part-image-container">
-                        ${part.isFlash ? '<span class="flash-badge"><i class="fas fa-bolt"></i></span>' : '<span class="badge">OFERTA</span>'}
+                        ${part.isFlash ? '<span class="flash-badge"><i class="fas fa-bolt"></i> OFERTA RELÂMPAGO</span>' : '<span class="badge">OFERTA</span>'}
                         <img src="${part.image}" alt="${part.name}" class="part-image" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Não+Disponível'">
                     </div>
                     <div class="part-info">
