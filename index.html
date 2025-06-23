@@ -102,67 +102,6 @@
             padding: 0 20px;
         }
         
-        /* Hero Section */
-        .hero {
-            background: url('https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
-            background-size: cover;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            margin-bottom: 3rem;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            color: white;
-            max-width: 800px;
-            padding: 0 20px;
-        }
-        
-        .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero-btn {
-            display: inline-block;
-            background: var(--gradient-accent);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 5, 5, 0.4);
-        }
-        
-        .hero-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 5, 5, 0.5);
-        }
-        
         /* Seção de Categorias - Design Simplificado */
         .categories-section {
             padding: 3rem 0;
@@ -217,6 +156,14 @@
             font-size: 2.5rem;
             color: var(--primary-color);
             margin-bottom: 1rem;
+        }
+        
+        .category-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin: 0 auto 1rem;
+            display: block;
         }
         
         .category-name {
@@ -825,6 +772,14 @@
             margin-bottom: 3rem;
         }
         
+        .add-category-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 3rem;
+        }
+        
         .form-row {
             display: flex;
             gap: 1.5rem;
@@ -889,13 +844,33 @@
             overflow-x: auto;
         }
         
+        .admin-categories-list {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow-x: auto;
+        }
+        
         .parts-table {
             width: 100%;
             border-collapse: collapse;
             min-width: 800px;
         }
         
+        .categories-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+        
         .parts-table th, .parts-table td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .categories-table th, .categories-table td {
             padding: 1.2rem;
             text-align: left;
             border-bottom: 1px solid #eee;
@@ -910,7 +885,20 @@
             letter-spacing: 0.5px;
         }
         
+        .categories-table th {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        
         .parts-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .categories-table tr:hover {
             background-color: #f8f9fa;
         }
         
@@ -957,6 +945,14 @@
             background: #f1f3f5;
         }
         
+        .category-table-img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            border-radius: 4px;
+            background: #f1f3f5;
+        }
+        
         .hidden {
             display: none;
         }
@@ -965,14 +961,6 @@
         @media (max-width: 992px) {
             .logo {
                 font-size: 2.2rem;
-            }
-            
-            .hero h2 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
             }
             
             .footer-top-container {
@@ -1010,14 +998,6 @@
             
             .page-title {
                 font-size: 1.6rem;
-            }
-            
-            .hero {
-                height: 300px;
-            }
-            
-            .hero h2 {
-                font-size: 1.8rem;
             }
             
             .categories-grid {
@@ -1087,19 +1067,10 @@
                     <span>Autolatina Truck Service</span>
                 </div>
                 <h1 class="page-title">Peças para Caminhões</h1>
-                <p class="page-subtitle">As melhores peças e serviços para o seu caminhão com os melhores preços do mercado</p>
+                <p class="page-subtitle">Peças originais e serviços especializados para o seu caminhão</p>
                 <a href="#" id="admin-login-link" class="admin-link"><i class="fas fa-lock"></i> Área Admin</a>
             </div>
         </header>
-        
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <h2>Peças de Qualidade para Seu Caminhão</h2>
-                <p>Encontre as melhores ofertas e peças originais para manter seu caminhão em perfeito estado</p>
-                <a href="#offers" class="hero-btn">Ver Ofertas</a>
-            </div>
-        </section>
         
         <main class="container">
             <!-- Seção de Categorias Simplificada -->
@@ -1286,6 +1257,7 @@
             <div class="admin-tabs">
                 <div class="admin-tab active" data-tab="parts">Ofertas</div>
                 <div class="admin-tab" data-tab="brands">Marcas</div>
+                <div class="admin-tab" data-tab="categories">Categorias</div>
             </div>
             
             <!-- Conteúdo da aba de Ofertas -->
@@ -1328,7 +1300,6 @@
                                     <option value="Carroceria">Carroceria</option>
                                     <option value="Sistema Elétrico">Sistema Elétrico</option>
                                     <option value="Acessórios">Acessórios</option>
-                                    <option value="Outros">Outros</option>
                                 </select>
                             </div>
                         </div>
@@ -1387,6 +1358,54 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Conteúdo da aba de Categorias -->
+            <div id="categories-tab" class="tab-content">
+                <div class="add-category-form">
+                    <h3>Editar Categorias</h3>
+                    <form id="add-category-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="category-name">Nome da Categoria</label>
+                                <select id="category-name" required>
+                                    <option value="">Selecione uma categoria</option>
+                                    <option value="Motor">Motor</option>
+                                    <option value="Combustível Gás Escape Arrefecimento">Combustível Gás Escape Arrefecimento</option>
+                                    <option value="Caixa de Mudança">Caixa de Mudança</option>
+                                    <option value="Eixo dianteiro / Caixa de direção">Eixo dianteiro / Caixa de direção</option>
+                                    <option value="Eixo Traseiro">Eixo Traseiro</option>
+                                    <option value="Roda e Freio">Roda e Freio</option>
+                                    <option value="Sistema de alavanca">Sistema de alavanca</option>
+                                    <option value="Carroceria">Carroceria</option>
+                                    <option value="Sistema Elétrico">Sistema Elétrico</option>
+                                    <option value="Acessórios">Acessórios</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="category-image">URL da Imagem</label>
+                                <input type="url" id="category-image" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn"><i class="fas fa-save"></i> Salvar Imagem</button>
+                    </form>
+                </div>
+                
+                <div class="admin-categories-list">
+                    <h3>Categorias Cadastradas</h3>
+                    <table class="categories-table">
+                        <thead>
+                            <tr>
+                                <th>Imagem</th>
+                                <th>Nome</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-categories-list">
+                            <!-- Lista de categorias para administração -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </main>
     </div>
     
@@ -1397,6 +1416,20 @@
         // Dados das marcas (armazenamento local) - Inicialmente vazio
         let brands = JSON.parse(localStorage.getItem('autolatinaBrands')) || [];
         
+        // Dados das categorias (armazenamento local)
+        let categories = JSON.parse(localStorage.getItem('autolatinaCategories')) || [
+            { name: "Motor", image: "https://cdn-icons-png.flaticon.com/512/2132/2132708.png" },
+            { name: "Combustível Gás Escape Arrefecimento", image: "https://cdn-icons-png.flaticon.com/512/3659/3659898.png" },
+            { name: "Caixa de Mudança", image: "https://cdn-icons-png.flaticon.com/512/2936/2936886.png" },
+            { name: "Eixo dianteiro / Caixa de direção", image: "https://cdn-icons-png.flaticon.com/512/2933/2933245.png" },
+            { name: "Eixo Traseiro", image: "https://cdn-icons-png.flaticon.com/512/1046/1046784.png" },
+            { name: "Roda e Freio", image: "https://cdn-icons-png.flaticon.com/512/1063/1063192.png" },
+            { name: "Sistema de alavanca", image: "https://cdn-icons-png.flaticon.com/512/2936/2936886.png" },
+            { name: "Carroceria", image: "https://cdn-icons-png.flaticon.com/512/2745/2745996.png" },
+            { name: "Sistema Elétrico", image: "https://cdn-icons-png.flaticon.com/512/3659/3659899.png" },
+            { name: "Acessórios", image: "https://cdn-icons-png.flaticon.com/512/3659/3659898.png" }
+        ];
+        
         // Credenciais de login (apenas um usuário)
         const VALID_USER = {
             username: "teste123",
@@ -1406,52 +1439,18 @@
         // WhatsApp number
         const WHATSAPP_NUMBER = "5545999711417";
         
-        // Categorias disponíveis com ícones
-        const CATEGORIES = [
-            {
-                name: "Motor",
-                icon: "fas fa-cog"
-            },
-            {
-                name: "Combustível Gás Escape Arrefecimento",
-                icon: "fas fa-gas-pump"
-            },
-            {
-                name: "Caixa de Mudança",
-                icon: "fas fa-exchange-alt"
-            },
-            {
-                name: "Eixo dianteiro / Caixa de direção",
-                icon: "fas fa-car"
-            },
-            {
-                name: "Eixo Traseiro",
-                icon: "fas fa-truck-moving"
-            },
-            {
-                name: "Roda e Freio",
-                icon: "fas fa-brake-warning"
-            },
-            {
-                name: "Sistema de alavanca",
-                icon: "fas fa-level-up-alt"
-            },
-            {
-                name: "Carroceria",
-                icon: "fas fa-truck-pickup"
-            },
-            {
-                name: "Sistema Elétrico",
-                icon: "fas fa-bolt"
-            },
-            {
-                name: "Acessórios",
-                icon: "fas fa-tools"
-            },
-            {
-                name: "Outros",
-                icon: "fas fa-box-open"
-            }
+        // Categorias disponíveis
+        const CATEGORIES_NAMES = [
+            "Motor",
+            "Combustível Gás Escape Arrefecimento",
+            "Caixa de Mudança",
+            "Eixo dianteiro / Caixa de direção",
+            "Eixo Traseiro",
+            "Roda e Freio",
+            "Sistema de alavanca",
+            "Carroceria",
+            "Sistema Elétrico",
+            "Acessórios"
         ];
         
         // Elementos da página
@@ -1464,9 +1463,11 @@
         const viewPublicCatalogBtn = document.getElementById('view-public-catalog');
         const addPartForm = document.getElementById('add-part-form');
         const addBrandForm = document.getElementById('add-brand-form');
+        const addCategoryForm = document.getElementById('add-category-form');
         const catalogContainer = document.getElementById('catalog');
         const adminPartsList = document.getElementById('admin-parts-list');
         const adminBrandsList = document.getElementById('admin-brands-list');
+        const adminCategoriesList = document.getElementById('admin-categories-list');
         const noPartsMessage = document.getElementById('no-parts-message');
         const legalWarning = document.getElementById('legal-warning');
         const categoriesGrid = document.getElementById('categories-grid');
@@ -1507,6 +1508,7 @@
             adminPanel.classList.remove('hidden');
             displayAdminParts();
             displayAdminBrands();
+            displayAdminCategories();
         }
         
         // Mostrar tela de login
@@ -1552,13 +1554,11 @@
         function displayCategories() {
             categoriesGrid.innerHTML = '';
             
-            CATEGORIES.forEach(category => {
+            categories.forEach(category => {
                 const categoryCard = document.createElement('div');
                 categoryCard.className = 'category-card';
                 categoryCard.innerHTML = `
-                    <div class="category-icon">
-                        <i class="${category.icon}"></i>
-                    </div>
+                    <img src="${category.image}" alt="${category.name}" class="category-image">
                     <div class="category-name">${category.name}</div>
                 `;
                 
@@ -1719,6 +1719,37 @@
             });
         }
         
+        // Exibir categorias no painel admin
+        function displayAdminCategories() {
+            adminCategoriesList.innerHTML = '';
+            
+            categories.forEach(category => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td><img src="${category.image}" alt="${category.name}" class="category-table-img" onerror="this.src='https://via.placeholder.com/100x100?text=Imagem+Não+Disponível'"></td>
+                    <td>${category.name}</td>
+                    <td>
+                        <button class="action-btn edit-btn" data-name="${category.name}"><i class="fas fa-edit"></i> Editar Imagem</button>
+                    </td>
+                `;
+                
+                adminCategoriesList.appendChild(row);
+            });
+            
+            // Adicionar eventos aos botões de edição
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const categoryName = e.target.closest('button').dataset.name;
+                    const category = categories.find(c => c.name === categoryName);
+                    if (category) {
+                        document.getElementById('category-name').value = category.name;
+                        document.getElementById('category-image').value = category.image;
+                    }
+                });
+            });
+        }
+        
         // Adicionar nova peça
         function addPart(e) {
             e.preventDefault();
@@ -1760,6 +1791,40 @@
             
             // Mostrar mensagem de sucesso
             alert('Marca adicionada com sucesso!');
+        }
+        
+        // Adicionar/editar imagem de categoria
+        function addCategory(e) {
+            e.preventDefault();
+            
+            const categoryName = document.getElementById('category-name').value;
+            const categoryImage = document.getElementById('category-image').value;
+            
+            if (!categoryName || !categoryImage) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+            
+            // Verificar se a categoria já existe
+            const existingCategoryIndex = categories.findIndex(c => c.name === categoryName);
+            
+            if (existingCategoryIndex !== -1) {
+                // Atualizar a imagem da categoria existente
+                categories[existingCategoryIndex].image = categoryImage;
+            } else {
+                // Adicionar nova categoria (não deveria acontecer, pois só permitimos edição)
+                categories.push({
+                    name: categoryName,
+                    image: categoryImage
+                });
+            }
+            
+            saveCategories();
+            displayAdminCategories();
+            displayCategories(); // Atualizar também no catálogo público
+            
+            // Mostrar mensagem de sucesso
+            alert('Imagem da categoria atualizada com sucesso!');
         }
         
         // Editar peça
@@ -1820,6 +1885,11 @@
             displayBrands(); // Atualizar o carrossel sempre que os dados mudam
         }
         
+        // Salvar categorias no localStorage
+        function saveCategories() {
+            localStorage.setItem('autolatinaCategories', JSON.stringify(categories));
+        }
+        
         // Event Listeners
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -1850,9 +1920,19 @@
         
         addPartForm.addEventListener('submit', addPart);
         addBrandForm.addEventListener('submit', addBrand);
+        addCategoryForm.addEventListener('submit', addCategory);
         
         // Inicializar a página mostrando o catálogo público
         showPublicCatalog();
+        
+        // Carregar categorias do localStorage se existirem
+        const savedCategories = JSON.parse(localStorage.getItem('autolatinaCategories'));
+        if (savedCategories && savedCategories.length > 0) {
+            categories = savedCategories;
+        } else {
+            // Salvar categorias padrão no localStorage
+            saveCategories();
+        }
     </script>
 </body>
 </html>
