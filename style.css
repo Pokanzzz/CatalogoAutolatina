@@ -1,4 +1,5 @@
 .logo-img {
-    height: 170px;
-    width: 170px;
+    height: auto;  /* ou um valor fixo diferente */
+    width: 150px;  /* ajuste conforme necessário */
+    max-height: 70px; /* para limitar a altura */
 }
