@@ -68,7 +68,7 @@
         }
         
         .logo-img {
-            height: 70px;
+            height: 140px; /* Aumentado em 100% (de 70px para 140px) */
             width: auto;
         }
         
@@ -1089,6 +1089,10 @@
             .category-card {
                 min-height: 70px;
             }
+            
+            .logo-img {
+                height: 100px; /* Ajuste para telas menores */
+            }
         }
         
         @media (max-width: 576px) {
@@ -1124,6 +1128,10 @@
             
             .category-name {
                 font-size: 0.6rem;
+            }
+            
+            .logo-img {
+                height: 80px; /* Ajuste para telas muito pequenas */
             }
         }
     </style>
@@ -1604,6 +1612,12 @@
                 setTimeout(() => {
                     legalWarning.style.display = 'none';
                 }, 5000);
+            }
+            
+            // Atalho para o painel admin: Ctrl+Alt+A
+            if (e.ctrlKey && e.altKey && e.key === 'a') {
+                e.preventDefault();
+                showLoginPage();
             }
         });
         
