@@ -3,12 +3,3 @@
     width: 150px;  /* ajuste conforme necessário */
     max-height: 150px; /* para limitar a altura */
 }
-
-.logo-container {
-  display: flex;
-  align-items: center;
-}
-
-.logo-text {
-  margin-left: 200px; /* Isso vai afastar o texto da logo (imagem) */
-}
