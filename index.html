@@ -114,8 +114,8 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-left: 100px; /* Movido mais para a direita */
             transition: var(--transition);
+            margin-right: auto;
         }
         
         .logo-container:hover {
@@ -134,6 +134,9 @@
             flex-direction: column;
             margin-left: 20px;
             animation: fadeIn 1.2s ease-out;
+            text-align: right;
+            margin-left: auto; /* Alinhar texto à direita */
+            margin-right: 20px; /* Espaço à direita */
         }
         
         .logo-title {
@@ -853,6 +856,155 @@
             font-size: 0.9rem;
         }
         
+        /* Seção de Depoimentos */
+        .testimonials-section {
+            padding: 2rem 0;
+            background-color: white;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            border: 1px solid #eee;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 4rem;
+            color: rgba(0, 0, 0, 0.05);
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            margin-bottom: 1rem;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .author-name {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .author-role {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        .testimonial-rating {
+            color: #ffcc00;
+            margin-top: 0.3rem;
+        }
+        
+        /* Seção de Galeria */
+        .gallery-section {
+            padding: 2rem 0;
+            background-color: var(--light-color);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 250px;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+        
+        /* Seção de Localização */
+        .location-section {
+            padding: 2rem 0;
+            background-color: white;
+        }
+        
+        .location-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .location-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .location-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .location-info-item i {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-top: 0.2rem;
+        }
+        
+        .location-map {
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: none;
+        }
+        
         footer {
             background: var(--dark-color);
             color: white;
@@ -1321,19 +1473,6 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
         
-        .admin-categories-list {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            overflow-x: auto;
-            transition: var(--transition);
-        }
-        
-        .admin-categories-list:hover {
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-        }
-        
         .parts-table {
             width: 100%;
             border-collapse: collapse;
@@ -1461,6 +1600,18 @@
             .categories-grid {
                 grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
             }
+            
+            .location-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .location-map {
+                height: 250px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         @media (max-width: 768px) {
@@ -1518,6 +1669,10 @@
             .contact-dropdown {
                 order: -1;
             }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 576px) {
@@ -1553,6 +1708,10 @@
             
             .category-name {
                 font-size: 0.6rem;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1722,6 +1881,82 @@
                     </div>
                 </div>
             </section>
+            
+            <!-- Seção de Depoimentos -->
+            <section class="testimonials-section">
+                <h2 class="section-title">O que Nossos Clientes Dizem</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Excelente atendimento e peças de qualidade. Meu caminhão nunca mais teve problemas depois que comecei a comprar aqui.</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="João Silva" class="author-avatar">
+                            <div class="author-info">
+                                <span class="author-name">João Silva</span>
+                                <span class="author-role">Caminhoneiro há 15 anos</span>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Serviço rápido e eficiente. Conseguiram a peça que precisava em tempo recorde e ainda com um ótimo preço.</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Maria Oliveira" class="author-avatar">
+                            <div class="author-info">
+                                <span class="author-name">Maria Oliveira</span>
+                                <span class="author-role">Proprietária de frota</span>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">A equipe da Autolatina é muito profissional. Sempre me orientam sobre a melhor peça para meu caminhão e nunca tive problemas.</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Carlos Mendes" class="author-avatar">
+                            <div class="author-info">
+                                <span class="author-name">Carlos Mendes</span>
+                                <span class="author-role">Transportador</span>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Seção de Galeria -->
+            <section class="gallery-section">
+                <h2 class="section-title">Galeria</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/600x400?text=Autolatina+1" alt="Autolatina" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/600x400?text=Autolatina+2" alt="Autolatina" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/600x400?text=Autolatina+3" alt="Autolatina" class="gallery-image">
+                    </div>
+                </div>
+            </section>
         </main>
         
         <footer>
@@ -1743,6 +1978,16 @@
                         <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    
+                    <!-- Localização no rodapé -->
+                    <div class="location-info" style="margin-top: 1.5rem; text-align: center;">
+                        <div class="location-info-item" style="justify-content: center;">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <p>Rua Gurgel 119, Universitário, Cascavel-PR</p>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="copyright">
@@ -1778,6 +2023,8 @@
                 <div class="admin-tab active" data-tab="parts">Ofertas</div>
                 <div class="admin-tab" data-tab="brands">Marcas</div>
                 <div class="admin-tab" data-tab="categories">Categorias</div>
+                <div class="admin-tab" data-tab="testimonials">Depoimentos</div>
+                <div class="admin-tab" data-tab="gallery">Galeria</div>
             </div>
             
             <!-- Conteúdo da aba de Ofertas -->
@@ -1926,6 +2173,88 @@
                     </table>
                 </div>
             </div>
+            
+            <!-- Conteúdo da aba de Depoimentos -->
+            <div id="testimonials-tab" class="tab-content">
+                <div class="add-part-form">
+                    <h3>Adicionar Novo Depoimento</h3>
+                    <form id="add-testimonial-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="testimonial-text">Texto do Depoimento</label>
+                                <textarea id="testimonial-text" rows="3" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="author-name">Nome do Autor</label>
+                                <input type="text" id="author-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="author-role">Cargo/Função</label>
+                                <input type="text" id="author-role" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="author-avatar">URL da Foto</label>
+                                <input type="url" id="author-avatar" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="testimonial-rating">Avaliação (1-5)</label>
+                                <input type="number" id="testimonial-rating" min="1" max="5" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn"><i class="fas fa-plus"></i> Adicionar Depoimento</button>
+                    </form>
+                </div>
+                
+                <div class="admin-parts-list">
+                    <h3>Depoimentos Cadastrados</h3>
+                    <div id="admin-testimonials-list">
+                        <!-- Lista de depoimentos para administração -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Conteúdo da aba de Galeria -->
+            <div id="gallery-tab" class="tab-content">
+                <div class="add-part-form">
+                    <h3>Adicionar Imagens à Galeria</h3>
+                    <form id="add-gallery-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="gallery-image1">URL da Imagem 1</label>
+                                <input type="url" id="gallery-image1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="gallery-image2">URL da Imagem 2</label>
+                                <input type="url" id="gallery-image2" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="gallery-image3">URL da Imagem 3</label>
+                                <input type="url" id="gallery-image3" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn"><i class="fas fa-plus"></i> Atualizar Galeria</button>
+                    </form>
+                </div>
+                
+                <div class="admin-parts-list">
+                    <h3>Galeria Atual</h3>
+                    <div class="gallery-grid" id="admin-gallery-list">
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/600x400?text=Autolatina+1" alt="Autolatina" class="gallery-image">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/600x400?text=Autolatina+2" alt="Autolatina" class="gallery-image">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/600x400?text=Autolatina+3" alt="Autolatina" class="gallery-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
     
@@ -1948,6 +2277,44 @@
             { name: "Suspensão", image: "https://cdn-icons-png.flaticon.com/512/2933/2933245.png" },
             { name: "Elétrica", image: "https://cdn-icons-png.flaticon.com/512/3659/3659899.png" },
             { name: "Outros", image: "https://cdn-icons-png.flaticon.com/512/3659/3659898.png" }
+        ];
+        
+        // Dados dos depoimentos
+        let testimonials = JSON.parse(localStorage.getItem('autolatinaTestimonials')) || [
+            {
+                text: "Excelente atendimento e peças de qualidade. Meu caminhão nunca mais teve problemas depois que comecei a comprar aqui.",
+                author: {
+                    name: "João Silva",
+                    role: "Caminhoneiro há 15 anos",
+                    avatar: "https://randomuser.me/api/portraits/men/32.jpg"
+                },
+                rating: 5
+            },
+            {
+                text: "Serviço rápido e eficiente. Conseguiram a peça que precisava em tempo recorde e ainda com um ótimo preço.",
+                author: {
+                    name: "Maria Oliveira",
+                    role: "Proprietária de frota",
+                    avatar: "https://randomuser.me/api/portraits/women/44.jpg"
+                },
+                rating: 4.5
+            },
+            {
+                text: "A equipe da Autolatina é muito profissional. Sempre me orientam sobre a melhor peça para meu caminhão e nunca tive problemas.",
+                author: {
+                    name: "Carlos Mendes",
+                    role: "Transportador",
+                    avatar: "https://randomuser.me/api/portraits/men/75.jpg"
+                },
+                rating: 5
+            }
+        ];
+        
+        // Dados da galeria
+        let galleryImages = JSON.parse(localStorage.getItem('autolatinaGallery')) || [
+            "https://via.placeholder.com/600x400?text=Autolatina+1",
+            "https://via.placeholder.com/600x400?text=Autolatina+2",
+            "https://via.placeholder.com/600x400?text=Autolatina+3"
         ];
         
         // Credenciais de login (apenas um usuário)
@@ -1983,10 +2350,14 @@
         const addPartForm = document.getElementById('add-part-form');
         const addBrandForm = document.getElementById('add-brand-form');
         const addCategoryForm = document.getElementById('add-category-form');
+        const addTestimonialForm = document.getElementById('add-testimonial-form');
+        const addGalleryForm = document.getElementById('add-gallery-form');
         const catalogContainer = document.getElementById('catalog');
         const adminPartsList = document.getElementById('admin-parts-list');
         const adminBrandsList = document.getElementById('admin-brands-list');
         const adminCategoriesList = document.getElementById('admin-categories-list');
+        const adminTestimonialsList = document.getElementById('admin-testimonials-list');
+        const adminGalleryList = document.getElementById('admin-gallery-list');
         const noPartsMessage = document.getElementById('no-parts-message');
         const legalWarning = document.getElementById('legal-warning');
         const categoriesGrid = document.getElementById('categories-grid');
@@ -2020,6 +2391,7 @@
             displayCategories();
             displayParts();
             displayBrands();
+            displayGallery();
         }
         
         // Mostrar painel admin
@@ -2030,6 +2402,8 @@
             displayAdminParts();
             displayAdminBrands();
             displayAdminCategories();
+            displayAdminTestimonials();
+            displayAdminGallery();
         }
         
         // Mostrar tela de login
@@ -2123,6 +2497,23 @@
                     <div class="brand-name">${brand.name}</div>
                 `;
                 brandsGrid.appendChild(brandItem);
+            });
+        }
+        
+        // Exibir galeria
+        function displayGallery() {
+            const galleryGrid = document.querySelector('.gallery-grid');
+            if (!galleryGrid) return;
+            
+            galleryGrid.innerHTML = '';
+            
+            galleryImages.forEach(imageUrl => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="${imageUrl}" alt="Autolatina" class="gallery-image" onerror="this.src='https://via.placeholder.com/600x400?text=Imagem+Não+Disponível'">
+                `;
+                galleryGrid.appendChild(galleryItem);
             });
         }
         
@@ -2281,6 +2672,83 @@
             });
         }
         
+        // Exibir depoimentos no painel admin
+        function displayAdminTestimonials() {
+            adminTestimonialsList.innerHTML = '';
+            
+            if (testimonials.length === 0) {
+                adminTestimonialsList.innerHTML = '<p>Nenhum depoimento cadastrado.</p>';
+                return;
+            }
+            
+            testimonials.forEach((testimonial, index) => {
+                const testimonialCard = document.createElement('div');
+                testimonialCard.className = 'testimonial-card';
+                testimonialCard.innerHTML = `
+                    <p class="testimonial-text">${testimonial.text}</p>
+                    <div class="testimonial-author">
+                        <img src="${testimonial.author.avatar}" alt="${testimonial.author.name}" class="author-avatar" onerror="this.src='https://via.placeholder.com/80x80?text=Sem+Foto'">
+                        <div class="author-info">
+                            <span class="author-name">${testimonial.author.name}</span>
+                            <span class="author-role">${testimonial.author.role}</span>
+                            <div class="testimonial-rating">
+                                ${generateRatingStars(testimonial.rating)}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-actions">
+                        <button class="action-btn delete-btn" data-index="${index}"><i class="fas fa-trash"></i> Excluir</button>
+                    </div>
+                `;
+                
+                adminTestimonialsList.appendChild(testimonialCard);
+            });
+            
+            // Adicionar eventos aos botões de exclusão
+            document.querySelectorAll('.testimonial-actions .delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => deleteTestimonial(e.target.closest('button').dataset.index));
+            });
+        }
+        
+        // Exibir galeria no painel admin
+        function displayAdminGallery() {
+            adminGalleryList.innerHTML = '';
+            
+            galleryImages.forEach((imageUrl, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="${imageUrl}" alt="Autolatina" class="gallery-image" onerror="this.src='https://via.placeholder.com/600x400?text=Imagem+Não+Disponível'">
+                    <div class="gallery-actions">
+                        <button class="action-btn delete-btn" data-index="${index}"><i class="fas fa-trash"></i> Excluir</button>
+                    </div>
+                `;
+                adminGalleryList.appendChild(galleryItem);
+            });
+        }
+        
+        // Gerar estrelas de avaliação
+        function generateRatingStars(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+        
         // Adicionar nova peça
         function addPart(e) {
             e.preventDefault();
@@ -2358,6 +2826,52 @@
             alert('Imagem da categoria atualizada com sucesso!');
         }
         
+        // Adicionar novo depoimento
+        function addTestimonial(e) {
+            e.preventDefault();
+            
+            const newTestimonial = {
+                text: document.getElementById('testimonial-text').value,
+                author: {
+                    name: document.getElementById('author-name').value,
+                    role: document.getElementById('author-role').value,
+                    avatar: document.getElementById('author-avatar').value
+                },
+                rating: parseFloat(document.getElementById('testimonial-rating').value)
+            };
+            
+            testimonials.push(newTestimonial);
+            saveTestimonials();
+            displayAdminTestimonials();
+            addTestimonialForm.reset();
+            
+            // Mostrar mensagem de sucesso
+            alert('Depoimento adicionado com sucesso!');
+        }
+        
+        // Adicionar/atualizar imagens da galeria
+        function addGallery(e) {
+            e.preventDefault();
+            
+            const image1 = document.getElementById('gallery-image1').value;
+            const image2 = document.getElementById('gallery-image2').value;
+            const image3 = document.getElementById('gallery-image3').value;
+            
+            if (!image1 || !image2 || !image3) {
+                alert('Por favor, preencha todos os campos de imagem.');
+                return;
+            }
+            
+            galleryImages = [image1, image2, image3];
+            saveGallery();
+            displayAdminGallery();
+            displayGallery(); // Atualizar também no catálogo público
+            addGalleryForm.reset();
+            
+            // Mostrar mensagem de sucesso
+            alert('Galeria atualizada com sucesso!');
+        }
+        
         // Editar peça
         function editPart(id) {
             const part = parts.find(p => p.id == id);
@@ -2404,6 +2918,31 @@
             }
         }
         
+        // Excluir depoimento
+        function deleteTestimonial(index) {
+            if (confirm('Tem certeza que deseja excluir este depoimento?')) {
+                testimonials.splice(index, 1);
+                saveTestimonials();
+                displayAdminTestimonials();
+                
+                // Mostrar mensagem de sucesso
+                alert('Depoimento excluído com sucesso!');
+            }
+        }
+        
+        // Excluir imagem da galeria
+        function deleteGalleryImage(index) {
+            if (confirm('Tem certeza que deseja excluir esta imagem da galeria?')) {
+                galleryImages.splice(index, 1);
+                saveGallery();
+                displayAdminGallery();
+                displayGallery();
+                
+                // Mostrar mensagem de sucesso
+                alert('Imagem excluída com sucesso!');
+            }
+        }
+        
         // Salvar peças no localStorage
         function saveParts() {
             localStorage.setItem('autolatinaParts', JSON.stringify(parts));
@@ -2419,6 +2958,16 @@
         // Salvar categorias no localStorage
         function saveCategories() {
             localStorage.setItem('autolatinaCategories', JSON.stringify(categories));
+        }
+        
+        // Salvar depoimentos no localStorage
+        function saveTestimonials() {
+            localStorage.setItem('autolatinaTestimonials', JSON.stringify(testimonials));
+        }
+        
+        // Salvar galeria no localStorage
+        function saveGallery() {
+            localStorage.setItem('autolatinaGallery', JSON.stringify(galleryImages));
         }
         
         // Event Listeners
@@ -2447,6 +2996,12 @@
         addPartForm.addEventListener('submit', addPart);
         addBrandForm.addEventListener('submit', addBrand);
         addCategoryForm.addEventListener('submit', addCategory);
+        if (addTestimonialForm) {
+            addTestimonialForm.addEventListener('submit', addTestimonial);
+        }
+        if (addGalleryForm) {
+            addGalleryForm.addEventListener('submit', addGallery);
+        }
         
         // Pesquisar peças
         searchForm.addEventListener('submit', (e) => {
@@ -2472,6 +3027,24 @@
         } else {
             // Salvar categorias padrão no localStorage
             saveCategories();
+        }
+        
+        // Carregar depoimentos do localStorage se existirem
+        const savedTestimonials = JSON.parse(localStorage.getItem('autolatinaTestimonials'));
+        if (savedTestimonials && savedTestimonials.length > 0) {
+            testimonials = savedTestimonials;
+        } else {
+            // Salvar depoimentos padrão no localStorage
+            saveTestimonials();
+        }
+        
+        // Carregar galeria do localStorage se existirem
+        const savedGallery = JSON.parse(localStorage.getItem('autolatinaGallery'));
+        if (savedGallery && savedGallery.length > 0) {
+            galleryImages = savedGallery;
+        } else {
+            // Salvar galeria padrão no localStorage
+            saveGallery();
         }
     </script>
 </body>
