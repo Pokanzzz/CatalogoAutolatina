@@ -3,3 +3,7 @@
     width: 150px;  /* ajuste conforme necessário */
     max-height: 150px; /* para limitar a altura */
 }
+
+body {
+    background-image: url('https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+}

@@ -38,6 +38,21 @@
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
+            background-image: url('https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.85);
+            z-index: -1;
         }
         
         /* Animations */
@@ -99,7 +114,7 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-left: 50px; /* Movendo a logo mais para a direita */
+            margin-left: 100px; /* Movido mais para a direita */
             transition: var(--transition);
         }
         
@@ -135,6 +150,82 @@
             opacity: 0.9;
             white-space: nowrap;
             letter-spacing: 1px;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .contact-dropdown {
+            position: relative;
+        }
+        
+        .contact-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+        
+        .contact-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-btn i {
+            transition: var(--transition);
+        }
+        
+        .contact-btn.active i {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-content {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            min-width: 250px;
+            box-shadow: var(--shadow-hover);
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease-out;
+            z-index: 1000;
+        }
+        
+        .dropdown-content.active {
+            max-height: 500px;
+        }
+        
+        .dropdown-item {
+            padding: 0.8rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: var(--transition);
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-item:hover {
+            background: #f8f9fa;
+            color: var(--accent-color);
+        }
+        
+        .dropdown-item i {
+            color: var(--primary-color);
+            width: 20px;
+            text-align: center;
         }
         
         .social-links-header {
@@ -347,18 +438,6 @@
             padding: 2rem 0;
             background-color: var(--light-color);
             position: relative;
-        }
-        
-        .offers-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover fixed;
-            opacity: 0.03;
-            z-index: 0;
         }
         
         .section-title {
@@ -600,18 +679,6 @@
             overflow: hidden;
         }
         
-        .brands-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover fixed;
-            opacity: 0.03;
-            z-index: 0;
-        }
-        
         .brands-grid {
             display: flex;
             flex-wrap: wrap;
@@ -707,18 +774,6 @@
             position: relative;
         }
         
-        .services-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover fixed;
-            opacity: 0.03;
-            z-index: 0;
-        }
-        
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -798,159 +853,12 @@
             font-size: 0.9rem;
         }
         
-        /* Seção Rodapé Superior */
-        .footer-top {
-            padding: 2rem 0;
-            background: white;
-            position: relative;
-        }
-        
-        .footer-top::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover fixed;
-            opacity: 0.03;
-            z-index: 0;
-        }
-        
-        .footer-top-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .footer-section {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 1.2rem;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.05);
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .footer-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: var(--gradient-accent);
-            transition: var(--transition);
-        }
-        
-        .footer-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .footer-section:hover::before {
-            width: 8px;
-        }
-        
-        .footer-section-title {
-            font-size: 1.1rem;
-            color: var(--primary-color);
-            margin-bottom: 0.8rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            padding: 0.5rem 0;
-            border-bottom: 1px dashed #ddd;
-            transition: var(--transition);
-        }
-        
-        .footer-section:hover .footer-section-title {
-            color: var(--accent-color);
-        }
-        
-        .footer-section-title i {
-            transition: var(--transition);
-        }
-        
-        .footer-section-title.active i {
-            transform: rotate(180deg);
-        }
-        
-        .footer-section-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-        }
-        
-        .footer-section-content.active {
-            max-height: 500px;
-            padding-top: 1rem;
-        }
-        
-        .footer-section p {
-            margin-bottom: 0.8rem;
-            line-height: 1.5;
-            font-size: 0.85rem;
-        }
-        
-        .contact-info {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            transition: var(--transition);
-        }
-        
-        .contact-info:hover {
-            transform: translateX(5px);
-        }
-        
-        .contact-icon {
-            color: var(--primary-color);
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-        
-        .contact-info:hover .contact-icon {
-            color: var(--accent-color);
-            transform: scale(1.2);
-        }
-        
-        .contact-link {
-            color: var(--text-color);
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 0.85rem;
-        }
-        
-        .contact-link:hover {
-            color: var(--accent-color);
-        }
-        
         footer {
             background: var(--dark-color);
             color: white;
             text-align: center;
             padding: 2rem 0;
             position: relative;
-        }
-        
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover fixed;
-            opacity: 0.03;
-            z-index: 0;
         }
         
         .footer-content {
@@ -1546,10 +1454,6 @@
         
         /* Responsividade */
         @media (max-width: 992px) {
-            .footer-top-container {
-                grid-template-columns: 1fr;
-            }
-            
             .search-container {
                 max-width: 100%;
             }
@@ -1604,6 +1508,15 @@
             
             .category-card {
                 min-height: 65px;
+            }
+            
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .contact-dropdown {
+                order: -1;
             }
         }
         
@@ -1687,10 +1600,42 @@
                         </div>
                     </div>
                     
-                    <div class="social-links-header">
-                        <a href="#" class="social-link-header"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="social-link-header"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/5545999711417" class="social-link-header" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <div class="header-right">
+                        <div class="contact-dropdown">
+                            <button class="contact-btn">
+                                <i class="fas fa-phone-alt"></i> Contato
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="tel:45999492711" class="dropdown-item">
+                                    <i class="fas fa-phone"></i> (45) 99949-2711
+                                </a>
+                                <a href="tel:45999711417" class="dropdown-item">
+                                    <i class="fas fa-phone"></i> (45) 99971-1417
+                                </a>
+                                <a href="mailto:autolatinacascavel@gmail.com" class="dropdown-item">
+                                    <i class="fas fa-envelope"></i> Email
+                                </a>
+                                <a href="https://wa.me/5545999711417" class="dropdown-item" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> WhatsApp
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <i class="fas fa-map-marker-alt"></i> Rua Gurgel 119, Universitário, Cascavel-PR
+                                </a>
+                                <a href="about.html" class="dropdown-item">
+                                    <i class="fas fa-info-circle"></i> Quem Somos
+                                </a>
+                                <a href="terms.html" class="dropdown-item">
+                                    <i class="fas fa-file-contract"></i> Termos e Condições
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links-header">
+                            <a href="#" class="social-link-header"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-link-header"><i class="fab fa-instagram"></i></a>
+                            <a href="https://wa.me/5545999711417" class="social-link-header" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        </div>
                     </div>
                 </div>
                 
@@ -1777,121 +1722,6 @@
                     </div>
                 </div>
             </section>
-            
-            <!-- Rodapé Superior com Quem Somos, Contato e Termos -->
-            <section class="footer-top">
-                <div class="container footer-top-container">
-                    <!-- Quem Somos -->
-                    <div class="footer-section">
-                        <div class="footer-section-title" id="about-title">
-                            <span><i class="fas fa-building"></i> Quem Somos</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="footer-section-content" id="about-content">
-                            <p><strong>Autolatina Truck Service</strong> é uma empresa especializada em peças e serviços para caminhões, com mais de 15 anos de experiência no mercado. Nossa missão é fornecer produtos de alta qualidade e serviços especializados para garantir o melhor desempenho do seu veículo.</p>
-                            
-                            <div class="values-list" style="margin: 1rem 0;">
-                                <div class="value-item" style="display: flex; align-items: flex-start; margin-bottom: 0.8rem;">
-                                    <i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 0.5rem; margin-top: 0.2rem;"></i>
-                                    <span>Equipe técnica altamente qualificada e certificada</span>
-                                </div>
-                                <div class="value-item" style="display: flex; align-items: flex-start; margin-bottom: 0.8rem;">
-                                    <i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 0.5rem; margin-top: 0.2rem;"></i>
-                                    <span>Peças originais e de qualidade comprovada</span>
-                                </div>
-                                <div class="value-item" style="display: flex; align-items: flex-start; margin-bottom: 0.8rem;">
-                                    <i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 0.5rem; margin-top: 0.2rem;"></i>
-                                    <span>Atendimento personalizado e transparente</span>
-                                </div>
-                                <div class="value-item" style="display: flex; align-items: flex-start; margin-bottom: 0.8rem;">
-                                    <i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 0.5rem; margin-top: 0.2rem;"></i>
-                                    <span>Compromisso com prazos e qualidade no serviço</span>
-                                </div>
-                            </div>
-                            
-                            <a href="https://wa.me/5545999711417?text=Olá, gostaria de saber mais sobre a Autolatina" class="whatsapp-btn" target="_blank" style="margin-top: 1rem;">
-                                <i class="fab fa-whatsapp"></i> Fale Conosco
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Termos e Condições -->
-                    <div class="footer-section">
-                        <div class="footer-section-title" id="terms-title">
-                            <span><i class="fas fa-file-contract"></i> Termos e Condições</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="footer-section-content" id="terms-content">
-                            <div class="term-item" style="margin-bottom: 1rem;">
-                                <h4 style="color: var(--primary-color); font-size: 0.9rem; margin-bottom: 0.3rem;"><i class="fas fa-dollar-sign" style="margin-right: 0.5rem;"></i> Valores Finais</h4>
-                                <p style="font-size: 0.85rem;">Todos os valores serão confirmados via WhatsApp após verificação de disponibilidade.</p>
-                            </div>
-                            
-                            <div class="term-item" style="margin-bottom: 1rem;">
-                                <h4 style="color: var(--primary-color); font-size: 0.9rem; margin-bottom: 0.3rem;"><i class="fas fa-credit-card" style="margin-right: 0.5rem;"></i> Formas de Pagamento</h4>
-                                <p style="font-size: 0.85rem;">Aceitamos PIX, cartões (crédito e débito) e boleto bancário, com condições especiais a serem combinadas.</p>
-                            </div>
-                            
-                            <div class="term-item" style="margin-bottom: 1rem;">
-                                <h4 style="color: var(--primary-color); font-size: 0.9rem; margin-bottom: 0.3rem;"><i class="fas fa-truck" style="margin-right: 0.5rem;"></i> Política de Entrega</h4>
-                                <p style="font-size: 0.85rem;">Prazo varia conforme localidade e disponibilidade do produto. Entregamos em todo o território nacional.</p>
-                            </div>
-                            
-                            <div class="term-item" style="margin-bottom: 1rem;">
-                                <h4 style="color: var(--primary-color); font-size: 0.9rem; margin-bottom: 0.3rem;"><i class="fas fa-shield-alt" style="margin-right: 0.5rem;"></i> Garantia</h4>
-                                <p style="font-size: 0.85rem;">Todos os produtos possuem garantia conforme determinação do fabricante. Consulte-nos para mais detalhes.</p>
-                            </div>
-                            
-                            <div class="term-item" style="margin-bottom: 1rem;">
-                                <h4 style="color: var(--primary-color); font-size: 0.9rem; margin-bottom: 0.3rem;"><i class="fas fa-exchange-alt" style="margin-right: 0.5rem;"></i> Trocas e Devoluções</h4>
-                                <p style="font-size: 0.85rem;">Seguimos as normas do Código de Defesa do Consumidor para trocas e devoluções de produtos.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Contato -->
-                    <div class="footer-section">
-                        <div class="footer-section-title" id="contact-title">
-                            <span><i class="fas fa-address-card"></i> Contato</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="footer-section-content" id="contact-content">
-                            <div class="contact-info">
-                                <i class="fas fa-phone-alt contact-icon"></i>
-                                <a href="tel:45999492711" class="contact-link">(45) 99949-2711</a>
-                            </div>
-                            
-                            <div class="contact-info">
-                                <i class="fas fa-phone-alt contact-icon"></i>
-                                <a href="tel:45999711417" class="contact-link">(45) 99971-1417</a>
-                            </div>
-                            
-                            <div class="contact-info">
-                                <i class="fas fa-envelope contact-icon"></i>
-                                <a href="mailto:autolatinacascavel@gmail.com" class="contact-link">autolatinacascavel@gmail.com</a>
-                            </div>
-                            
-                            <div class="contact-info">
-                                <i class="fas fa-map-marker-alt contact-icon"></i>
-                                <span>Rua Gurgel 119, Universitário, Cascavel-PR</span>
-                            </div>
-                            
-                            <div class="contact-info">
-                                <i class="fas fa-clock contact-icon"></i>
-                                <span>Horário de Funcionamento: Seg-Sex: 8h-18h | Sáb: 8h-12h</span>
-                            </div>
-                            
-                            <div style="margin-top: 1rem;">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.234789837567!2d-53.45978792477032!3d-24.95747907882244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDU3JzI2LjkiUyA1M8KwMjcnMzMuOSJX!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr" width="100%" height="150" style="border:0; border-radius: 5px;" allowfullscreen="" loading="lazy"></iframe>
-                            </div>
-                            
-                            <a href="https://wa.me/5545999711417" class="whatsapp-btn" target="_blank" style="margin-top: 1rem;">
-                                <i class="fab fa-whatsapp"></i> WhatsApp
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </main>
         
         <footer>
@@ -1905,9 +1735,8 @@
                     <div class="footer-links">
                         <a href="#offers" class="footer-link">Ofertas</a>
                         <a href="#" class="footer-link">Serviços</a>
-                        <a href="#" class="footer-link">Sobre Nós</a>
-                        <a href="#" class="footer-link">Contato</a>
-                        <a href="#" class="footer-link">Termos</a>
+                        <a href="about.html" class="footer-link">Sobre Nós</a>
+                        <a href="terms.html" class="footer-link">Termos</a>
                     </div>
                     
                     <div class="social-links">
@@ -2164,14 +1993,8 @@
         const brandsGrid = document.getElementById('brands-grid');
         const searchForm = document.getElementById('search-form');
         const searchInput = document.getElementById('search-input');
-        
-        // Elementos do rodapé superior
-        const aboutTitle = document.getElementById('about-title');
-        const aboutContent = document.getElementById('about-content');
-        const termsTitle = document.getElementById('terms-title');
-        const termsContent = document.getElementById('terms-content');
-        const contactTitle = document.getElementById('contact-title');
-        const contactContent = document.getElementById('contact-content');
+        const contactBtn = document.querySelector('.contact-btn');
+        const dropdownContent = document.querySelector('.dropdown-content');
         
         // Mostrar aviso legal se tentarem inspecionar o código
         document.addEventListener('keydown', function(e) {
@@ -2232,20 +2055,19 @@
             });
         });
         
-        // Alternar seções do rodapé superior
-        aboutTitle.addEventListener('click', () => {
-            aboutTitle.classList.toggle('active');
-            aboutContent.classList.toggle('active');
+        // Alternar dropdown de contato
+        contactBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            contactBtn.classList.toggle('active');
+            dropdownContent.classList.toggle('active');
         });
         
-        termsTitle.addEventListener('click', () => {
-            termsTitle.classList.toggle('active');
-            termsContent.classList.toggle('active');
-        });
-        
-        contactTitle.addEventListener('click', () => {
-            contactTitle.classList.toggle('active');
-            contactContent.classList.toggle('active');
+        // Fechar dropdown quando clicar fora
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.contact-dropdown')) {
+                contactBtn.classList.remove('active');
+                dropdownContent.classList.remove('active');
+            }
         });
         
         // Exibir categorias como quadradinhos pequenos
