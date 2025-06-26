@@ -4,6 +4,11 @@
     max-height: 150px; /* para limitar a altura */
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
 .logo-text {
-  margin-left: 120px; /* ajuste esse valor conforme o quanto quer mover */
+  margin-left: 20px; /* Isso vai afastar o texto da logo (imagem) */
 }
