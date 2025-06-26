@@ -3,3 +3,7 @@
     width: 150px;  /* ajuste conforme necessário */
     max-height: 150px; /* para limitar a altura */
 }
+
+.logo-text {
+  margin-left: 20px; /* ajuste esse valor conforme o quanto quer mover */
+}
