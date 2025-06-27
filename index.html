@@ -115,7 +115,7 @@
             align-items: center;
             gap: 1rem;
             transition: var(--transition);
-            margin-right: auto;
+            margin-left: auto; /* Alterado para alinhar à direita */
         }
         
         .logo-container:hover {
@@ -135,8 +135,6 @@
             margin-left: 20px;
             animation: fadeIn 1.2s ease-out;
             text-align: right;
-            margin-left: auto; /* Alinhar texto à direita */
-            margin-right: 20px; /* Espaço à direita */
         }
         
         .logo-title {
@@ -396,6 +394,62 @@
         .category-card:hover .category-name {
             color: var(--accent-color);
             font-weight: 600;
+        }
+        
+        /* Seção Sobre a Empresa */
+        .about-section {
+            padding: 3rem 0;
+            background-color: white;
+        }
+        
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .about-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .about-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .about-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        .about-text {
+            color: var(--text-color);
+            line-height: 1.8;
         }
         
         /* Conteúdo Principal */
@@ -966,6 +1020,59 @@
             transform: scale(1.05);
         }
         
+        /* Seção de Equipe */
+        .team-section {
+            padding: 2rem 0;
+            background-color: white;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+        }
+        
+        .team-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--accent-color);
+        }
+        
+        .team-name {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+        }
+        
+        .team-role {
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+        }
+        
+        .team-phone {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
         /* Seção de Localização */
         .location-section {
             padding: 2rem 0;
@@ -1222,7 +1329,7 @@
             font-size: 0.9rem;
         }
         
-        .form-group input, .form-group select {
+        .form-group input, .form-group select, .form-group textarea {
             width: 100%;
             padding: 0.8rem 1rem;
             border: 1px solid #ddd;
@@ -1231,7 +1338,7 @@
             transition: var(--transition);
         }
         
-        .form-group input:focus, .form-group select:focus {
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             border-color: var(--secondary-color);
             outline: none;
             box-shadow: 0 0 0 2px rgba(12, 0, 108, 0.2);
@@ -1309,6 +1416,7 @@
             display: flex;
             margin-bottom: 1.5rem;
             border-bottom: 1px solid #ddd;
+            overflow-x: auto;
         }
         
         .admin-tab {
@@ -1319,6 +1427,7 @@
             font-weight: 500;
             font-size: 0.9rem;
             position: relative;
+            white-space: nowrap;
         }
         
         .admin-tab.active {
@@ -1485,6 +1594,12 @@
             min-width: 500px;
         }
         
+        .team-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+        
         .parts-table th, .parts-table td {
             padding: 1rem;
             text-align: left;
@@ -1493,6 +1608,13 @@
         }
         
         .categories-table th, .categories-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            font-size: 0.85rem;
+        }
+        
+        .team-table th, .team-table td {
             padding: 1rem;
             text-align: left;
             border-bottom: 1px solid #eee;
@@ -1517,11 +1639,24 @@
             letter-spacing: 0.5px;
         }
         
+        .team-table th {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+        
         .parts-table tr:hover {
             background-color: #f8f9fa;
         }
         
         .categories-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .team-table tr:hover {
             background-color: #f8f9fa;
         }
         
@@ -1612,6 +1747,14 @@
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                height: 300px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -1673,6 +1816,10 @@
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         @media (max-width: 576px) {
@@ -1711,6 +1858,10 @@
             }
             
             .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -1817,6 +1968,22 @@
         </div>
         
         <main class="container">
+            <!-- Seção Sobre a Empresa -->
+            <section class="about-section">
+                <div class="about-container">
+                    <img src="https://via.placeholder.com/600x400?text=Autolatina+Truck+Service" alt="Autolatina Truck Service" class="about-image" id="about-image">
+                    <div class="about-content">
+                        <h2 class="about-title">Autolatina Truck Service</h2>
+                        <p class="about-text" id="about-text">
+                            A Autolatina Truck Service é especializada em peças e serviços para caminhões, oferecendo produtos de qualidade e atendimento personalizado. Com anos de experiência no mercado, nossa equipe está pronta para atender às necessidades dos nossos clientes com agilidade e profissionalismo.
+                        </p>
+                        <p class="about-text">
+                            Trabalhamos com as melhores marcas do mercado, garantindo a satisfação e segurança dos nossos clientes. Nossa missão é fornecer soluções completas para o seu caminhão, desde peças originais até serviços especializados.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
             <h1 class="main-title">Peças para Caminhões</h1>
             <p class="main-subtitle">Peças originais e serviços especializados para o seu caminhão</p>
             
@@ -1942,6 +2109,14 @@
                 </div>
             </section>
             
+            <!-- Seção de Equipe -->
+            <section class="team-section">
+                <h2 class="section-title">Nossa Equipe</h2>
+                <div class="team-grid" id="team-grid">
+                    <!-- Membros da equipe serão adicionados via JavaScript -->
+                </div>
+            </section>
+            
             <!-- Seção de Galeria -->
             <section class="gallery-section">
                 <h2 class="section-title">Galeria</h2>
@@ -1955,6 +2130,46 @@
                     <div class="gallery-item">
                         <img src="https://via.placeholder.com/600x400?text=Autolatina+3" alt="Autolatina" class="gallery-image">
                     </div>
+                </div>
+            </section>
+            
+            <!-- Seção de Localização -->
+            <section class="location-section">
+                <h2 class="section-title">Onde Estamos</h2>
+                <div class="location-container">
+                    <div class="location-info">
+                        <div class="location-info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h3>Endereço</h3>
+                                <p>Rua Gurgel 119, Universitário, Cascavel-PR</p>
+                            </div>
+                        </div>
+                        <div class="location-info-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h3>Telefone</h3>
+                                <p>(45) 99949-2711</p>
+                                <p>(45) 99971-1417</p>
+                            </div>
+                        </div>
+                        <div class="location-info-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h3>Email</h3>
+                                <p>autolatinacascavel@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="location-info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h3>Horário de Funcionamento</h3>
+                                <p>Segunda a Sexta: 08:00 - 18:00</p>
+                                <p>Sábado: 08:00 - 12:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.238540599673!2d-49.99999999999999!3d-25.450000000000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDI3JzAwLjAiUyA0OcKwNTknNTkuOSJX!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr" class="location-map" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </section>
         </main>
@@ -1978,16 +2193,6 @@
                         <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                    
-                    <!-- Localização no rodapé -->
-                    <div class="location-info" style="margin-top: 1.5rem; text-align: center;">
-                        <div class="location-info-item" style="justify-content: center;">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <p>Rua Gurgel 119, Universitário, Cascavel-PR</p>
-                            </div>
-                        </div>
                     </div>
                     
                     <div class="copyright">
@@ -2023,6 +2228,8 @@
                 <div class="admin-tab active" data-tab="parts">Ofertas</div>
                 <div class="admin-tab" data-tab="brands">Marcas</div>
                 <div class="admin-tab" data-tab="categories">Categorias</div>
+                <div class="admin-tab" data-tab="about">Sobre a Empresa</div>
+                <div class="admin-tab" data-tab="team">Equipe</div>
                 <div class="admin-tab" data-tab="testimonials">Depoimentos</div>
                 <div class="admin-tab" data-tab="gallery">Galeria</div>
             </div>
@@ -2174,6 +2381,76 @@
                 </div>
             </div>
             
+            <!-- Conteúdo da aba Sobre a Empresa -->
+            <div id="about-tab" class="tab-content">
+                <div class="add-part-form">
+                    <h3>Editar Sobre a Empresa</h3>
+                    <form id="add-about-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="about-image">URL da Imagem</label>
+                                <input type="url" id="about-image" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="about-text">Texto Sobre a Empresa</label>
+                                <textarea id="about-text" rows="6" required></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn"><i class="fas fa-save"></i> Salvar Alterações</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Conteúdo da aba Equipe -->
+            <div id="team-tab" class="tab-content">
+                <div class="add-part-form">
+                    <h3>Adicionar Membro da Equipe</h3>
+                    <form id="add-team-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="team-name">Nome</label>
+                                <input type="text" id="team-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="team-role">Função</label>
+                                <input type="text" id="team-role" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="team-phone">Telefone</label>
+                                <input type="text" id="team-phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="team-image">URL da Foto</label>
+                                <input type="url" id="team-image" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn"><i class="fas fa-plus"></i> Adicionar Membro</button>
+                    </form>
+                </div>
+                
+                <div class="admin-parts-list">
+                    <h3>Membros da Equipe</h3>
+                    <table class="team-table">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Nome</th>
+                                <th>Função</th>
+                                <th>Telefone</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-team-list">
+                            <!-- Lista de membros da equipe para administração -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
             <!-- Conteúdo da aba de Depoimentos -->
             <div id="testimonials-tab" class="tab-content">
                 <div class="add-part-form">
@@ -2279,6 +2556,15 @@
             { name: "Outros", image: "https://cdn-icons-png.flaticon.com/512/3659/3659898.png" }
         ];
         
+        // Dados sobre a empresa
+        let aboutInfo = JSON.parse(localStorage.getItem('autolatinaAbout')) || {
+            image: "https://via.placeholder.com/600x400?text=Autolatina+Truck+Service",
+            text: "A Autolatina Truck Service é especializada em peças e serviços para caminhões, oferecendo produtos de qualidade e atendimento personalizado. Com anos de experiência no mercado, nossa equipe está pronta para atender às necessidades dos nossos clientes com agilidade e profissionalismo.\n\nTrabalhamos com as melhores marcas do mercado, garantindo a satisfação e segurança dos nossos clientes. Nossa missão é fornecer soluções completas para o seu caminhão, desde peças originais até serviços especializados."
+        };
+        
+        // Dados da equipe
+        let teamMembers = JSON.parse(localStorage.getItem('autolatinaTeam')) || [];
+        
         // Dados dos depoimentos
         let testimonials = JSON.parse(localStorage.getItem('autolatinaTestimonials')) || [
             {
@@ -2350,22 +2636,28 @@
         const addPartForm = document.getElementById('add-part-form');
         const addBrandForm = document.getElementById('add-brand-form');
         const addCategoryForm = document.getElementById('add-category-form');
+        const addAboutForm = document.getElementById('add-about-form');
+        const addTeamForm = document.getElementById('add-team-form');
         const addTestimonialForm = document.getElementById('add-testimonial-form');
         const addGalleryForm = document.getElementById('add-gallery-form');
         const catalogContainer = document.getElementById('catalog');
         const adminPartsList = document.getElementById('admin-parts-list');
         const adminBrandsList = document.getElementById('admin-brands-list');
         const adminCategoriesList = document.getElementById('admin-categories-list');
+        const adminTeamList = document.getElementById('admin-team-list');
         const adminTestimonialsList = document.getElementById('admin-testimonials-list');
         const adminGalleryList = document.getElementById('admin-gallery-list');
         const noPartsMessage = document.getElementById('no-parts-message');
         const legalWarning = document.getElementById('legal-warning');
         const categoriesGrid = document.getElementById('categories-grid');
         const brandsGrid = document.getElementById('brands-grid');
+        const teamGrid = document.getElementById('team-grid');
         const searchForm = document.getElementById('search-form');
         const searchInput = document.getElementById('search-input');
         const contactBtn = document.querySelector('.contact-btn');
         const dropdownContent = document.querySelector('.dropdown-content');
+        const aboutImage = document.getElementById('about-image');
+        const aboutText = document.getElementById('about-text');
         
         // Mostrar aviso legal se tentarem inspecionar o código
         document.addEventListener('keydown', function(e) {
@@ -2391,7 +2683,9 @@
             displayCategories();
             displayParts();
             displayBrands();
+            displayTeam();
             displayGallery();
+            updateAboutSection();
         }
         
         // Mostrar painel admin
@@ -2402,8 +2696,10 @@
             displayAdminParts();
             displayAdminBrands();
             displayAdminCategories();
+            displayAdminTeam();
             displayAdminTestimonials();
             displayAdminGallery();
+            loadAboutForm();
         }
         
         // Mostrar tela de login
@@ -2500,6 +2796,28 @@
             });
         }
         
+        // Exibir equipe
+        function displayTeam() {
+            teamGrid.innerHTML = '';
+            
+            if (teamMembers.length === 0) {
+                teamGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">Nenhum membro da equipe cadastrado.</p>';
+                return;
+            }
+            
+            teamMembers.forEach(member => {
+                const teamCard = document.createElement('div');
+                teamCard.className = 'team-card';
+                teamCard.innerHTML = `
+                    <img src="${member.image}" alt="${member.name}" class="team-avatar" onerror="this.src='https://via.placeholder.com/100x100?text=Sem+Imagem'">
+                    <h3 class="team-name">${member.name}</h3>
+                    <p class="team-role">${member.role}</p>
+                    <p class="team-phone"><i class="fas fa-phone"></i> ${member.phone}</p>
+                `;
+                teamGrid.appendChild(teamCard);
+            });
+        }
+        
         // Exibir galeria
         function displayGallery() {
             const galleryGrid = document.querySelector('.gallery-grid');
@@ -2515,6 +2833,18 @@
                 `;
                 galleryGrid.appendChild(galleryItem);
             });
+        }
+        
+        // Atualizar seção sobre a empresa
+        function updateAboutSection() {
+            aboutImage.src = aboutInfo.image;
+            aboutText.innerHTML = aboutInfo.text.replace(/\n/g, '<br>');
+        }
+        
+        // Carregar dados no formulário sobre a empresa
+        function loadAboutForm() {
+            document.getElementById('about-image').value = aboutInfo.image;
+            document.getElementById('about-text').value = aboutInfo.text;
         }
         
         // Exibir peças no catálogo público (com filtro opcional por categoria ou pesquisa)
@@ -2672,6 +3002,37 @@
             });
         }
         
+        // Exibir equipe no painel admin
+        function displayAdminTeam() {
+            adminTeamList.innerHTML = '';
+            
+            if (teamMembers.length === 0) {
+                adminTeamList.innerHTML = '<tr><td colspan="5" style="text-align: center;">Nenhum membro da equipe cadastrado.</td></tr>';
+                return;
+            }
+            
+            teamMembers.forEach((member, index) => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td><img src="${member.image}" alt="${member.name}" class="table-img" onerror="this.src='https://via.placeholder.com/80x60?text=Sem+Imagem'"></td>
+                    <td>${member.name}</td>
+                    <td>${member.role}</td>
+                    <td>${member.phone}</td>
+                    <td>
+                        <button class="action-btn delete-btn" data-index="${index}"><i class="fas fa-trash"></i> Excluir</button>
+                    </td>
+                `;
+                
+                adminTeamList.appendChild(row);
+            });
+            
+            // Adicionar eventos aos botões de exclusão
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => deleteTeamMember(e.target.closest('button').dataset.index));
+            });
+        }
+        
         // Exibir depoimentos no painel admin
         function displayAdminTestimonials() {
             adminTestimonialsList.innerHTML = '';
@@ -2826,6 +3187,42 @@
             alert('Imagem da categoria atualizada com sucesso!');
         }
         
+        // Adicionar/editar informações sobre a empresa
+        function addAbout(e) {
+            e.preventDefault();
+            
+            aboutInfo = {
+                image: document.getElementById('about-image').value,
+                text: document.getElementById('about-text').value
+            };
+            
+            saveAbout();
+            updateAboutSection();
+            
+            // Mostrar mensagem de sucesso
+            alert('Informações sobre a empresa atualizadas com sucesso!');
+        }
+        
+        // Adicionar novo membro da equipe
+        function addTeamMember(e) {
+            e.preventDefault();
+            
+            const newMember = {
+                name: document.getElementById('team-name').value,
+                role: document.getElementById('team-role').value,
+                phone: document.getElementById('team-phone').value,
+                image: document.getElementById('team-image').value
+            };
+            
+            teamMembers.push(newMember);
+            saveTeam();
+            displayAdminTeam();
+            addTeamForm.reset();
+            
+            // Mostrar mensagem de sucesso
+            alert('Membro da equipe adicionado com sucesso!');
+        }
+        
         // Adicionar novo depoimento
         function addTestimonial(e) {
             e.preventDefault();
@@ -2918,6 +3315,19 @@
             }
         }
         
+        // Excluir membro da equipe
+        function deleteTeamMember(index) {
+            if (confirm('Tem certeza que deseja excluir este membro da equipe?')) {
+                teamMembers.splice(index, 1);
+                saveTeam();
+                displayAdminTeam();
+                displayTeam();
+                
+                // Mostrar mensagem de sucesso
+                alert('Membro da equipe excluído com sucesso!');
+            }
+        }
+        
         // Excluir depoimento
         function deleteTestimonial(index) {
             if (confirm('Tem certeza que deseja excluir este depoimento?')) {
@@ -2960,6 +3370,16 @@
             localStorage.setItem('autolatinaCategories', JSON.stringify(categories));
         }
         
+        // Salvar informações sobre a empresa no localStorage
+        function saveAbout() {
+            localStorage.setItem('autolatinaAbout', JSON.stringify(aboutInfo));
+        }
+        
+        // Salvar equipe no localStorage
+        function saveTeam() {
+            localStorage.setItem('autolatinaTeam', JSON.stringify(teamMembers));
+        }
+        
         // Salvar depoimentos no localStorage
         function saveTestimonials() {
             localStorage.setItem('autolatinaTestimonials', JSON.stringify(testimonials));
@@ -2996,6 +3416,12 @@
         addPartForm.addEventListener('submit', addPart);
         addBrandForm.addEventListener('submit', addBrand);
         addCategoryForm.addEventListener('submit', addCategory);
+        if (addAboutForm) {
+            addAboutForm.addEventListener('submit', addAbout);
+        }
+        if (addTeamForm) {
+            addTeamForm.addEventListener('submit', addTeamMember);
+        }
         if (addTestimonialForm) {
             addTestimonialForm.addEventListener('submit', addTestimonial);
         }
@@ -3027,6 +3453,24 @@
         } else {
             // Salvar categorias padrão no localStorage
             saveCategories();
+        }
+        
+        // Carregar informações sobre a empresa do localStorage se existirem
+        const savedAbout = JSON.parse(localStorage.getItem('autolatinaAbout'));
+        if (savedAbout) {
+            aboutInfo = savedAbout;
+        } else {
+            // Salvar informações padrão no localStorage
+            saveAbout();
+        }
+        
+        // Carregar equipe do localStorage se existirem
+        const savedTeam = JSON.parse(localStorage.getItem('autolatinaTeam'));
+        if (savedTeam && savedTeam.length > 0) {
+            teamMembers = savedTeam;
+        } else {
+            // Salvar equipe vazia no localStorage
+            saveTeam();
         }
         
         // Carregar depoimentos do localStorage se existirem
