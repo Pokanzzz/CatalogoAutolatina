@@ -92,6 +92,12 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .contact-info span:hover {
+            color: var(--accent-color);
         }
 
         .contact-info i {
@@ -138,6 +144,7 @@
             align-items: center;
             gap: 1rem;
             transition: var(--transition);
+            cursor: pointer;
         }
         
         .logo-container:hover {
@@ -779,6 +786,7 @@
             align-items: center;
             gap: 0.8rem;
             margin-bottom: 1rem;
+            cursor: pointer;
         }
         
         .footer-logo img {
@@ -1047,6 +1055,27 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 1.5rem;
+        }
+
+        .not-found-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+            padding: 10px 15px;
+            background-color: var(--accent-color);
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .not-found-btn:hover {
+            background-color: #d60000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 5, 5, 0.3);
         }
 
         @keyframes pulse {
@@ -1424,10 +1453,105 @@
             background: #f1f3f5;
         }
 
+        .team-section {
+            padding: 2rem 0;
+            background-color: var(--section-white);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--accent-color);
+        }
+
+        .team-name {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .team-role {
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .team-phone {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .team-phone a {
+            color: inherit;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .team-phone i {
+            color: var(--whatsapp-color);
+            font-size: 1rem;
+        }
+
+        .team-phone .whatsapp-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--whatsapp-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            margin-bottom: 5px;
+        }
+
+        .team-phone:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
         .legal-warning {
             position: fixed;
             bottom: 0;
-            left: 0;
+            left: 0,
             right: 0;
             background-color: #ff0505;
             color: white;
@@ -1524,6 +1648,10 @@
                 bottom: 25px;
                 right: 85px;
             }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -1593,8 +1721,8 @@
     <div class="top-info-bar">
         <div class="top-info-container">
             <div class="contact-info">
-                <span><i class="fas fa-envelope"></i> autolatinacascavel@gmail.com</span>
-                <span><i class="fas fa-map-marker-alt"></i> Rua Gurgel 119, Cascavel-PR</span>
+                <span onclick="window.open('mailto:autolatinacascavel@gmail.com', '_blank')"><i class="fas fa-envelope"></i> autolatinacascavel@gmail.com</span>
+                <span id="location-span"><i class="fas fa-map-marker-alt"></i> Rua Gurgel 119, Cascavel-PR</span>
             </div>
             <button class="rate-btn" id="rate-btn"><i class="fas fa-star"></i> Avalie-nos</button>
         </div>
@@ -1602,7 +1730,7 @@
     
     <div class="top-header">
         <div class="header-container">
-            <div class="logo-container">
+            <div class="logo-container" id="logo-header">
                 <img src="Logo Site Autolatina.png" alt="Autolatina Truck Service" class="logo-img">
                 <div class="logo-text">
                     <div class="logo-title">Autolatina Truck Service</div>
@@ -1612,7 +1740,7 @@
             
             <div class="header-right">
                 <div class="header-social">
-                    <a href="#" class="social-header-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-header-link"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social-header-link"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="social-header-link"><i class="fab fa-whatsapp"></i></a>
                 </div>
@@ -1638,7 +1766,7 @@
         <main class="container">
             <section class="about-section" id="about-section">
                 <div class="about-container">
-                    <img src="frente autolatina_resized.jpg" >
+                    <img src="frente autolatina_resized.jpg" alt="Fachada da Autolatina Truck Service" class="about-image">
                     <div class="about-content">
                         <h2 class="about-title">Autolatina Truck Service</h2>
                         <p class="about-text" id="about-text">
@@ -1656,6 +1784,9 @@
                 <div class="catalog" id="catalog">
                     <p id="no-parts-message" style="grid-column: 1/-1; text-align: center; font-size: 1.1rem; color: var(--text-light);">Nenhuma oferta disponível no momento. Volte em breve!</p>
                 </div>
+                <a href="https://wa.me/5545998435498?text=Olá, não encontrei o que procurava no site. Podem me ajudar?" class="not-found-btn" target="_blank">
+                    Não encontrou o que procura? Clique Aqui!
+                </a>
             </section>
             
             <section class="brands-section">
@@ -1668,6 +1799,13 @@
                 <h2 class="section-title">Peças com qualidade Autolatina Truck Service</h2>
                 <div class="catalog" id="autolatina-catalog">
                     <p id="no-autolatina-parts-message" style="grid-column: 1/-1; text-align: center; font-size: 1.1rem; color: var(--text-light);">Nenhuma peça Autolatina disponível no momento. Volte em breve!</p>
+                </div>
+            </section>
+            
+            <section class="team-section" id="team-section">
+                <h2 class="section-title">Nossa Equipe</h2>
+                <div class="team-grid" id="team-grid">
+                    <!-- Equipe será preenchida via JavaScript -->
                 </div>
             </section>
             
@@ -1727,7 +1865,7 @@
         <footer>
             <div class="footer-container">
                 <div class="footer-column">
-                    <div class="footer-logo">
+                    <div class="footer-logo" id="footer-logo">
                         <img src="Logo Site Autolatina.png" alt="Autolatina Truck Service">
                         <div class="footer-logo-text">
                             <div class="footer-logo-title">Autolatina Truck Service</div>
@@ -1748,7 +1886,7 @@
                 <div class="footer-column">
                     <h3 class="footer-title">Informações</h3>
                     <div class="footer-links">
-                        <a href="#" class="footer-link"><i class="fas fa-map-marker-alt"></i> Rua Gurgel 119, Cascavel-PR</a>
+                        <a href="#" class="footer-link" id="footer-location"><i class="fas fa-map-marker-alt"></i> Rua Gurgel 119, Cascavel-PR</a>
                         <a href="tel:+5545999711417" class="footer-link"><i class="fas fa-phone"></i> (45) 99971-1417</a>
                         <a href="mailto:autolatinacascavel@gmail.com" class="footer-link"><i class="fas fa-envelope"></i> autolatinacascavel@gmail.com</a>
                         <a href="#" class="footer-link"><i class="fas fa-clock"></i> Seg-Sex: 8h às 18h</a>
@@ -1760,6 +1898,7 @@
                     <div class="footer-links">
                         <a href="#offers" class="footer-link"><i class="fas fa-tags"></i> Ofertas</a>
                         <a href="#about-section" class="footer-link"><i class="fas fa-info-circle"></i> Sobre Nós</a>
+                        <a href="#team-section" class="footer-link"><i class="fas fa-users"></i> Nossa Equipe</a>
                         <a href="#" id="faq-footer-link" class="footer-link"><i class="fas fa-question-circle"></i> FAQ</a>
                         <a href="#" id="terms-link" class="footer-link"><i class="fas fa-file-alt"></i> Termos e Condições</a>
                     </div>
@@ -1854,6 +1993,7 @@
                 <div class="admin-tab" data-tab="autolatina-parts">Peças Autolatina</div>
                 <div class="admin-tab" data-tab="brands">Marcas</div>
                 <div class="admin-tab" data-tab="categories">Categorias</div>
+                <div class="admin-tab" data-tab="team">Equipe</div>
                 <div class="admin-tab" data-tab="about">Sobre a Empresa</div>
                 <div class="admin-tab" data-tab="settings">Configurações</div>
             </div>
@@ -2078,6 +2218,52 @@
                 </div>
             </div>
             
+            <div id="team-tab" class="tab-content">
+                <div class="add-form">
+                    <h3>Gerenciar Equipe</h3>
+                    <form id="add-team-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="team-name">Nome</label>
+                                <input type="text" id="team-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="team-role">Função</label>
+                                <input type="text" id="team-role" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="team-phone">Telefone (com DDD)</label>
+                                <input type="text" id="team-phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="team-image">URL da Foto</label>
+                                <input type="url" id="team-image" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn"><i class="fas fa-plus"></i> Adicionar Membro</button>
+                    </form>
+                </div>
+                
+                <div class="admin-table-container">
+                    <h3>Membros da Equipe</h3>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Nome</th>
+                                <th>Função</th>
+                                <th>Telefone</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-team-list">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
             <div id="about-tab" class="tab-content">
                 <div class="add-form">
                     <h3>Editar Sobre a Empresa</h3>
@@ -2121,12 +2307,22 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group">
+                                <label for="facebook-link">Link do Facebook</label>
+                                <input type="url" id="facebook-link" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="instagram-link">Link do Instagram</label>
                                 <input type="url" id="instagram-link" required>
                             </div>
+                        </div>
+                        <div class="form-row">
                             <div class="form-group">
                                 <label for="google-review-link">Link de Avaliação no Google</label>
                                 <input type="url" id="google-review-link" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="not-found-whatsapp">WhatsApp para "Não Encontrou"</label>
+                                <input type="text" id="not-found-whatsapp" required>
                             </div>
                         </div>
                         <div class="form-row">
@@ -2152,8 +2348,10 @@
             backgroundImage: "",
             whatsappNumber: "5545999711417",
             googleMapsLink: "https://goo.gl/maps/example",
+            facebookLink: "#",
             instagramLink: "#",
             googleReviewLink: "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID",
+            notFoundWhatsapp: "5545998435498",
             missionText: "Somos uma empresa que nasceu da união de pessoas e trabalhar em equipe é nosso diferencial"
         };
 
@@ -2234,6 +2432,14 @@
             { name: "Outros", image: "https://cdn-icons-png.flaticon.com/512/3659/3659898.png" }
         ];
 
+        let teamMembers = JSON.parse(localStorage.getItem('autolatinaTeam')) || [
+            { id: 1, name: "João Silva", role: "Mecânico Chefe", phone: "45999999999", image: "https://randomuser.me/api/portraits/men/1.jpg" },
+            { id: 2, name: "Maria Souza", role: "Vendedora", phone: "45988888888", image: "https://randomuser.me/api/portraits/women/1.jpg" },
+            { id: 3, name: "Carlos Oliveira", role: "Chapeador", phone: "45977777777", image: "https://randomuser.me/api/portraits/men/2.jpg" },
+            { id: 4, name: "Ana Pereira", role: "Administrativo", phone: "45966666666", image: "https://randomuser.me/api/portraits/women/2.jpg" },
+            { id: 5, name: "Pedro Santos", role: "Atendente", phone: "45955555555", image: "https://randomuser.me/api/portraits/men/3.jpg" }
+        ];
+
         let aboutInfo = JSON.parse(localStorage.getItem('autolatinaAbout')) || {
             image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
             text: "Especializada em peças e serviços para caminhões, a Autolatina Truck Service oferece produtos de qualidade e atendimento personalizado. Com anos de experiência no mercado, nossa equipe está pronta para atender às necessidades dos nossos clientes com agilidade e profissionalismo."
@@ -2257,11 +2463,16 @@
         const termsLink = document.getElementById('terms-link');
         const termsModal = document.getElementById('terms-modal');
         const closeTerms = document.getElementById('close-terms');
+        const logoHeader = document.getElementById('logo-header');
+        const footerLogo = document.getElementById('footer-logo');
+        const locationSpan = document.getElementById('location-span');
+        const footerLocation = document.getElementById('footer-location');
 
         const addPartForm = document.getElementById('add-part-form');
         const addAutolatinaPartForm = document.getElementById('add-autolatina-part-form');
         const addBrandForm = document.getElementById('add-brand-form');
         const addCategoryForm = document.getElementById('add-category-form');
+        const addTeamForm = document.getElementById('add-team-form');
         const addAboutForm = document.getElementById('add-about-form');
         const addSettingsForm = document.getElementById('add-settings-form');
 
@@ -2269,13 +2480,15 @@
         const catalogContainer = document.getElementById('catalog');
         const autolatinaCatalogContainer = document.getElementById('autolatina-catalog');
         const brandsGrid = document.getElementById('brands-grid');
+        const teamGrid = document.getElementById('team-grid');
         const adminPartsList = document.getElementById('admin-parts-list');
         const adminAutolatinaPartsList = document.getElementById('admin-autolatina-parts-list');
         const adminBrandsList = document.getElementById('admin-brands-list');
         const adminCategoriesList = document.getElementById('admin-categories-list');
+        const adminTeamList = document.getElementById('admin-team-list');
         const noPartsMessage = document.getElementById('no-parts-message');
         const noAutolatinaPartsMessage = document.getElementById('no-autolatina-parts-message');
-        const aboutImage = document.getElementById('about-image');
+        const aboutImage = document.querySelector('.about-image');
         const aboutText = document.getElementById('about-text');
         const missionText = document.querySelector('.mission-text');
 
@@ -2288,8 +2501,10 @@
         const backgroundImageInput = document.getElementById('background-image');
         const whatsappNumberInput = document.getElementById('whatsapp-number');
         const googleMapsLinkInput = document.getElementById('google-maps-link');
+        const facebookLinkInput = document.getElementById('facebook-link');
         const instagramLinkInput = document.getElementById('instagram-link');
         const googleReviewLinkInput = document.getElementById('google-review-link');
+        const notFoundWhatsappInput = document.getElementById('not-found-whatsapp');
         const missionTextInput = document.getElementById('mission-text');
 
         function showPublicCatalog() {
@@ -2303,6 +2518,7 @@
             displayParts();
             displayAutolatinaParts();
             displayBrands();
+            displayTeam();
             updateAboutSection();
             updateBackgroundImage();
             updateWhatsappLinks();
@@ -2332,6 +2548,7 @@
             displayAdminAutolatinaParts();
             displayAdminBrands();
             displayAdminCategories();
+            displayAdminTeam();
             loadAboutForm();
             loadSettingsForm();
         }
@@ -2397,9 +2614,21 @@
             
             const whatsappFixed = document.querySelector('.whatsapp-fixed');
             whatsappFixed.setAttribute('href', `https://wa.me/${siteSettings.whatsappNumber}`);
+
+            const notFoundBtn = document.querySelector('.not-found-btn');
+            if (notFoundBtn) {
+                notFoundBtn.setAttribute('href', `https://wa.me/${siteSettings.notFoundWhatsapp}?text=Olá, não encontrei o que procurava no site. Podem me ajudar?`);
+            }
         }
 
         function updateSocialLinks() {
+            const facebookLinks = document.querySelectorAll('a[href="#"]');
+            facebookLinks.forEach(link => {
+                if (link.textContent.includes('Facebook') || link.querySelector('.fab.fa-facebook-f')) {
+                    link.setAttribute('href', siteSettings.facebookLink);
+                }
+            });
+
             const instagramLinks = document.querySelectorAll('a[href="#"]');
             instagramLinks.forEach(link => {
                 if (link.textContent.includes('Instagram') || link.querySelector('.fab.fa-instagram')) {
@@ -2407,9 +2636,9 @@
                 }
             });
             
-            const googleMapsLinks = document.querySelectorAll('a[href^="https://goo.gl/maps"]');
+            const googleMapsLinks = document.querySelectorAll('#location-span, #footer-location');
             googleMapsLinks.forEach(link => {
-                link.setAttribute('href', siteSettings.googleMapsLink);
+                link.onclick = () => window.open(siteSettings.googleMapsLink, '_blank');
             });
         }
 
@@ -2553,6 +2782,27 @@
             });
         }
 
+        function displayTeam() {
+            teamGrid.innerHTML = '';
+            
+            teamMembers.forEach(member => {
+                const teamCard = document.createElement('div');
+                teamCard.className = 'team-card';
+                teamCard.innerHTML = `
+                    <img src="${member.image}" alt="${member.name}" class="team-photo">
+                    <h3 class="team-name">${member.name}</h3>
+                    <p class="team-role">${member.role}</p>
+                    <div class="team-phone">
+                        <a href="https://wa.me/55${member.phone}" target="_blank">
+                            <i class="fab fa-whatsapp"></i> ${member.phone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3')}
+                        </a>
+                        <span class="whatsapp-tooltip">Conversar no WhatsApp</span>
+                    </div>
+                `;
+                teamGrid.appendChild(teamCard);
+            });
+        }
+
         function updateAboutSection() {
             aboutImage.src = aboutInfo.image;
             aboutText.innerHTML = aboutInfo.text.replace(/\n/g, '<br>');
@@ -2676,6 +2926,35 @@
             });
         }
 
+        function displayAdminTeam() {
+            adminTeamList.innerHTML = '';
+            
+            teamMembers.forEach(member => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td><img src="${member.image}" alt="${member.name}" class="table-img"></td>
+                    <td>${member.name}</td>
+                    <td>${member.role}</td>
+                    <td>${member.phone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3')}</td>
+                    <td>
+                        <button class="action-btn edit-btn" data-id="${member.id}"><i class="fas fa-edit"></i> Editar</button>
+                        <button class="action-btn delete-btn" data-id="${member.id}"><i class="fas fa-trash"></i> Excluir</button>
+                    </td>
+                `;
+                
+                adminTeamList.appendChild(row);
+            });
+            
+            document.querySelectorAll('#admin-team-list .edit-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => editTeamMember(e.target.closest('button').dataset.id));
+            });
+            
+            document.querySelectorAll('#admin-team-list .delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => deleteTeamMember(e.target.closest('button').dataset.id));
+            });
+        }
+
         function loadAboutForm() {
             document.getElementById('about-image').value = aboutInfo.image;
             document.getElementById('about-text').value = aboutInfo.text;
@@ -2685,8 +2964,10 @@
             backgroundImageInput.value = siteSettings.backgroundImage;
             whatsappNumberInput.value = siteSettings.whatsappNumber;
             googleMapsLinkInput.value = siteSettings.googleMapsLink;
+            facebookLinkInput.value = siteSettings.facebookLink;
             instagramLinkInput.value = siteSettings.instagramLink;
             googleReviewLinkInput.value = siteSettings.googleReviewLink;
+            notFoundWhatsappInput.value = siteSettings.notFoundWhatsapp;
             missionTextInput.value = siteSettings.missionText;
         }
 
@@ -2865,6 +3146,52 @@
             alert('Imagem da categoria atualizada com sucesso!');
         }
 
+        function addTeamMember(e) {
+            e.preventDefault();
+            
+            const newMember = {
+                id: Date.now(),
+                name: document.getElementById('team-name').value,
+                role: document.getElementById('team-role').value,
+                phone: document.getElementById('team-phone').value,
+                image: document.getElementById('team-image').value
+            };
+            
+            teamMembers.push(newMember);
+            saveTeam();
+            displayAdminTeam();
+            displayTeam();
+            addTeamForm.reset();
+            
+            alert('Membro da equipe adicionado com sucesso!');
+        }
+
+        function editTeamMember(id) {
+            const member = teamMembers.find(m => m.id == id);
+            if (!member) return;
+            
+            document.getElementById('team-name').value = member.name;
+            document.getElementById('team-role').value = member.role;
+            document.getElementById('team-phone').value = member.phone;
+            document.getElementById('team-image').value = member.image;
+            
+            teamMembers = teamMembers.filter(m => m.id != id);
+            saveTeam();
+            
+            alert('Membro da equipe pronto para edição. Modifique os campos e clique em "Adicionar Membro" para atualizar.');
+        }
+
+        function deleteTeamMember(id) {
+            if (confirm('Tem certeza que deseja excluir este membro da equipe?')) {
+                teamMembers = teamMembers.filter(m => m.id != id);
+                saveTeam();
+                displayAdminTeam();
+                displayTeam();
+                
+                alert('Membro da equipe excluído com sucesso!');
+            }
+        }
+
         function addAbout(e) {
             e.preventDefault();
             
@@ -2886,8 +3213,10 @@
                 backgroundImage: backgroundImageInput.value,
                 whatsappNumber: whatsappNumberInput.value,
                 googleMapsLink: googleMapsLinkInput.value,
+                facebookLink: facebookLinkInput.value,
                 instagramLink: instagramLinkInput.value,
                 googleReviewLink: googleReviewLinkInput.value,
+                notFoundWhatsapp: notFoundWhatsappInput.value,
                 missionText: missionTextInput.value
             };
             
@@ -2914,6 +3243,10 @@
 
         function saveCategories() {
             localStorage.setItem('autolatinaCategories', JSON.stringify(categories));
+        }
+
+        function saveTeam() {
+            localStorage.setItem('autolatinaTeam', JSON.stringify(teamMembers));
         }
 
         function saveAbout() {
@@ -2971,6 +3304,14 @@
             termsModal.style.display = 'none';
         });
 
+        logoHeader.addEventListener('click', () => {
+            location.reload();
+        });
+
+        footerLogo.addEventListener('click', () => {
+            location.reload();
+        });
+
         adminTabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 adminTabs.forEach(t => t.classList.remove('active'));
@@ -2986,6 +3327,7 @@
         addAutolatinaPartForm.addEventListener('submit', addAutolatinaPart);
         addBrandForm.addEventListener('submit', addBrand);
         addCategoryForm.addEventListener('submit', addCategory);
+        addTeamForm.addEventListener('submit', addTeamMember);
         addAboutForm.addEventListener('submit', addAbout);
         addSettingsForm.addEventListener('submit', addSettings);
 
@@ -3033,4 +3375,3 @@
     </script>
 </body>
 </html>
-      
