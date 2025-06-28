@@ -25,6 +25,9 @@
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --footer-color: #08003a; /* Alterado para combinar com o cabeçalho */
+            --service-card-bg: #f5f7ff;
+            --background-color: #f5f5f5; /* Cor de fundo cinza */
         }
         
         * {
@@ -35,25 +38,13 @@
         }
         
         body {
-            background-color: var(--light-color);
+            background-color: var(--background-color); /* Fundo cinza */
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
-            background-image: url('https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-        }
-        
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.85);
-            z-index: -1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Top Info Bar */
@@ -215,65 +206,21 @@
             background-color: #d60000;
         }
 
-        /* Contact Dropdown */
-        .contact-dropdown {
-            position: relative;
+        /* Social Links in Header */
+        .header-social {
+            display: flex;
+            gap: 1rem;
         }
 
-        .contact-btn {
-            background: transparent;
+        .social-header-link {
             color: white;
-            border: none;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            cursor: pointer;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
+            font-size: 1.2rem;
             transition: var(--transition);
         }
 
-        .contact-btn:hover {
-            background: rgba(255,255,255,0.1);
-        }
-
-        .dropdown-content {
-            position: absolute;
-            right: 0;
-            top: 100%;
-            background: white;
-            min-width: 250px;
-            box-shadow: var(--shadow-hover);
-            border-radius: 5px;
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.3s ease;
-        }
-
-        .dropdown-content.active {
-            max-height: 500px;
-            padding: 0.5rem 0;
-        }
-
-        .dropdown-item {
-            padding: 0.8rem 1rem;
-            color: var(--text-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            transition: var(--transition);
-        }
-
-        .dropdown-item:hover {
-            background: #f8f9fa;
+        .social-header-link:hover {
             color: var(--accent-color);
-        }
-
-        .dropdown-item i {
-            color: var(--primary-color);
-            width: 20px;
-            text-align: center;
+            transform: translateY(-3px);
         }
         
         /* Categories */
@@ -362,10 +309,11 @@
             border-radius: 10px;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            transform-style: preserve-3d;
         }
         
         .about-image:hover {
-            transform: scale(1.02);
+            transform: scale(1.02) rotateY(5deg);
         }
         
         .about-content {
@@ -434,6 +382,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            flex: 1;
         }
         
         /* Offers Section */
@@ -676,7 +625,7 @@
         /* Services Section */
         .services-section {
             padding: 2rem 0;
-            background-color: var(--light-color);
+            background-color: var(--service-card-bg);
             position: relative;
         }
         
@@ -696,6 +645,8 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
+            border-top: 5px solid var(--accent-color);
+            background: linear-gradient(to bottom, white 80%, #f5f7ff);
         }
         
         .service-card:hover {
@@ -727,6 +678,34 @@
             font-size: 0.9rem;
         }
         
+        /* Peças Autolatina Section */
+        .autolatina-parts-section {
+            padding: 2rem 0;
+            background-color: white;
+            position: relative;
+        }
+        
+        .autolatina-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 60px;
+            height: 30px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+        
+        .autolatina-badge img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+        
         /* Contact Boxes */
         .contact-boxes {
             padding: 2rem 0;
@@ -747,6 +726,7 @@
             text-align: center;
             transition: var(--transition);
             border-top: 4px solid var(--accent-color);
+            background: linear-gradient(to bottom, white 80%, #f5f7ff);
         }
         
         .contact-box:hover {
@@ -785,10 +765,11 @@
         
         /* Footer */
         footer {
-            background: var(--dark-color);
+            background: var(--footer-color);
             color: white;
             text-align: center;
             padding: 2rem 0;
+            margin-top: auto;
         }
         
         .footer-content {
@@ -829,6 +810,7 @@
         
         .footer-link:hover {
             color: var(--accent-color);
+            text-decoration: underline;
         }
         
         .social-links {
@@ -841,10 +823,19 @@
             color: white;
             font-size: 1.3rem;
             transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
         }
         
         .social-link:hover {
             color: var(--accent-color);
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
         }
         
         .copyright {
@@ -884,11 +875,63 @@
             box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
         }
         
+        /* Search Results Page */
+        .search-results-page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.95);
+            z-index: 10000;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .search-results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .search-results-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .close-search-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-search-btn:hover {
+            background: #d60000;
+            transform: translateY(-2px);
+        }
+
+        .search-results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
         /* Animations */
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Login Page */
@@ -926,6 +969,7 @@
             max-width: 400px;
             z-index: 1;
             position: relative;
+            animation: fadeIn 0.5s ease;
         }
 
         .login-form h2 {
@@ -1061,6 +1105,7 @@
 
         .tab-content.active {
             display: block;
+            animation: fadeIn 0.5s ease;
         }
 
         .add-form {
@@ -1334,6 +1379,21 @@
         <i class="fab fa-whatsapp"></i>
     </a>
     
+    <!-- Search Results Page -->
+    <div id="search-results-page" class="search-results-page">
+        <div class="container">
+            <div class="search-results-header">
+                <h2 class="search-results-title">Resultados da Pesquisa</h2>
+                <button class="close-search-btn" id="close-search-btn">
+                    <i class="fas fa-times"></i> Fechar
+                </button>
+            </div>
+            <div class="search-results-grid" id="search-results-grid">
+                <!-- Results will be added by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
     <!-- Top Info Bar -->
     <div class="top-info-bar">
         <div class="top-info-container">
@@ -1357,28 +1417,10 @@
             </div>
             
             <div class="header-right">
-                <div class="contact-dropdown">
-                    <button class="contact-btn">
-                        <i class="fas fa-phone-alt"></i> Contato
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="tel:45999492711" class="dropdown-item">
-                            <i class="fas fa-phone"></i> (45) 99949-2711
-                        </a>
-                        <a href="tel:45999711417" class="dropdown-item">
-                            <i class="fas fa-phone"></i> (45) 99971-1417
-                        </a>
-                        <a href="mailto:autolatinacascavel@gmail.com" class="dropdown-item">
-                            <i class="fas fa-envelope"></i> Email
-                        </a>
-                        <a href="https://wa.me/5545999711417" class="dropdown-item" target="_blank">
-                            <i class="fab fa-whatsapp"></i> WhatsApp
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-map-marker-alt"></i> Rua Gurgel 119, Universitário, Cascavel-PR
-                        </a>
-                    </div>
+                <div class="header-social">
+                    <a href="#" class="social-header-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-header-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-header-link"><i class="fab fa-whatsapp"></i></a>
                 </div>
                 
                 <div class="search-container">
@@ -1439,17 +1481,26 @@
                 </div>
             </section>
             
+            <!-- Peças Autolatina Section -->
+            <section class="autolatina-parts-section">
+                <h2 class="section-title">Peças Autolatina</h2>
+                <div class="catalog" id="autolatina-catalog">
+                    <!-- Peças Autolatina will be added by JavaScript -->
+                    <p id="no-autolatina-parts-message" style="grid-column: 1/-1; text-align: center; font-size: 1.1rem; color: var(--text-light);">Nenhuma peça Autolatina disponível no momento. Volte em breve!</p>
+                </div>
+            </section>
+            
             <!-- Services Section -->
             <section class="services-section">
-                <h2 class="section-title">Nossos Serviços</h2>
+                <h2 class="section-title">Nossos Serviços Especializados</h2>
                 <div class="services-grid">
                     <div class="service-card">
                         <div class="service-content">
                             <div class="service-icon">
                                 <i class="fas fa-tools"></i>
                             </div>
-                            <h3 class="service-title">Oficina</h3>
-                            <p class="service-desc">Serviços especializados em manutenção e reparos para manter seu caminhão sempre em perfeito estado.</p>
+                            <h3 class="service-title">Oficina Mecânica</h3>
+                            <p class="service-desc">Serviços especializados em manutenção e reparos para manter seu caminhão sempre em perfeito estado de funcionamento.</p>
                             <a href="https://wa.me/5545999711417?text=Olá, gostaria de saber mais sobre serviços de oficina" class="whatsapp-btn" target="_blank">
                                 <i class="fab fa-whatsapp"></i> WhatsApp
                             </a>
@@ -1461,7 +1512,7 @@
                             <div class="service-icon">
                                 <i class="fas fa-hammer"></i>
                             </div>
-                            <h3 class="service-title">Chapeação</h3>
+                            <h3 class="service-title">Chapeação e Pintura</h3>
                             <p class="service-desc">Serviços profissionais de chapeação e pintura para recuperação e proteção da carroceria do seu caminhão.</p>
                             <a href="https://wa.me/5545999711417?text=Olá, gostaria de saber mais sobre serviços de chapeação" class="whatsapp-btn" target="_blank">
                                 <i class="fab fa-whatsapp"></i> WhatsApp
@@ -1474,8 +1525,8 @@
                             <div class="service-icon">
                                 <i class="fas fa-cogs"></i>
                             </div>
-                            <h3 class="service-title">Autopeças</h3>
-                            <p class="service-desc">Peças originais e de qualidade para todas as marcas e modelos de caminhões com os melhores preços.</p>
+                            <h3 class="service-title">Venda de Autopeças</h3>
+                            <p class="service-desc">Peças originais e de qualidade para todas as marcas e modelos de caminhões com os melhores preços do mercado.</p>
                             <a href="https://wa.me/5545999711417?text=Olá, gostaria de saber mais sobre autopeças" class="whatsapp-btn" target="_blank">
                                 <i class="fab fa-whatsapp"></i> WhatsApp
                             </a>
@@ -1492,7 +1543,7 @@
                             <i class="fab fa-instagram"></i>
                         </div>
                         <h3 class="contact-title">Visite nosso Instagram</h3>
-                        <p>Confira nossas últimas novidades e promoções</p>
+                        <p>Confira nossas últimas novidades e promoções especiais</p>
                         <a href="#" class="contact-btn">Acessar Instagram</a>
                     </div>
                     
@@ -1501,7 +1552,7 @@
                             <i class="fas fa-phone"></i>
                         </div>
                         <h3 class="contact-title">Fale Conosco</h3>
-                        <p>Estamos prontos para atender suas necessidades</p>
+                        <p>Estamos prontos para atender suas necessidades com excelência</p>
                         <a href="https://wa.me/5545999711417" class="contact-btn" target="_blank">WhatsApp</a>
                     </div>
                     
@@ -1510,7 +1561,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <h3 class="contact-title">Visite-nos</h3>
-                        <p>Venha nos conhecer pessoalmente</p>
+                        <p>Venha nos conhecer pessoalmente em nossa loja</p>
                         <a href="https://goo.gl/maps/example" class="contact-btn" target="_blank">Ver no Mapa</a>
                     </div>
                 </div>
@@ -1576,9 +1627,11 @@
             
             <div class="admin-tabs">
                 <div class="admin-tab active" data-tab="parts">Ofertas</div>
+                <div class="admin-tab" data-tab="autolatina-parts">Peças Autolatina</div>
                 <div class="admin-tab" data-tab="brands">Marcas</div>
                 <div class="admin-tab" data-tab="categories">Categorias</div>
                 <div class="admin-tab" data-tab="about">Sobre a Empresa</div>
+                <div class="admin-tab" data-tab="settings">Configurações</div>
             </div>
             
             <!-- Parts Tab -->
@@ -1648,6 +1701,78 @@
                         </thead>
                         <tbody id="admin-parts-list">
                             <!-- Parts will be added by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Peças Autolatina Tab -->
+            <div id="autolatina-parts-tab" class="tab-content">
+                <div class="add-form">
+                    <h3>Adicionar Nova Peça Autolatina</h3>
+                    <form id="add-autolatina-part-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="autolatina-part-name">Nome da Peça</label>
+                                <input type="text" id="autolatina-part-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="autolatina-part-code">Código</label>
+                                <input type="text" id="autolatina-part-code" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="autolatina-part-price">Preço (R$)</label>
+                                <input type="number" id="autolatina-part-price" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="autolatina-part-image">URL da Imagem</label>
+                                <input type="url" id="autolatina-part-image" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="autolatina-part-category">Categoria</label>
+                                <select id="autolatina-part-category" required>
+                                    <option value="">Selecione uma categoria</option>
+                                    <option value="Motor">Motor</option>
+                                    <option value="Cambio">Cambio</option>
+                                    <option value="Diferencial Cardan">Diferencial Cardan</option>
+                                    <option value="Freio/Cubo">Freio/Cubo</option>
+                                    <option value="Cabine">Cabine</option>
+                                    <option value="Escapamento">Escapamento</option>
+                                    <option value="Arrefecimento">Arrefecimento</option>
+                                    <option value="Suspensão">Suspensão</option>
+                                    <option value="Elétrica">Elétrica</option>
+                                    <option value="Outros">Outros</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="autolatina-is-flash">
+                            <label for="autolatina-is-flash">Oferta Relâmpago (aparecerá em destaque)</label>
+                        </div>
+                        <button type="submit" class="submit-btn"><i class="fas fa-plus"></i> Adicionar Peça Autolatina</button>
+                    </form>
+                </div>
+                
+                <div class="admin-table-container">
+                    <h3>Peças Autolatina Cadastradas</h3>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Imagem</th>
+                                <th>Nome</th>
+                                <th>Código</th>
+                                <th>Preço</th>
+                                <th>Categoria</th>
+                                <th>Tipo</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-autolatina-parts-list">
+                            <!-- Peças Autolatina will be added by JavaScript -->
                         </tbody>
                     </table>
                 </div>
@@ -1758,6 +1883,42 @@
                     </form>
                 </div>
             </div>
+            
+            <!-- Settings Tab -->
+            <div id="settings-tab" class="tab-content">
+                <div class="add-form">
+                    <h3>Configurações do Site</h3>
+                    <form id="add-settings-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="background-image">URL da Imagem de Fundo</label>
+                                <input type="url" id="background-image" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="whatsapp-number">Número do WhatsApp</label>
+                                <input type="text" id="whatsapp-number" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="google-maps-link">Link do Google Maps</label>
+                                <input type="url" id="google-maps-link" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="instagram-link">Link do Instagram</label>
+                                <input type="url" id="instagram-link" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="google-review-link">Link de Avaliação no Google</label>
+                                <input type="url" id="google-review-link" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn"><i class="fas fa-save"></i> Salvar Configurações</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -1768,17 +1929,14 @@
             password: "autolatina2024"
         };
 
-        // WhatsApp number
-        const WHATSAPP_NUMBER = "5545999711417";
-
-        // Google Maps link
-        const GOOGLE_MAPS_LINK = "https://goo.gl/maps/example";
-
-        // Instagram link
-        const INSTAGRAM_LINK = "#";
-
-        // Google review link
-        const GOOGLE_REVIEW_LINK = "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID";
+        // Configurações do site
+        let siteSettings = JSON.parse(localStorage.getItem('autolatinaSettings')) || {
+            backgroundImage: "",
+            whatsappNumber: "5545999711417",
+            googleMapsLink: "https://goo.gl/maps/example",
+            instagramLink: "#",
+            googleReviewLink: "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID"
+        };
 
         // Data storage
         let parts = JSON.parse(localStorage.getItem('autolatinaParts')) || [
@@ -1808,6 +1966,27 @@
                 image: "https://via.placeholder.com/300x200?text=Pastilha+de+Freio", 
                 category: "Freio/Cubo",
                 isFlash: true
+            }
+        ];
+
+        let autolatinaParts = JSON.parse(localStorage.getItem('autolatinaAutolatinaParts')) || [
+            { 
+                id: 101, 
+                name: "Kit Embreagem Autolatina", 
+                code: "KEA-1001", 
+                price: 1350.90, 
+                image: "https://via.placeholder.com/300x200?text=Kit+Embreagem+Autolatina", 
+                category: "Cambio",
+                isFlash: true
+            },
+            { 
+                id: 102, 
+                name: "Bomba de Óleo Autolatina", 
+                code: "BOA-2002", 
+                price: 550.50, 
+                image: "https://via.placeholder.com/300x200?text=Bomba+de+Óleo+Autolatina", 
+                category: "Motor",
+                isFlash: false
             }
         ];
 
@@ -1846,23 +2025,29 @@
         const viewPublicBtn = document.getElementById('view-public-btn');
         const legalWarning = document.getElementById('legal-warning');
         const rateBtn = document.getElementById('rate-btn');
-        const contactBtn = document.querySelector('.contact-btn');
-        const dropdownContent = document.querySelector('.dropdown-content');
+        const searchResultsPage = document.getElementById('search-results-page');
+        const closeSearchBtn = document.getElementById('close-search-btn');
+        const searchResultsGrid = document.getElementById('search-results-grid');
 
         // Forms
         const addPartForm = document.getElementById('add-part-form');
+        const addAutolatinaPartForm = document.getElementById('add-autolatina-part-form');
         const addBrandForm = document.getElementById('add-brand-form');
         const addCategoryForm = document.getElementById('add-category-form');
         const addAboutForm = document.getElementById('add-about-form');
+        const addSettingsForm = document.getElementById('add-settings-form');
 
         // Lists
         const categoriesGrid = document.getElementById('categories-grid');
         const catalogContainer = document.getElementById('catalog');
+        const autolatinaCatalogContainer = document.getElementById('autolatina-catalog');
         const brandsGrid = document.getElementById('brands-grid');
         const adminPartsList = document.getElementById('admin-parts-list');
+        const adminAutolatinaPartsList = document.getElementById('admin-autolatina-parts-list');
         const adminBrandsList = document.getElementById('admin-brands-list');
         const adminCategoriesList = document.getElementById('admin-categories-list');
         const noPartsMessage = document.getElementById('no-parts-message');
+        const noAutolatinaPartsMessage = document.getElementById('no-autolatina-parts-message');
         const aboutImage = document.getElementById('about-image');
         const aboutText = document.getElementById('about-text');
 
@@ -1874,15 +2059,27 @@
         const searchForm = document.getElementById('search-form');
         const searchInput = document.getElementById('search-input');
 
+        // Settings inputs
+        const backgroundImageInput = document.getElementById('background-image');
+        const whatsappNumberInput = document.getElementById('whatsapp-number');
+        const googleMapsLinkInput = document.getElementById('google-maps-link');
+        const instagramLinkInput = document.getElementById('instagram-link');
+        const googleReviewLinkInput = document.getElementById('google-review-link');
+
         // Show public catalog
         function showPublicCatalog() {
             publicCatalog.style.display = 'block';
             loginPage.style.display = 'none';
             adminPanel.style.display = 'none';
+            searchResultsPage.style.display = 'none';
             displayCategories();
             displayParts();
+            displayAutolatinaParts();
             displayBrands();
             updateAboutSection();
+            updateBackgroundImage();
+            updateWhatsappLinks();
+            updateSocialLinks();
         }
 
         // Show login page
@@ -1890,6 +2087,7 @@
             publicCatalog.style.display = 'none';
             loginPage.style.display = 'flex';
             adminPanel.style.display = 'none';
+            searchResultsPage.style.display = 'none';
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
         }
@@ -1899,10 +2097,92 @@
             publicCatalog.style.display = 'none';
             loginPage.style.display = 'none';
             adminPanel.style.display = 'block';
+            searchResultsPage.style.display = 'none';
             displayAdminParts();
+            displayAdminAutolatinaParts();
             displayAdminBrands();
             displayAdminCategories();
             loadAboutForm();
+            loadSettingsForm();
+        }
+
+        // Show search results page
+        function showSearchResults(searchTerm) {
+            publicCatalog.style.display = 'none';
+            loginPage.style.display = 'none';
+            adminPanel.style.display = 'none';
+            searchResultsPage.style.display = 'block';
+            
+            // Display search results
+            searchResultsGrid.innerHTML = '';
+            
+            const filteredParts = [...parts, ...autolatinaParts].filter(part => 
+                part.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                part.code.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            
+            if (filteredParts.length === 0) {
+                searchResultsGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; font-size: 1.1rem; color: var(--text-light);">Nenhum resultado encontrado para "' + searchTerm + '"</p>';
+                return;
+            }
+            
+            filteredParts.forEach(part => {
+                const partCard = document.createElement('div');
+                partCard.className = `part-card ${part.isFlash ? 'flash-offer-card' : ''}`;
+                
+                partCard.innerHTML = `
+                    <div class="part-image-container">
+                        ${part.isFlash ? '<span class="flash-badge"><i class="fas fa-bolt"></i> OFERTA RELÂMPAGO</span>' : '<span class="badge">OFERTA</span>'}
+                        ${part.id > 100 ? '<div class="autolatina-badge"><img src="Simbolo Sem Escrita.png" alt="Peça Autolatina"></div>' : ''}
+                        <img src="${part.image}" alt="${part.name}" class="part-image">
+                    </div>
+                    <div class="part-info">
+                        <h3>${part.name}</h3>
+                        <div class="part-code">Código: ${part.code}</div>
+                        <div class="part-category">${part.category}</div>
+                        <div class="part-price">R$ ${part.price.toFixed(2).replace('.', ',')}</div>
+                        <a href="https://wa.me/${siteSettings.whatsappNumber}?text=Olá, gostaria de saber mais sobre a peça ${part.name} (Código: ${part.code})" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                `;
+                
+                searchResultsGrid.appendChild(partCard);
+            });
+        }
+
+        // Update background image
+        function updateBackgroundImage() {
+            document.body.style.backgroundImage = siteSettings.backgroundImage ? `url('${siteSettings.backgroundImage}')` : 'none';
+            document.body.style.backgroundColor = siteSettings.backgroundImage ? '' : 'var(--background-color)';
+        }
+
+        // Update WhatsApp links
+        function updateWhatsappLinks() {
+            const whatsappLinks = document.querySelectorAll('a[href^="https://wa.me/"]');
+            whatsappLinks.forEach(link => {
+                const currentHref = link.getAttribute('href');
+                const newHref = currentHref.replace(/https:\/\/wa\.me\/\d+/, `https://wa.me/${siteSettings.whatsappNumber}`);
+                link.setAttribute('href', newHref);
+            });
+            
+            const whatsappFixed = document.querySelector('.whatsapp-fixed');
+            whatsappFixed.setAttribute('href', `https://wa.me/${siteSettings.whatsappNumber}`);
+        }
+
+        // Update social links
+        function updateSocialLinks() {
+            const instagramLinks = document.querySelectorAll('a[href="#"]');
+            instagramLinks.forEach(link => {
+                if (link.textContent.includes('Instagram') || link.querySelector('.fab.fa-instagram')) {
+                    link.setAttribute('href', siteSettings.instagramLink);
+                }
+            });
+            
+            const googleMapsLinks = document.querySelectorAll('a[href^="https://goo.gl/maps"]');
+            googleMapsLinks.forEach(link => {
+                link.setAttribute('href', siteSettings.googleMapsLink);
+            });
         }
 
         // Display categories
@@ -1974,13 +2254,58 @@
                         <div class="part-code">Código: ${part.code}</div>
                         <div class="part-category">${part.category}</div>
                         <div class="part-price">R$ ${part.price.toFixed(2).replace('.', ',')}</div>
-                        <a href="https://wa.me/${WHATSAPP_NUMBER}?text=Olá, gostaria de saber mais sobre a peça ${part.name} (Código: ${part.code})" class="whatsapp-btn" target="_blank">
+                        <a href="https://wa.me/${siteSettings.whatsappNumber}?text=Olá, gostaria de saber mais sobre a peça ${part.name} (Código: ${part.code})" class="whatsapp-btn" target="_blank">
                             <i class="fab fa-whatsapp"></i> WhatsApp
                         </a>
                     </div>
                 `;
                 
                 catalogContainer.appendChild(partCard);
+            });
+        }
+
+        // Display Autolatina parts
+        function displayAutolatinaParts() {
+            autolatinaCatalogContainer.innerHTML = '';
+            
+            let filteredParts = autolatinaParts;
+            
+            if (filteredParts.length === 0) {
+                noAutolatinaPartsMessage.style.display = 'block';
+                return;
+            }
+            
+            noAutolatinaPartsMessage.style.display = 'none';
+            
+            // Sort to show flash offers first
+            filteredParts.sort((a, b) => {
+                if (a.isFlash && !b.isFlash) return -1;
+                if (!a.isFlash && b.isFlash) return 1;
+                return 0;
+            });
+            
+            filteredParts.forEach(part => {
+                const partCard = document.createElement('div');
+                partCard.className = `part-card ${part.isFlash ? 'flash-offer-card' : ''}`;
+                
+                partCard.innerHTML = `
+                    <div class="part-image-container">
+                        ${part.isFlash ? '<span class="flash-badge"><i class="fas fa-bolt"></i> OFERTA RELÂMPAGO</span>' : '<span class="badge">OFERTA</span>'}
+                        <div class="autolatina-badge"><img src="Simbolo Sem Escrita.png" alt="Peça Autolatina"></div>
+                        <img src="${part.image}" alt="${part.name}" class="part-image">
+                    </div>
+                    <div class="part-info">
+                        <h3>${part.name}</h3>
+                        <div class="part-code">Código: ${part.code}</div>
+                        <div class="part-category">${part.category}</div>
+                        <div class="part-price">R$ ${part.price.toFixed(2).replace('.', ',')}</div>
+                        <a href="https://wa.me/${siteSettings.whatsappNumber}?text=Olá, gostaria de saber mais sobre a peça ${part.name} (Código: ${part.code})" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                `;
+                
+                autolatinaCatalogContainer.appendChild(partCard);
             });
         }
 
@@ -2037,6 +2362,39 @@
             
             document.querySelectorAll('.delete-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => deletePart(e.target.closest('button').dataset.id));
+            });
+        }
+
+        // Display admin Autolatina parts
+        function displayAdminAutolatinaParts() {
+            adminAutolatinaPartsList.innerHTML = '';
+            
+            autolatinaParts.forEach(part => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td><img src="${part.image}" alt="${part.name}" class="table-img"></td>
+                    <td>${part.name}</td>
+                    <td>${part.code}</td>
+                    <td>R$ ${part.price.toFixed(2).replace('.', ',')}</td>
+                    <td>${part.category}</td>
+                    <td>${part.isFlash ? 'Oferta Relâmpago' : 'Normal'}</td>
+                    <td>
+                        <button class="action-btn edit-btn" data-id="${part.id}"><i class="fas fa-edit"></i> Editar</button>
+                        <button class="action-btn delete-btn" data-id="${part.id}"><i class="fas fa-trash"></i> Excluir</button>
+                    </td>
+                `;
+                
+                adminAutolatinaPartsList.appendChild(row);
+            });
+            
+            // Add event listeners to action buttons
+            document.querySelectorAll('#admin-autolatina-parts-list .edit-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => editAutolatinaPart(e.target.closest('button').dataset.id));
+            });
+            
+            document.querySelectorAll('#admin-autolatina-parts-list .delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => deleteAutolatinaPart(e.target.closest('button').dataset.id));
             });
         }
 
@@ -2106,6 +2464,15 @@
             document.getElementById('about-text').value = aboutInfo.text;
         }
 
+        // Load settings form
+        function loadSettingsForm() {
+            backgroundImageInput.value = siteSettings.backgroundImage;
+            whatsappNumberInput.value = siteSettings.whatsappNumber;
+            googleMapsLinkInput.value = siteSettings.googleMapsLink;
+            instagramLinkInput.value = siteSettings.instagramLink;
+            googleReviewLinkInput.value = siteSettings.googleReviewLink;
+        }
+
         // Add part
         function addPart(e) {
             e.preventDefault();
@@ -2123,6 +2490,7 @@
             parts.push(newPart);
             saveParts();
             displayAdminParts();
+            displayParts();
             addPartForm.reset();
             document.getElementById('is-flash').checked = false;
             
@@ -2160,6 +2528,61 @@
             }
         }
 
+        // Add Autolatina part
+        function addAutolatinaPart(e) {
+            e.preventDefault();
+            
+            const newPart = {
+                id: Date.now(),
+                name: document.getElementById('autolatina-part-name').value,
+                code: document.getElementById('autolatina-part-code').value,
+                price: parseFloat(document.getElementById('autolatina-part-price').value),
+                image: document.getElementById('autolatina-part-image').value,
+                category: document.getElementById('autolatina-part-category').value,
+                isFlash: document.getElementById('autolatina-is-flash').checked
+            };
+            
+            autolatinaParts.push(newPart);
+            saveAutolatinaParts();
+            displayAdminAutolatinaParts();
+            displayAutolatinaParts();
+            addAutolatinaPartForm.reset();
+            document.getElementById('autolatina-is-flash').checked = false;
+            
+            alert('Peça Autolatina adicionada com sucesso!');
+        }
+
+        // Edit Autolatina part
+        function editAutolatinaPart(id) {
+            const part = autolatinaParts.find(p => p.id == id);
+            if (!part) return;
+            
+            document.getElementById('autolatina-part-name').value = part.name;
+            document.getElementById('autolatina-part-code').value = part.code;
+            document.getElementById('autolatina-part-price').value = part.price;
+            document.getElementById('autolatina-part-image').value = part.image;
+            document.getElementById('autolatina-part-category').value = part.category;
+            document.getElementById('autolatina-is-flash').checked = part.isFlash;
+            
+            // Remove the old part
+            autolatinaParts = autolatinaParts.filter(p => p.id != id);
+            saveAutolatinaParts();
+            
+            alert('Peça Autolatina pronta para edição. Modifique os campos e clique em "Adicionar Peça Autolatina" para atualizar.');
+        }
+
+        // Delete Autolatina part
+        function deleteAutolatinaPart(id) {
+            if (confirm('Tem certeza que deseja excluir esta peça Autolatina?')) {
+                autolatinaParts = autolatinaParts.filter(p => p.id != id);
+                saveAutolatinaParts();
+                displayAdminAutolatinaParts();
+                displayAutolatinaParts();
+                
+                alert('Peça Autolatina excluída com sucesso!');
+            }
+        }
+
         // Add brand
         function addBrand(e) {
             e.preventDefault();
@@ -2173,6 +2596,7 @@
             brands.push(newBrand);
             saveBrands();
             displayAdminBrands();
+            displayBrands();
             addBrandForm.reset();
             
             alert('Marca adicionada com sucesso!');
@@ -2253,9 +2677,33 @@
             alert('Informações sobre a empresa atualizadas com sucesso!');
         }
 
+        // Add/update settings
+        function addSettings(e) {
+            e.preventDefault();
+            
+            siteSettings = {
+                backgroundImage: backgroundImageInput.value,
+                whatsappNumber: whatsappNumberInput.value,
+                googleMapsLink: googleMapsLinkInput.value,
+                instagramLink: instagramLinkInput.value,
+                googleReviewLink: googleReviewLinkInput.value
+            };
+            
+            saveSettings();
+            updateBackgroundImage();
+            updateWhatsappLinks();
+            updateSocialLinks();
+            
+            alert('Configurações do site atualizadas com sucesso!');
+        }
+
         // Save data to localStorage
         function saveParts() {
             localStorage.setItem('autolatinaParts', JSON.stringify(parts));
+        }
+
+        function saveAutolatinaParts() {
+            localStorage.setItem('autolatinaAutolatinaParts', JSON.stringify(autolatinaParts));
         }
 
         function saveBrands() {
@@ -2268,6 +2716,10 @@
 
         function saveAbout() {
             localStorage.setItem('autolatinaAbout', JSON.stringify(aboutInfo));
+        }
+
+        function saveSettings() {
+            localStorage.setItem('autolatinaSettings', JSON.stringify(siteSettings));
         }
 
         // Event Listeners
@@ -2296,18 +2748,8 @@
         // View public button
         viewPublicBtn.addEventListener('click', showPublicCatalog);
 
-        // Contact dropdown
-        contactBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            dropdownContent.classList.toggle('active');
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.contact-dropdown')) {
-                dropdownContent.classList.remove('active');
-            }
-        });
+        // Close search results button
+        closeSearchBtn.addEventListener('click', showPublicCatalog);
 
         // Admin tabs
         adminTabs.forEach(tab => {
@@ -2325,27 +2767,29 @@
 
         // Forms
         addPartForm.addEventListener('submit', addPart);
+        addAutolatinaPartForm.addEventListener('submit', addAutolatinaPart);
         addBrandForm.addEventListener('submit', addBrand);
         addCategoryForm.addEventListener('submit', addCategory);
         addAboutForm.addEventListener('submit', addAbout);
+        addSettingsForm.addEventListener('submit', addSettings);
 
         // Search
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const searchTerm = searchInput.value.trim();
-            displayParts(null, searchTerm);
+            showSearchResults(searchTerm);
         });
 
         // Clear search when input is empty
         searchInput.addEventListener('input', () => {
             if (searchInput.value.trim() === '') {
-                displayParts();
+                showPublicCatalog();
             }
         });
 
         // Rate button
         rateBtn.addEventListener('click', () => {
-            window.open(GOOGLE_REVIEW_LINK, '_blank');
+            window.open(siteSettings.googleReviewLink, '_blank');
         });
 
         // Legal warning for F12
