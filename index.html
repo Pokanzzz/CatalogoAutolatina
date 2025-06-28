@@ -50,7 +50,6 @@
             flex-direction: column;
         }
 
-        /* Top Info Bar */
         .top-info-bar {
             background-color: var(--dark-color);
             color: white;
@@ -98,7 +97,6 @@
             transform: translateY(-2px);
         }
         
-        /* Header */
         .top-header {
             background: var(--header-color);
             padding: 1rem 0;
@@ -209,7 +207,6 @@
             background-color: #d60000;
         }
 
-        /* Social Links in Header */
         .header-social {
             display: flex;
             gap: 1rem;
@@ -226,7 +223,6 @@
             transform: translateY(-3px);
         }
         
-        /* Categories */
         .categories-header {
             background: var(--primary-color);
             padding: 0.5rem 0;
@@ -289,7 +285,6 @@
             font-weight: 600;
         }
         
-        /* About Section */
         .about-section {
             padding: 2rem 0;
             background-color: var(--section-white);
@@ -351,7 +346,6 @@
             font-size: 0.95rem;
         }
         
-        /* Main Content */
         .main-title {
             text-align: center;
             padding: 1.5rem 0 1rem;
@@ -388,7 +382,6 @@
             flex: 1;
         }
         
-        /* Offers Section */
         .offers-section {
             padding: 2rem 0;
             background-color: var(--section-gray);
@@ -602,7 +595,6 @@
             font-size: 1.1rem;
         }
         
-        /* Brands Section */
         .brands-section {
             padding: 2rem 0;
             background-color: var(--section-white);
@@ -660,7 +652,6 @@
             font-size: 0.7rem;
         }
         
-        /* Services Section */
         .services-section {
             padding: 2rem 0;
             background-color: var(--section-gray);
@@ -716,14 +707,12 @@
             font-size: 0.9rem;
         }
         
-        /* Peças Autolatina Section */
         .autolatina-parts-section {
             padding: 2rem 0;
             background-color: var(--section-white);
             position: relative;
         }
         
-        /* Contact Boxes */
         .contact-boxes {
             padding: 2rem 0;
             background-color: var(--section-gray);
@@ -736,26 +725,16 @@
         }
         
         .mission-statement {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
             text-align: center;
             transition: var(--transition);
-            border-top: 4px solid var(--primary-color);
-            background: linear-gradient(to bottom, white 80%, #f5f7ff);
         }
         
         .mission-text {
             color: var(--primary-color);
-            font-weight: 600;
+            font-style: italic;
             font-size: 1.2rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
         
-        /* Footer */
         footer {
             background: var(--footer-color);
             color: white;
@@ -908,7 +887,6 @@
             text-decoration: none;
         }
         
-        /* WhatsApp Button */
         .whatsapp-fixed {
             position: fixed;
             bottom: 25px;
@@ -933,7 +911,6 @@
             box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
         }
         
-        /* FAQ Button */
         .faq-fixed {
             position: fixed;
             bottom: 90px;
@@ -958,7 +935,6 @@
             box-shadow: 0 6px 25px rgba(8, 0, 58, 0.5);
         }
         
-        /* FAQ Modal */
         .faq-modal {
             display: none;
             position: fixed;
@@ -1010,7 +986,6 @@
             color: var(--text-color);
         }
         
-        /* Search Results Page */
         .search-results-page {
             display: none;
             position: fixed;
@@ -1057,7 +1032,6 @@
             gap: 1.5rem;
         }
 
-        /* Animations */
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -1069,7 +1043,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Login Page */
         .login-container {
             display: none;
             justify-content: center;
@@ -1205,7 +1178,6 @@
             box-shadow: 0 5px 15px rgba(255, 5, 5, 0.3);
         }
 
-        /* Admin Panel */
         .admin-panel {
             display: none;
             padding: 2rem 0;
@@ -1435,7 +1407,6 @@
             background: #f1f3f5;
         }
 
-        /* Legal Warning */
         .legal-warning {
             position: fixed;
             bottom: 0;
@@ -1451,7 +1422,6 @@
             animation: pulse 1s infinite;
         }
 
-        /* Responsive */
         @media (max-width: 992px) {
             .about-container {
                 grid-template-columns: 1fr;
@@ -1502,11 +1472,6 @@
                 flex-direction: column;
                 gap: 0;
             }
-
-            .mission-text {
-                white-space: normal;
-                font-size: 1rem;
-            }
         }
         
         @media (max-width: 576px) {
@@ -1546,22 +1511,18 @@
     </style>
 </head>
 <body>
-    <!-- Legal Warning -->
     <div id="legal-warning" class="legal-warning">
         AVISO: Qualquer tentativa de remoção ou alteração não autorizada deste site sujeita o infrator a processo administrativo e legal.
     </div>
     
-    <!-- WhatsApp Button -->
     <a href="https://wa.me/5545999711417" class="whatsapp-fixed" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
     
-    <!-- FAQ Button -->
     <a href="#" class="faq-fixed" id="faq-button">
         <i class="fas fa-question"></i>
     </a>
     
-    <!-- FAQ Modal -->
     <div id="faq-modal" class="faq-modal">
         <div class="faq-content">
             <span class="close-faq" id="close-faq">&times;</span>
@@ -1599,7 +1560,6 @@
         </div>
     </div>
     
-    <!-- Search Results Page -->
     <div id="search-results-page" class="search-results-page">
         <div class="container">
             <div class="search-results-header">
@@ -1609,12 +1569,10 @@
                 </button>
             </div>
             <div class="search-results-grid" id="search-results-grid">
-                <!-- Results will be added by JavaScript -->
             </div>
         </div>
     </div>
     
-    <!-- Top Info Bar -->
     <div class="top-info-bar">
         <div class="top-info-container">
             <div class="contact-info">
@@ -1625,7 +1583,6 @@
         </div>
     </div>
     
-    <!-- Header -->
     <div class="top-header">
         <div class="header-container">
             <div class="logo-container">
@@ -1653,19 +1610,15 @@
         </div>
     </div>
     
-    <!-- Categories -->
     <div class="categories-header">
         <div class="categories-container">
             <div class="categories-grid" id="categories-grid">
-                <!-- Categories will be added by JavaScript -->
             </div>
         </div>
     </div>
     
-    <!-- Public Catalog -->
     <div id="public-catalog">
         <main class="container">
-            <!-- About Section -->
             <section class="about-section" id="about-section">
                 <div class="about-container">
                     <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Autolatina Truck Service" class="about-image" id="about-image">
@@ -1681,33 +1634,26 @@
             <h1 class="main-title">Peças para Caminhões</h1>
             <p class="main-subtitle">Peças originais e serviços especializados para o seu caminhão</p>
             
-            <!-- Offers Section -->
             <section id="offers" class="offers-section">
                 <h2 class="section-title">Ofertas em Destaque</h2>
                 <div class="catalog" id="catalog">
-                    <!-- Parts will be added by JavaScript -->
                     <p id="no-parts-message" style="grid-column: 1/-1; text-align: center; font-size: 1.1rem; color: var(--text-light);">Nenhuma oferta disponível no momento. Volte em breve!</p>
                 </div>
             </section>
             
-            <!-- Brands Section -->
             <section class="brands-section">
                 <h2 class="section-title">Marcas que Trabalhamos</h2>
                 <div class="brands-grid" id="brands-grid">
-                    <!-- Brands will be added by JavaScript -->
                 </div>
             </section>
             
-            <!-- Peças Autolatina Section -->
             <section class="autolatina-parts-section">
                 <h2 class="section-title">Peças com qualidade Autolatina Truck Service</h2>
                 <div class="catalog" id="autolatina-catalog">
-                    <!-- Peças Autolatina will be added by JavaScript -->
                     <p id="no-autolatina-parts-message" style="grid-column: 1/-1; text-align: center; font-size: 1.1rem; color: var(--text-light);">Nenhuma peça Autolatina disponível no momento. Volte em breve!</p>
                 </div>
             </section>
             
-            <!-- Services Section -->
             <section class="services-section">
                 <h2 class="section-title">Nossos Serviços Especializados</h2>
                 <div class="services-grid">
@@ -1752,7 +1698,6 @@
                 </div>
             </section>
             
-            <!-- Contact Boxes -->
             <section class="contact-boxes">
                 <div class="boxes-grid">
                     <div class="mission-statement">
@@ -1809,13 +1754,12 @@
                     &copy; 2025 Autolatina Truck Service. Todos os direitos reservados.
                 </div>
                 <div class="developer">
-                    Desenvolvido por <a href="#" target="_blank">POKAN</a>
+                    Desenvolvido por <a href="#" target="_blank">Vitor Kauã</a>
                 </div>
             </div>
         </footer>
     </div>
     
-    <!-- Terms Modal -->
     <div id="terms-modal" class="faq-modal">
         <div class="faq-content">
             <span class="close-faq" id="close-terms">&times;</span>
@@ -1863,7 +1807,6 @@
         </div>
     </div>
     
-    <!-- Login Page -->
     <div id="login-page" class="login-container">
         <div class="login-form">
             <h2><i class="fas fa-user-shield"></i> Painel Administrativo</h2>
@@ -1881,7 +1824,6 @@
         </div>
     </div>
     
-    <!-- Admin Panel -->
     <div id="admin-panel" class="admin-panel">
         <div class="container">
             <div class="admin-header">
@@ -1899,7 +1841,6 @@
                 <div class="admin-tab" data-tab="settings">Configurações</div>
             </div>
             
-            <!-- Parts Tab -->
             <div id="parts-tab" class="tab-content active">
                 <div class="add-form">
                     <h3>Adicionar Nova Oferta</h3>
@@ -1965,13 +1906,11 @@
                             </tr>
                         </thead>
                         <tbody id="admin-parts-list">
-                            <!-- Parts will be added by JavaScript -->
                         </tbody>
                     </table>
                 </div>
             </div>
             
-            <!-- Peças Autolatina Tab -->
             <div id="autolatina-parts-tab" class="tab-content">
                 <div class="add-form">
                     <h3>Adicionar Nova Peça Autolatina</h3>
@@ -2037,13 +1976,11 @@
                             </tr>
                         </thead>
                         <tbody id="admin-autolatina-parts-list">
-                            <!-- Peças Autolatina will be added by JavaScript -->
                         </tbody>
                     </table>
                 </div>
             </div>
             
-            <!-- Brands Tab -->
             <div id="brands-tab" class="tab-content">
                 <div class="add-form">
                     <h3>Adicionar Nova Marca</h3>
@@ -2073,13 +2010,11 @@
                             </tr>
                         </thead>
                         <tbody id="admin-brands-list">
-                            <!-- Brands will be added by JavaScript -->
                         </tbody>
                     </table>
                 </div>
             </div>
             
-            <!-- Categories Tab -->
             <div id="categories-tab" class="tab-content">
                 <div class="add-form">
                     <h3>Editar Categorias</h3>
@@ -2121,13 +2056,11 @@
                             </tr>
                         </thead>
                         <tbody id="admin-categories-list">
-                            <!-- Categories will be added by JavaScript -->
                         </tbody>
                     </table>
                 </div>
             </div>
             
-            <!-- About Tab -->
             <div id="about-tab" class="tab-content">
                 <div class="add-form">
                     <h3>Editar Sobre a Empresa</h3>
@@ -2149,7 +2082,6 @@
                 </div>
             </div>
             
-            <!-- Settings Tab -->
             <div id="settings-tab" class="tab-content">
                 <div class="add-form">
                     <h3>Configurações do Site</h3>
@@ -2194,13 +2126,11 @@
     </div>
     
     <script>
-        // Credenciais de login
         const ADMIN_CREDENTIALS = {
             username: "admin",
             password: "autolatina2024"
         };
 
-        // Configurações do site
         let siteSettings = JSON.parse(localStorage.getItem('autolatinaSettings')) || {
             backgroundImage: "",
             whatsappNumber: "5545999711417",
@@ -2210,7 +2140,6 @@
             missionText: "Somos uma empresa que nasceu da união de pessoas e trabalhar em equipe é nosso diferencial"
         };
 
-        // Data storage
         let parts = JSON.parse(localStorage.getItem('autolatinaParts')) || [
             { 
                 id: 1, 
@@ -2293,7 +2222,6 @@
             text: "Especializada em peças e serviços para caminhões, a Autolatina Truck Service oferece produtos de qualidade e atendimento personalizado. Com anos de experiência no mercado, nossa equipe está pronta para atender às necessidades dos nossos clientes com agilidade e profissionalismo."
         };
 
-        // DOM Elements
         const publicCatalog = document.getElementById('public-catalog');
         const loginPage = document.getElementById('login-page');
         const adminPanel = document.getElementById('admin-panel');
@@ -2313,7 +2241,6 @@
         const termsModal = document.getElementById('terms-modal');
         const closeTerms = document.getElementById('close-terms');
 
-        // Forms
         const addPartForm = document.getElementById('add-part-form');
         const addAutolatinaPartForm = document.getElementById('add-autolatina-part-form');
         const addBrandForm = document.getElementById('add-brand-form');
@@ -2321,7 +2248,6 @@
         const addAboutForm = document.getElementById('add-about-form');
         const addSettingsForm = document.getElementById('add-settings-form');
 
-        // Lists
         const categoriesGrid = document.getElementById('categories-grid');
         const catalogContainer = document.getElementById('catalog');
         const autolatinaCatalogContainer = document.getElementById('autolatina-catalog');
@@ -2336,15 +2262,12 @@
         const aboutText = document.getElementById('about-text');
         const missionText = document.querySelector('.mission-text');
 
-        // Tabs
         const adminTabs = document.querySelectorAll('.admin-tab');
         const tabContents = document.querySelectorAll('.tab-content');
 
-        // Search
         const searchForm = document.getElementById('search-form');
         const searchInput = document.getElementById('search-input');
 
-        // Settings inputs
         const backgroundImageInput = document.getElementById('background-image');
         const whatsappNumberInput = document.getElementById('whatsapp-number');
         const googleMapsLinkInput = document.getElementById('google-maps-link');
@@ -2352,7 +2275,6 @@
         const googleReviewLinkInput = document.getElementById('google-review-link');
         const missionTextInput = document.getElementById('mission-text');
 
-        // Show public catalog
         function showPublicCatalog() {
             publicCatalog.style.display = 'block';
             loginPage.style.display = 'none';
@@ -2371,7 +2293,6 @@
             updateMissionText();
         }
 
-        // Show login page
         function showLoginPage() {
             publicCatalog.style.display = 'none';
             loginPage.style.display = 'flex';
@@ -2383,7 +2304,6 @@
             document.getElementById('password').value = '';
         }
 
-        // Show admin panel
         function showAdminPanel() {
             publicCatalog.style.display = 'none';
             loginPage.style.display = 'none';
@@ -2399,7 +2319,6 @@
             loadSettingsForm();
         }
 
-        // Show search results page
         function showSearchResults(searchTerm) {
             publicCatalog.style.display = 'none';
             loginPage.style.display = 'none';
@@ -2408,7 +2327,6 @@
             faqModal.style.display = 'none';
             termsModal.style.display = 'none';
             
-            // Display search results
             searchResultsGrid.innerHTML = '';
             
             const filteredParts = [...parts, ...autolatinaParts].filter(part => 
@@ -2447,13 +2365,11 @@
             });
         }
 
-        // Update background image
         function updateBackgroundImage() {
             document.body.style.backgroundImage = siteSettings.backgroundImage ? `url('${siteSettings.backgroundImage}')` : 'none';
             document.body.style.backgroundColor = siteSettings.backgroundImage ? '' : 'var(--background-color)';
         }
 
-        // Update WhatsApp links
         function updateWhatsappLinks() {
             const whatsappLinks = document.querySelectorAll('a[href^="https://wa.me/"]');
             whatsappLinks.forEach(link => {
@@ -2466,7 +2382,6 @@
             whatsappFixed.setAttribute('href', `https://wa.me/${siteSettings.whatsappNumber}`);
         }
 
-        // Update social links
         function updateSocialLinks() {
             const instagramLinks = document.querySelectorAll('a[href="#"]');
             instagramLinks.forEach(link => {
@@ -2481,12 +2396,10 @@
             });
         }
 
-        // Update mission text
         function updateMissionText() {
             missionText.textContent = siteSettings.missionText;
         }
 
-        // Display categories
         function displayCategories() {
             categoriesGrid.innerHTML = '';
             
@@ -2509,7 +2422,6 @@
             });
         }
 
-        // Display parts
         function displayParts(filter = null, searchTerm = '') {
             catalogContainer.innerHTML = '';
             
@@ -2534,7 +2446,6 @@
             
             noPartsMessage.style.display = 'none';
             
-            // Sort to show flash offers first
             filteredParts.sort((a, b) => {
                 if (a.isFlash && !b.isFlash) return -1;
                 if (!a.isFlash && b.isFlash) return 1;
@@ -2565,7 +2476,6 @@
             });
         }
 
-        // Display Autolatina parts
         function displayAutolatinaParts() {
             autolatinaCatalogContainer.innerHTML = '';
             
@@ -2578,7 +2488,6 @@
             
             noAutolatinaPartsMessage.style.display = 'none';
             
-            // Sort to show flash offers first
             filteredParts.sort((a, b) => {
                 if (a.isFlash && !b.isFlash) return -1;
                 if (!a.isFlash && b.isFlash) return 1;
@@ -2611,7 +2520,6 @@
             });
         }
 
-        // Display brands
         function displayBrands() {
             brandsGrid.innerHTML = '';
             
@@ -2628,13 +2536,11 @@
             });
         }
 
-        // Update about section
         function updateAboutSection() {
             aboutImage.src = aboutInfo.image;
             aboutText.innerHTML = aboutInfo.text.replace(/\n/g, '<br>');
         }
 
-        // Display admin parts
         function displayAdminParts() {
             adminPartsList.innerHTML = '';
             
@@ -2657,7 +2563,6 @@
                 adminPartsList.appendChild(row);
             });
             
-            // Add event listeners to action buttons
             document.querySelectorAll('.edit-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => editPart(e.target.closest('button').dataset.id));
             });
@@ -2667,7 +2572,6 @@
             });
         }
 
-        // Display admin Autolatina parts
         function displayAdminAutolatinaParts() {
             adminAutolatinaPartsList.innerHTML = '';
             
@@ -2690,7 +2594,6 @@
                 adminAutolatinaPartsList.appendChild(row);
             });
             
-            // Add event listeners to action buttons
             document.querySelectorAll('#admin-autolatina-parts-list .edit-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => editAutolatinaPart(e.target.closest('button').dataset.id));
             });
@@ -2700,7 +2603,6 @@
             });
         }
 
-        // Display admin brands
         function displayAdminBrands() {
             adminBrandsList.innerHTML = '';
             
@@ -2719,7 +2621,6 @@
                 adminBrandsList.appendChild(row);
             });
             
-            // Add event listeners to action buttons
             document.querySelectorAll('.edit-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => editBrand(e.target.closest('button').dataset.id));
             });
@@ -2729,7 +2630,6 @@
             });
         }
 
-        // Display admin categories
         function displayAdminCategories() {
             adminCategoriesList.innerHTML = '';
             
@@ -2747,7 +2647,6 @@
                 adminCategoriesList.appendChild(row);
             });
             
-            // Add event listeners to edit buttons
             document.querySelectorAll('.edit-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const categoryName = e.target.closest('button').dataset.name;
@@ -2760,13 +2659,11 @@
             });
         }
 
-        // Load about form
         function loadAboutForm() {
             document.getElementById('about-image').value = aboutInfo.image;
             document.getElementById('about-text').value = aboutInfo.text;
         }
 
-        // Load settings form
         function loadSettingsForm() {
             backgroundImageInput.value = siteSettings.backgroundImage;
             whatsappNumberInput.value = siteSettings.whatsappNumber;
@@ -2776,7 +2673,6 @@
             missionTextInput.value = siteSettings.missionText;
         }
 
-        // Add part
         function addPart(e) {
             e.preventDefault();
             
@@ -2801,7 +2697,6 @@
             alert('Oferta adicionada com sucesso!');
         }
 
-        // Edit part
         function editPart(id) {
             const part = parts.find(p => p.id == id);
             if (!part) return;
@@ -2813,14 +2708,12 @@
             document.getElementById('part-category').value = part.category;
             document.getElementById('is-flash').checked = part.isFlash;
             
-            // Remove the old part
             parts = parts.filter(p => p.id != id);
             saveParts();
             
             alert('Oferta pronta para edição. Modifique os campos e clique em "Adicionar Oferta" para atualizar.');
         }
 
-        // Delete part
         function deletePart(id) {
             if (confirm('Tem certeza que deseja excluir esta oferta?')) {
                 parts = parts.filter(p => p.id != id);
@@ -2832,7 +2725,6 @@
             }
         }
 
-        // Add Autolatina part
         function addAutolatinaPart(e) {
             e.preventDefault();
             
@@ -2857,7 +2749,6 @@
             alert('Peça Autolatina adicionada com sucesso!');
         }
 
-        // Edit Autolatina part
         function editAutolatinaPart(id) {
             const part = autolatinaParts.find(p => p.id == id);
             if (!part) return;
@@ -2869,14 +2760,12 @@
             document.getElementById('autolatina-part-category').value = part.category;
             document.getElementById('autolatina-is-flash').checked = part.isFlash;
             
-            // Remove the old part
             autolatinaParts = autolatinaParts.filter(p => p.id != id);
             saveAutolatinaParts();
             
             alert('Peça Autolatina pronta para edição. Modifique os campos e clique em "Adicionar Peça Autolatina" para atualizar.');
         }
 
-        // Delete Autolatina part
         function deleteAutolatinaPart(id) {
             if (confirm('Tem certeza que deseja excluir esta peça Autolatina?')) {
                 autolatinaParts = autolatinaParts.filter(p => p.id != id);
@@ -2888,7 +2777,6 @@
             }
         }
 
-        // Add brand
         function addBrand(e) {
             e.preventDefault();
             
@@ -2907,7 +2795,6 @@
             alert('Marca adicionada com sucesso!');
         }
 
-        // Edit brand
         function editBrand(id) {
             const brand = brands.find(b => b.id == id);
             if (!brand) return;
@@ -2915,14 +2802,12 @@
             document.getElementById('brand-name').value = brand.name;
             document.getElementById('brand-image').value = brand.image;
             
-            // Remove the old brand
             brands = brands.filter(b => b.id != id);
             saveBrands();
             
             alert('Marca pronta para edição. Modifique os campos e clique em "Adicionar Marca" para atualizar.');
         }
 
-        // Delete brand
         function deleteBrand(id) {
             if (confirm('Tem certeza que deseja excluir esta marca?')) {
                 brands = brands.filter(b => b.id != id);
@@ -2934,7 +2819,6 @@
             }
         }
 
-        // Add/update category
         function addCategory(e) {
             e.preventDefault();
             
@@ -2946,14 +2830,11 @@
                 return;
             }
             
-            // Check if category already exists
             const existingCategoryIndex = categories.findIndex(c => c.name === categoryName);
             
             if (existingCategoryIndex !== -1) {
-                // Update existing category image
                 categories[existingCategoryIndex].image = categoryImage;
             } else {
-                // Add new category (shouldn't happen as we only allow editing)
                 categories.push({
                     name: categoryName,
                     image: categoryImage
@@ -2967,7 +2848,6 @@
             alert('Imagem da categoria atualizada com sucesso!');
         }
 
-        // Add/update about info
         function addAbout(e) {
             e.preventDefault();
             
@@ -2982,7 +2862,6 @@
             alert('Informações sobre a empresa atualizadas com sucesso!');
         }
 
-        // Add/update settings
         function addSettings(e) {
             e.preventDefault();
             
@@ -3004,7 +2883,6 @@
             alert('Configurações do site atualizadas com sucesso!');
         }
 
-        // Save data to localStorage
         function saveParts() {
             localStorage.setItem('autolatinaParts', JSON.stringify(parts));
         }
@@ -3029,12 +2907,10 @@
             localStorage.setItem('autolatinaSettings', JSON.stringify(siteSettings));
         }
 
-        // Event Listeners
         document.addEventListener('DOMContentLoaded', () => {
             showPublicCatalog();
         });
 
-        // Login form
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
@@ -3049,58 +2925,46 @@
             }
         });
 
-        // Logout button
         logoutBtn.addEventListener('click', showLoginPage);
 
-        // View public button
         viewPublicBtn.addEventListener('click', showPublicCatalog);
 
-        // Close search results button
         closeSearchBtn.addEventListener('click', showPublicCatalog);
 
-        // FAQ button
         faqButton.addEventListener('click', (e) => {
             e.preventDefault();
             faqModal.style.display = 'block';
         });
 
-        // Close FAQ button
         closeFaq.addEventListener('click', () => {
             faqModal.style.display = 'none';
         });
 
-        // FAQ footer link
         faqFooterLink.addEventListener('click', (e) => {
             e.preventDefault();
             faqModal.style.display = 'block';
         });
 
-        // Terms link
         termsLink.addEventListener('click', (e) => {
             e.preventDefault();
             termsModal.style.display = 'block';
         });
 
-        // Close terms button
         closeTerms.addEventListener('click', () => {
             termsModal.style.display = 'none';
         });
 
-        // Admin tabs
         adminTabs.forEach(tab => {
             tab.addEventListener('click', () => {
-                // Remove active class from all tabs and contents
                 adminTabs.forEach(t => t.classList.remove('active'));
                 tabContents.forEach(c => c.classList.remove('active'));
                 
-                // Add active class to clicked tab and corresponding content
                 tab.classList.add('active');
                 const tabId = tab.dataset.tab + '-tab';
                 document.getElementById(tabId).classList.add('active');
             });
         });
 
-        // Forms
         addPartForm.addEventListener('submit', addPart);
         addAutolatinaPartForm.addEventListener('submit', addAutolatinaPart);
         addBrandForm.addEventListener('submit', addBrand);
@@ -3108,26 +2972,22 @@
         addAboutForm.addEventListener('submit', addAbout);
         addSettingsForm.addEventListener('submit', addSettings);
 
-        // Search
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const searchTerm = searchInput.value.trim();
             showSearchResults(searchTerm);
         });
 
-        // Clear search when input is empty
         searchInput.addEventListener('input', () => {
             if (searchInput.value.trim() === '') {
                 showPublicCatalog();
             }
         });
 
-        // Rate button
         rateBtn.addEventListener('click', () => {
             window.open(siteSettings.googleReviewLink, '_blank');
         });
 
-        // Legal warning for F12
         document.addEventListener('keydown', function(e) {
             if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
                 e.preventDefault();
@@ -3138,7 +2998,6 @@
             }
         });
 
-        // Admin shortcut (Ctrl+Alt+A)
         document.addEventListener('keydown', function(e) {
             if (e.ctrlKey && e.altKey && e.key === 'a') {
                 e.preventDefault();
@@ -3146,7 +3005,6 @@
             }
         });
 
-        // Close modals when clicking outside
         window.addEventListener('click', (e) => {
             if (e.target === faqModal) {
                 faqModal.style.display = 'none';
