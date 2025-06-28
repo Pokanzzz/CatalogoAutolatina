@@ -14,7 +14,8 @@
             --accent-color: #ff0505;
             --whatsapp-color: #25D366;
             --light-color: #f8f9fa;
-            --dark-color: #08003a;
+            --dark-color: #000000;
+            --header-color: #08003a;
             --text-color: #333;
             --text-light: #7f8c8d;
             --card-bg: #ffffff;
@@ -54,40 +55,58 @@
             background-color: rgba(255, 255, 255, 0.85);
             z-index: -1;
         }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        @keyframes flash-border {
-            0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7), 0 0 0 0 rgba(255, 255, 0, 0.7); }
-            50% { box-shadow: 0 0 15px 8px rgba(255, 204, 0, 0.3), 0 0 25px 15px rgba(255, 255, 0, 0.2); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7), 0 0 0 0 rgba(255, 255, 0, 0.7); }
-        }
-        
-        @keyframes flash {
-            from { opacity: 0.7; }
-            to { opacity: 1; text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); }
-        }
-        
-        /* Header Superior Compacto */
-        .top-header {
-            background: var(--dark-color);
+
+        /* Top Info Bar */
+        .top-info-bar {
+            background-color: var(--dark-color);
             color: white;
+            padding: 8px 0;
+            font-size: 0.8rem;
+        }
+
+        .top-info-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 20px;
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .contact-info i {
+            color: var(--accent-color);
+        }
+
+        .rate-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .rate-btn:hover {
+            background-color: #d60000;
+            transform: translateY(-2px);
+        }
+        
+        /* Header */
+        .top-header {
+            background: var(--header-color);
             padding: 1rem 0;
             box-shadow: var(--shadow);
             position: relative;
@@ -99,15 +118,10 @@
             margin: 0 auto;
             padding: 0 20px;
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        
-        .header-top {
-            display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
+            gap: 1rem;
         }
         
         .logo-container {
@@ -115,7 +129,6 @@
             align-items: center;
             gap: 1rem;
             transition: var(--transition);
-            margin-right: auto; /* Alterado para alinhar à esquerda */
         }
         
         .logo-container:hover {
@@ -126,15 +139,11 @@
             height: 60px;
             width: auto;
             filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
-            animation: fadeIn 1s ease-out;
         }
         
         .logo-text {
             display: flex;
             flex-direction: column;
-            margin-left: 10px; /* Reduzido o espaçamento */
-            animation: fadeIn 1.2s ease-out;
-            text-align: left; /* Alinhado à esquerda */
         }
         
         .logo-title {
@@ -143,7 +152,7 @@
             line-height: 1.2;
             white-space: nowrap;
             font-family: 'Montserrat', sans-serif;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            color: white;
         }
         
         .logo-subtitle {
@@ -151,122 +160,20 @@
             opacity: 0.9;
             white-space: nowrap;
             letter-spacing: 1px;
+            color: rgba(255,255,255,0.8);
         }
         
         .header-right {
             display: flex;
             align-items: center;
             gap: 1.5rem;
+            flex: 1;
+            justify-content: flex-end;
         }
         
-        .contact-dropdown {
-            position: relative;
-        }
-        
-        .contact-btn {
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            transition: var(--transition);
-        }
-        
-        .contact-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .contact-btn i {
-            transition: var(--transition);
-        }
-        
-        .contact-btn.active i {
-            transform: rotate(180deg);
-        }
-        
-        .dropdown-content {
-            position: absolute;
-            right: 0;
-            top: 100%;
-            background: white;
-            min-width: 250px;
-            box-shadow: var(--shadow-hover);
-            border-radius: 0 0 8px 8px;
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.3s ease-out;
-            z-index: 1000;
-        }
-        
-        .dropdown-content.active {
-            max-height: 500px;
-        }
-        
-        .dropdown-item {
-            padding: 0.8rem 1rem;
-            color: var(--text-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            transition: var(--transition);
-            border-bottom: 1px solid #eee;
-        }
-        
-        .dropdown-item:hover {
-            background: #f8f9fa;
-            color: var(--accent-color);
-        }
-        
-        .dropdown-item i {
-            color: var(--primary-color);
-            width: 20px;
-            text-align: center;
-        }
-        
-        .social-links-header {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .social-link-header {
-            color: white;
-            font-size: 1.2rem;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        .social-link-header:hover {
-            transform: translateY(-3px) scale(1.1);
-            opacity: 0.9;
-        }
-        
-        .social-link-header::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: white;
-            transition: width 0.3s ease;
-        }
-        
-        .social-link-header:hover::after {
-            width: 100%;
-        }
-        
-        /* Barra de Pesquisa Compacta */
         .search-container {
+            max-width: 400px;
             width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            animation: fadeIn 1.4s ease-out;
         }
         
         .search-bar {
@@ -277,17 +184,17 @@
         
         .search-input {
             flex: 1;
-            padding: 0.8rem 1rem;
-            border: none;
+            padding: 0.6rem 1rem;
+            border: 1px solid #ddd;
             border-radius: 8px 0 0 8px;
             font-size: 0.9rem;
             outline: none;
             transition: var(--transition);
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
         }
         
         .search-input:focus {
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 0 0 2px var(--accent-color);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(255, 5, 5, 0.2);
         }
         
         .search-btn {
@@ -306,14 +213,73 @@
         
         .search-btn:hover {
             background-color: #d60000;
-            transform: scale(1.05);
+        }
+
+        /* Contact Dropdown */
+        .contact-dropdown {
+            position: relative;
+        }
+
+        .contact-btn {
+            background: transparent;
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .contact-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .dropdown-content {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            min-width: 250px;
+            box-shadow: var(--shadow-hover);
+            border-radius: 5px;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease;
+        }
+
+        .dropdown-content.active {
+            max-height: 500px;
+            padding: 0.5rem 0;
+        }
+
+        .dropdown-item {
+            padding: 0.8rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .dropdown-item:hover {
+            background: #f8f9fa;
+            color: var(--accent-color);
+        }
+
+        .dropdown-item i {
+            color: var(--primary-color);
+            width: 20px;
+            text-align: center;
         }
         
-        /* Categorias como quadradinhos pequenos */
+        /* Categories */
         .categories-header {
-            background: white;
-            padding: 0.5rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            background: var(--primary-color);
+            padding: 0.8rem 0;
             position: relative;
             z-index: 999;
         }
@@ -339,7 +305,6 @@
             padding: 0.5rem;
             transition: var(--transition);
             cursor: pointer;
-            border: 1px solid rgba(0, 0, 0, 0.1);
             color: var(--primary-color);
             height: 100%;
             min-height: 70px;
@@ -348,28 +313,10 @@
             overflow: hidden;
         }
         
-        .category-card::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--accent-color);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
-        }
-        
         .category-card:hover {
             background: #f8f9fa;
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
-        }
-        
-        .category-card:hover::before {
-            transform: scaleX(1);
-            transform-origin: left;
         }
         
         .category-image {
@@ -378,10 +325,6 @@
             object-fit: contain;
             margin-bottom: 0.3rem;
             transition: var(--transition);
-        }
-        
-        .category-card:hover .category-image {
-            transform: rotate(10deg) scale(1.1);
         }
         
         .category-name {
@@ -396,9 +339,9 @@
             font-weight: 600;
         }
         
-        /* Seção Sobre a Empresa */
+        /* About Section */
         .about-section {
-            padding: 3rem 0;
+            padding: 2rem 0;
             background-color: white;
         }
         
@@ -414,7 +357,7 @@
         
         .about-image {
             width: 100%;
-            height: 300px; /* Altura reduzida */
+            height: 250px;
             object-fit: cover;
             border-radius: 10px;
             box-shadow: var(--shadow);
@@ -428,15 +371,16 @@
         .about-content {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1rem;
         }
         
         .about-title {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: var(--primary-color);
             font-weight: 700;
             position: relative;
-            padding-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            margin-bottom: 0.8rem;
         }
         
         .about-title::after {
@@ -444,26 +388,26 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 80px;
-            height: 4px;
+            width: 60px;
+            height: 3px;
             background: var(--accent-color);
             border-radius: 2px;
         }
         
         .about-text {
             color: var(--text-color);
-            line-height: 1.8;
+            line-height: 1.7;
+            font-size: 0.95rem;
         }
         
-        /* Conteúdo Principal */
+        /* Main Content */
         .main-title {
             text-align: center;
             padding: 1.5rem 0 1rem;
             color: var(--primary-color);
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             position: relative;
-            animation: fadeIn 1s ease-out;
         }
         
         .main-title::after {
@@ -472,8 +416,8 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
+            width: 80px;
+            height: 3px;
             background: var(--accent-color);
             border-radius: 2px;
         }
@@ -483,8 +427,7 @@
             max-width: 800px;
             margin: 0 auto 1.5rem;
             color: var(--text-light);
-            font-size: 1rem;
-            animation: fadeIn 1.2s ease-out;
+            font-size: 0.95rem;
         }
         
         .container {
@@ -493,7 +436,7 @@
             padding: 0 20px;
         }
         
-        /* Seção de Ofertas */
+        /* Offers Section */
         .offers-section {
             padding: 2rem 0;
             background-color: var(--light-color);
@@ -502,12 +445,11 @@
         
         .section-title {
             text-align: center;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--primary-color);
             margin-bottom: 1.5rem;
             position: relative;
             font-family: 'Montserrat', sans-serif;
-            animation: fadeIn 1s ease-out;
         }
         
         .section-title::after {
@@ -516,8 +458,8 @@
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
+            width: 70px;
+            height: 3px;
             background: var(--accent-color);
             border-radius: 2px;
         }
@@ -541,21 +483,13 @@
             flex-direction: column;
             height: 100%;
             position: relative;
-            animation: fadeIn 0.6s ease-out;
             border: 1px solid rgba(0,0,0,0.05);
         }
-        
-        .part-card:nth-child(1) { animation-delay: 0.1s; }
-        .part-card:nth-child(2) { animation-delay: 0.2s; }
-        .part-card:nth-child(3) { animation-delay: 0.3s; }
-        .part-card:nth-child(4) { animation-delay: 0.4s; }
-        .part-card:nth-child(5) { animation-delay: 0.5s; }
-        .part-card:nth-child(6) { animation-delay: 0.6s; }
         
         .flash-offer-card {
             position: relative;
             overflow: visible;
-            animation: flash-border 2s infinite, pulse 2s infinite;
+            animation: pulse 2s infinite;
             border: 2px solid var(--flash-offer);
         }
         
@@ -566,7 +500,6 @@
             background: var(--flash-offer);
             color: #000;
             font-weight: bold;
-            animation: flash 0.5s infinite alternate;
             padding: 0.4rem 0.8rem;
             border-radius: 50px;
             font-size: 0.8rem;
@@ -575,8 +508,8 @@
         }
         
         .part-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         
         .badge {
@@ -601,22 +534,6 @@
             justify-content: center;
             background: #f1f3f5;
             position: relative;
-        }
-        
-        .part-image-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .part-card:hover .part-image-container::after {
-            opacity: 1;
         }
         
         .part-image {
@@ -645,11 +562,6 @@
             font-size: 1.1rem;
             font-weight: 600;
             line-height: 1.3;
-            transition: var(--transition);
-        }
-        
-        .part-card:hover .part-info h3 {
-            color: var(--accent-color);
         }
         
         .part-code {
@@ -668,12 +580,6 @@
             padding: 0.2rem 0.6rem;
             border-radius: 50px;
             display: inline-block;
-            transition: var(--transition);
-        }
-        
-        .part-card:hover .part-category {
-            background: var(--accent-color);
-            color: white;
         }
         
         .part-price {
@@ -681,11 +587,6 @@
             font-weight: 700;
             font-size: 1.3rem;
             margin: 0.6rem 0 1rem;
-            transition: var(--transition);
-        }
-        
-        .part-card:hover .part-price {
-            transform: scale(1.05);
         }
         
         .whatsapp-btn {
@@ -701,19 +602,6 @@
             font-size: 0.9rem;
             transition: var(--transition);
             margin-top: auto;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .whatsapp-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
         }
         
         .whatsapp-btn:hover {
@@ -722,16 +610,12 @@
             box-shadow: 0 8px 20px rgba(18, 140, 126, 0.4);
         }
         
-        .whatsapp-btn:hover::before {
-            left: 100%;
-        }
-        
         .whatsapp-btn i {
             margin-right: 6px;
             font-size: 1.1rem;
         }
         
-        /* Seção de Marcas */
+        /* Brands Section */
         .brands-section {
             padding: 2rem 0;
             background-color: white;
@@ -753,15 +637,7 @@
             width: 90px;
             text-align: center;
             transition: var(--transition);
-            animation: fadeIn 0.6s ease-out;
         }
-        
-        .brand-item:nth-child(1) { animation-delay: 0.1s; }
-        .brand-item:nth-child(2) { animation-delay: 0.2s; }
-        .brand-item:nth-child(3) { animation-delay: 0.3s; }
-        .brand-item:nth-child(4) { animation-delay: 0.4s; }
-        .brand-item:nth-child(5) { animation-delay: 0.5s; }
-        .brand-item:nth-child(6) { animation-delay: 0.6s; }
         
         .brand-logo-container {
             width: 70px;
@@ -777,29 +653,6 @@
             overflow: hidden;
             padding: 8px;
             transition: var(--transition);
-            position: relative;
-        }
-        
-        .brand-logo-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .brand-item:hover .brand-logo-container {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-        
-        .brand-item:hover .brand-logo-container::before {
-            opacity: 0.1;
         }
         
         .brand-logo {
@@ -807,27 +660,20 @@
             height: 100%;
             object-fit: contain;
             transition: var(--transition);
-            position: relative;
-            z-index: 1;
         }
         
-        .brand-item:hover .brand-logo {
-            transform: scale(1.1);
+        .brand-item:hover .brand-logo-container {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
         
         .brand-name {
             font-weight: 600;
             color: var(--primary-color);
             font-size: 0.7rem;
-            transition: var(--transition);
         }
         
-        .brand-item:hover .brand-name {
-            color: var(--accent-color);
-            font-weight: 700;
-        }
-        
-        /* Seção de Serviços */
+        /* Services Section */
         .services-section {
             padding: 2rem 0;
             background-color: var(--light-color);
@@ -850,44 +696,17 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
-            animation: fadeIn 0.6s ease-out;
-        }
-        
-        .service-card:nth-child(1) { animation-delay: 0.1s; }
-        .service-card:nth-child(2) { animation-delay: 0.2s; }
-        .service-card:nth-child(3) { animation-delay: 0.3s; }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient-accent);
-            opacity: 0;
-            transition: var(--transition);
         }
         
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .service-card:hover::before {
-            opacity: 1;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         
         .service-icon {
             font-size: 2.5rem;
             color: var(--accent-color);
             margin-bottom: 0.8rem;
-            transition: var(--transition);
-        }
-        
-        .service-card:hover .service-icon {
-            transform: scale(1.2) rotate(10deg);
-            color: var(--primary-color);
         }
         
         .service-content {
@@ -900,11 +719,6 @@
             color: var(--primary-color);
             margin-bottom: 0.8rem;
             font-weight: 600;
-            transition: var(--transition);
-        }
-        
-        .service-card:hover .service-title {
-            color: var(--accent-color);
         }
         
         .service-desc {
@@ -913,141 +727,89 @@
             font-size: 0.9rem;
         }
         
-        /* Seção de Equipe */
-        .team-section {
+        /* Contact Boxes */
+        .contact-boxes {
             padding: 2rem 0;
             background-color: white;
         }
         
-        .team-grid {
+        .boxes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
-            padding: 1.5rem 0;
         }
         
-        .team-card {
+        .contact-box {
             background: white;
             border-radius: 10px;
             padding: 1.5rem;
             box-shadow: var(--shadow);
             text-align: center;
             transition: var(--transition);
+            border-top: 4px solid var(--accent-color);
         }
         
-        .team-card:hover {
+        .contact-box:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
         }
         
-        .team-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 1rem;
-            border: 3px solid var(--accent-color);
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
         }
         
-        .team-name {
+        .contact-title {
             font-weight: 600;
             color: var(--primary-color);
-            margin-bottom: 0.3rem;
-        }
-        
-        .team-role {
-            color: var(--accent-color);
-            font-weight: 500;
             margin-bottom: 0.8rem;
         }
         
-        .team-phone {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        
-        /* Seção de Localização (simplificada) */
-        .location-section {
-            padding: 2rem 0;
-            background-color: white;
-            text-align: center;
-        }
-        
-        .location-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .location-info-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 8px;
+        .contact-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
             transition: var(--transition);
+            margin-top: 1rem;
         }
         
-        .location-info-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
+        .contact-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
         }
         
-        .location-info-item i {
-            color: var(--accent-color);
-            font-size: 1.5rem;
-        }
-        
-        .location-info-item h3 {
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .location-info-item p {
-            color: var(--text-color);
-            font-size: 0.9rem;
-        }
-        
+        /* Footer */
         footer {
             background: var(--dark-color);
             color: white;
             text-align: center;
             padding: 2rem 0;
-            position: relative;
         }
         
         .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative;
-            z-index: 1;
         }
         
         .footer-logo {
-            font-size: 1.8rem;
-            margin-bottom: 1.2rem;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            transition: var(--transition);
-        }
-        
-        .footer-logo:hover {
-            transform: scale(1.05);
         }
         
         .footer-logo i {
             margin-right: 8px;
             color: var(--accent-color);
-            transition: var(--transition);
-        }
-        
-        .footer-logo:hover i {
-            transform: rotate(15deg);
         }
         
         .footer-links {
@@ -1063,26 +825,10 @@
             text-decoration: none;
             transition: var(--transition);
             font-size: 0.9rem;
-            position: relative;
-        }
-        
-        .footer-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-color);
-            transition: width 0.3s ease;
         }
         
         .footer-link:hover {
             color: var(--accent-color);
-        }
-        
-        .footer-link:hover::after {
-            width: 100%;
         }
         
         .social-links {
@@ -1099,7 +845,6 @@
         
         .social-link:hover {
             color: var(--accent-color);
-            transform: translateY(-3px) scale(1.2);
         }
         
         .copyright {
@@ -1114,7 +859,7 @@
             opacity: 0.7;
         }
         
-        /* Botão fixo do WhatsApp */
+        /* WhatsApp Button */
         .whatsapp-fixed {
             position: fixed;
             bottom: 25px;
@@ -1132,15 +877,352 @@
             z-index: 100;
             transition: var(--transition);
             text-decoration: none;
-            animation: float 3s ease-in-out infinite;
         }
         
         .whatsapp-fixed:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
-            animation: none;
         }
         
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Login Page */
+        .login-container {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10000;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .login-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 400px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .login-form h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.6rem;
+            position: relative;
+        }
+
+        .login-form h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(12, 0, 108, 0.2);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .login-btn:hover {
+            background-color: #d60000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 5, 5, 0.3);
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            display: none;
+            padding: 2rem 0;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+        }
+
+        .admin-title {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            position: relative;
+        }
+
+        .admin-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        .admin-tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #ddd;
+            overflow-x: auto;
+        }
+
+        .admin-tab {
+            padding: 0.7rem 1.2rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .admin-tab.active {
+            border-bottom-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .admin-tab:hover:not(.active) {
+            border-bottom-color: #ddd;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .add-form {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .add-form:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .checkbox-group input {
+            margin-right: 8px;
+        }
+
+        .submit-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background-color: #0a0055;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(12, 0, 108, 0.3);
+        }
+
+        .logout-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .logout-btn:hover {
+            background-color: #d60000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 5, 5, 0.3);
+        }
+
+        .admin-table-container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow-x: auto;
+            transition: var(--transition);
+        }
+
+        .admin-table-container:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
+        .admin-table th, .admin-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            font-size: 0.85rem;
+        }
+
+        .admin-table th {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .admin-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .action-btn {
+            padding: 0.4rem 0.7rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 0.4rem;
+            transition: var(--transition);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .edit-btn {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background-color: #e67e22;
+            box-shadow: 0 3px 10px rgba(243, 156, 18, 0.3);
+        }
+
+        .delete-btn {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background-color: #d60000;
+            box-shadow: 0 3px 10px rgba(255, 5, 5, 0.3);
+        }
+
+        .table-img {
+            width: 70px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 4px;
+            background: #f1f3f5;
+        }
+
+        .category-table-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 4px;
+            background: #f1f3f5;
+        }
+
         /* Legal Warning */
         .legal-warning {
             position: fixed;
@@ -1156,593 +1238,87 @@
             display: none;
             animation: pulse 1s infinite;
         }
-        
-        /* Login Page Styles */
-        .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
-            background-size: cover;
-            position: relative;
-        }
-        
-        .login-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
-        }
-        
-        .login-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-            width: 100%;
-            max-width: 400px;
-            z-index: 1;
-            position: relative;
-            transform: perspective(1000px) rotateX(10deg);
-            transition: var(--transition);
-            animation: fadeIn 0.8s ease-out;
-        }
-        
-        .login-form:hover {
-            transform: perspective(1000px) rotateX(0deg);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-        }
-        
-        .login-form h2 {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 1.6rem;
-            position: relative;
-        }
-        
-        .login-form h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background: var(--accent-color);
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-        
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-        
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            border-color: var(--secondary-color);
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(12, 0, 108, 0.2);
-        }
-        
-        .login-btn {
-            width: 100%;
-            padding: 0.8rem;
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .login-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .login-btn:hover {
-            background-color: #d60000;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 5, 5, 0.3);
-        }
-        
-        .login-btn:hover::before {
-            left: 100%;
-        }
-        
-        /* Admin Panel Styles */
-        .admin-panel {
-            padding: 1.5rem 0;
-            background: #f5f7fa;
-        }
-        
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1.2rem;
-        }
-        
-        .admin-title {
-            font-size: 1.6rem;
-            color: var(--primary-color);
-            font-weight: 600;
-            position: relative;
-        }
-        
-        .admin-title::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--accent-color);
-        }
-        
-        .admin-tabs {
-            display: flex;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid #ddd;
-            overflow-x: auto;
-        }
-        
-        .admin-tab {
-            padding: 0.7rem 1.2rem;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: var(--transition);
-            font-weight: 500;
-            font-size: 0.9rem;
-            position: relative;
-            white-space: nowrap;
-        }
-        
-        .admin-tab.active {
-            border-bottom-color: var(--accent-color);
-            color: var(--accent-color);
-        }
-        
-        .admin-tab:hover:not(.active) {
-            border-bottom-color: #ddd;
-        }
-        
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease-out;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .add-part-form {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            margin-bottom: 2rem;
-            transition: var(--transition);
-        }
-        
-        .add-part-form:hover {
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-        }
-        
-        .add-category-form {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            margin-bottom: 2rem;
-            transition: var(--transition);
-        }
-        
-        .add-category-form:hover {
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-        }
-        
-        .form-row {
-            display: flex;
-            gap: 1.2rem;
-            margin-bottom: 1.2rem;
-        }
-        
-        .form-row .form-group {
-            flex: 1;
-        }
-        
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.2rem;
-        }
-        
-        .checkbox-group input {
-            margin-right: 8px;
-        }
-        
-        .checkbox-group label {
-            margin-bottom: 0;
-            font-size: 0.9rem;
-        }
-        
-        .submit-btn {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .submit-btn:hover {
-            background-color: #0a0055;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(12, 0, 108, 0.3);
-        }
-        
-        .submit-btn:hover::before {
-            left: 100%;
-        }
-        
-        .logout-btn {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .logout-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .logout-btn:hover {
-            background-color: #d60000;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 5, 5, 0.3);
-        }
-        
-        .logout-btn:hover::before {
-            left: 100%;
-        }
-        
-        .admin-parts-list {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            overflow-x: auto;
-            transition: var(--transition);
-        }
-        
-        .admin-parts-list:hover {
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-        }
-        
-        .parts-table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 700px;
-        }
-        
-        .categories-table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 500px;
-        }
-        
-        .team-table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 600px;
-        }
-        
-        .parts-table th, .parts-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-            font-size: 0.85rem;
-        }
-        
-        .categories-table th, .categories-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-            font-size: 0.85rem;
-        }
-        
-        .team-table th, .team-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-            font-size: 0.85rem;
-        }
-        
-        .parts-table th {
-            background-color: #f8f9fa;
-            color: var(--primary-color);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-        }
-        
-        .categories-table th {
-            background-color: #f8f9fa;
-            color: var(--primary-color);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-        }
-        
-        .team-table th {
-            background-color: #f8f9fa;
-            color: var(--primary-color);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-        }
-        
-        .parts-table tr:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .categories-table tr:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .team-table tr:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .action-btn {
-            padding: 0.4rem 0.7rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-right: 0.4rem;
-            transition: var(--transition);
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .action-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .edit-btn {
-            background-color: #f39c12;
-            color: white;
-        }
-        
-        .edit-btn:hover {
-            background-color: #e67e22;
-            box-shadow: 0 3px 10px rgba(243, 156, 18, 0.3);
-        }
-        
-        .delete-btn {
-            background-color: var(--accent-color);
-            color: white;
-        }
-        
-        .delete-btn:hover {
-            background-color: #d60000;
-            box-shadow: 0 3px 10px rgba(255, 5, 5, 0.3);
-        }
-        
-        .table-img {
-            width: 70px;
-            height: 50px;
-            object-fit: contain;
-            border-radius: 4px;
-            background: #f1f3f5;
-            transition: var(--transition);
-        }
-        
-        .table-img:hover {
-            transform: scale(1.1);
-        }
-        
-        .category-table-img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            border-radius: 4px;
-            background: #f1f3f5;
-            transition: var(--transition);
-        }
-        
-        .category-table-img:hover {
-            transform: scale(1.1);
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        /* Responsividade */
+
+        /* Responsive */
         @media (max-width: 992px) {
-            .search-container {
-                max-width: 100%;
-            }
-            
-            .categories-grid {
-                grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-            }
-            
             .about-container {
                 grid-template-columns: 1fr;
             }
             
             .about-image {
-                height: 250px;
+                height: 300px;
             }
         }
         
         @media (max-width: 768px) {
+            .top-info-container {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 5px;
+                align-items: center;
+            }
+            
             .header-container {
-                padding: 0.8rem;
+                flex-direction: column;
+                align-items: stretch;
             }
             
             .logo-container {
-                margin-left: 0;
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
+            
+            .header-right {
+                justify-content: center;
+            }
+            
+            .search-container {
                 max-width: 100%;
-                margin-bottom: 0.8rem;
             }
             
-            .logo-title {
-                font-size: 1.1rem;
+            .categories-grid {
+                grid-template-columns: repeat(4, 1fr);
+                overflow-x: auto;
+                padding-bottom: 10px;
             }
-            
-            .logo-subtitle {
-                font-size: 0.65rem;
-            }
-            
-            .search-input {
-                padding: 0.7rem 0.9rem;
-            }
-            
-            .search-btn {
-                padding: 0 1rem;
-            }
-            
+
             .form-row {
                 flex-direction: column;
                 gap: 0;
             }
-            
-            .admin-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .categories-grid {
-                grid-template-columns: repeat(5, minmax(70px, 1fr));
-                overflow-x: auto;
-                padding-bottom: 0.8rem;
-            }
-            
-            .category-card {
-                min-height: 65px;
-            }
-            
-            .header-right {
-                width: 100%;
-                justify-content: space-between;
-            }
-            
-            .contact-dropdown {
-                order: -1;
-            }
-            
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
         
         @media (max-width: 576px) {
-            .login-form {
-                padding: 1.5rem;
+            .about-image {
+                height: 200px;
             }
             
-            .part-info {
-                padding: 0.8rem;
+            .about-title {
+                font-size: 1.5rem;
+            }
+            
+            .main-title {
+                font-size: 1.6rem;
             }
             
             .section-title {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
             }
             
-            .brand-logo-container {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .brand-item {
-                width: 80px;
-            }
-            
-            .categories-grid {
-                grid-template-columns: repeat(4, minmax(70px, 1fr));
-            }
-            
-            .category-image {
-                width: 25px;
-                height: 25px;
-            }
-            
-            .category-name {
-                font-size: 0.6rem;
-            }
-            
-            .team-grid {
+            .boxes-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .catalog {
+                grid-template-columns: 1fr;
+            }
+
+            .login-form {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -1753,112 +1329,91 @@
         AVISO: Qualquer tentativa de remoção ou alteração não autorizada deste site sujeita o infrator a processo administrativo e legal.
     </div>
     
-    <!-- Botão fixo do WhatsApp -->
+    <!-- WhatsApp Button -->
     <a href="https://wa.me/5545999711417" class="whatsapp-fixed" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
     
-    <!-- Login Page -->
-    <div id="login-page" class="login-container">
-        <div class="login-form">
-            <h2><i class="fas fa-user-shield"></i> Painel Administrativo</h2>
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="username">Usuário</label>
-                    <input type="text" id="username" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha</label>
-                    <input type="password" id="password" required>
-                </div>
-                <button type="submit" class="login-btn">Entrar</button>
-            </form>
+    <!-- Top Info Bar -->
+    <div class="top-info-bar">
+        <div class="top-info-container">
+            <div class="contact-info">
+                <span><i class="fas fa-envelope"></i> autolatinacascavel@gmail.com</span>
+                <span><i class="fas fa-map-marker-alt"></i> Rua Gurgel 119, Cascavel-PR</span>
+            </div>
+            <button class="rate-btn" id="rate-btn"><i class="fas fa-star"></i> Avalie-nos</button>
         </div>
     </div>
     
-    <!-- Public Catalog -->
-    <div id="public-catalog" class="hidden">
-        <!-- Header Superior Compacto -->
-        <div class="top-header">
-            <div class="header-container">
-                <div class="header-top">
-                    <div class="logo-container">
-                        <img src="Logo Site Autolatina.png" alt="Autolatina Truck Service" class="logo-img">
-                        <div class="logo-text">
-                            <div class="logo-title">Autolatina Truck Service</div>
-                            <div class="logo-subtitle">Peças e serviços para caminhões</div>
-                        </div>
-                    </div>
-                    
-                    <div class="header-right">
-                        <div class="contact-dropdown">
-                            <button class="contact-btn">
-                                <i class="fas fa-phone-alt"></i> Contato
-                                <i class="fas fa-chevron-down"></i>
-                            </button>
-                            <div class="dropdown-content">
-                                <a href="tel:45999492711" class="dropdown-item">
-                                    <i class="fas fa-phone"></i> (45) 99949-2711
-                                </a>
-                                <a href="tel:45999711417" class="dropdown-item">
-                                    <i class="fas fa-phone"></i> (45) 99971-1417
-                                </a>
-                                <a href="mailto:autolatinacascavel@gmail.com" class="dropdown-item">
-                                    <i class="fas fa-envelope"></i> Email
-                                </a>
-                                <a href="https://wa.me/5545999711417" class="dropdown-item" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> WhatsApp
-                                </a>
-                                <a href="#" class="dropdown-item">
-                                    <i class="fas fa-map-marker-alt"></i> Rua Gurgel 119, Universitário, Cascavel-PR
-                                </a>
-                                <a href="about.html" class="dropdown-item">
-                                    <i class="fas fa-info-circle"></i> Quem Somos
-                                </a>
-                                <a href="terms.html" class="dropdown-item">
-                                    <i class="fas fa-file-contract"></i> Termos e Condições
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="social-links-header">
-                            <a href="#" class="social-link-header"><i class="fab fa-facebook"></i></a>
-                            <a href="#" class="social-link-header"><i class="fab fa-instagram"></i></a>
-                            <a href="https://wa.me/5545999711417" class="social-link-header" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                        </div>
+    <!-- Header -->
+    <div class="top-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="Logo Site Autolatina.png" alt="Autolatina Truck Service" class="logo-img">
+                <div class="logo-text">
+                    <div class="logo-title">Autolatina Truck Service</div>
+                    <div class="logo-subtitle">Peças e serviços para caminhões</div>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="contact-dropdown">
+                    <button class="contact-btn">
+                        <i class="fas fa-phone-alt"></i> Contato
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="tel:45999492711" class="dropdown-item">
+                            <i class="fas fa-phone"></i> (45) 99949-2711
+                        </a>
+                        <a href="tel:45999711417" class="dropdown-item">
+                            <i class="fas fa-phone"></i> (45) 99971-1417
+                        </a>
+                        <a href="mailto:autolatinacascavel@gmail.com" class="dropdown-item">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
+                        <a href="https://wa.me/5545999711417" class="dropdown-item" target="_blank">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-map-marker-alt"></i> Rua Gurgel 119, Universitário, Cascavel-PR
+                        </a>
                     </div>
                 </div>
                 
                 <div class="search-container">
                     <form class="search-bar" id="search-form">
-                        <input type="text" class="search-input" placeholder="Pesquisar peças por nome ou código..." id="search-input">
+                        <input type="text" class="search-input" placeholder="Pesquisar peças..." id="search-input">
                         <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
             </div>
         </div>
-        
-        <!-- Categorias como quadradinhos pequenos -->
-        <div class="categories-header">
-            <div class="categories-container">
-                <div class="categories-grid" id="categories-grid">
-                    <!-- Categorias serão adicionadas via JavaScript -->
-                </div>
+    </div>
+    
+    <!-- Categories -->
+    <div class="categories-header">
+        <div class="categories-container">
+            <div class="categories-grid" id="categories-grid">
+                <!-- Categories will be added by JavaScript -->
             </div>
         </div>
-        
+    </div>
+    
+    <!-- Public Catalog -->
+    <div id="public-catalog">
         <main class="container">
-            <!-- Seção Sobre a Empresa -->
+            <!-- About Section -->
             <section class="about-section">
                 <div class="about-container">
-                    <img src="https://via.placeholder.com/600x400?text=Autolatina+Truck+Service" alt="Autolatina Truck Service" class="about-image" id="about-image">
+                    <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Autolatina Truck Service" class="about-image" id="about-image">
                     <div class="about-content">
                         <h2 class="about-title">Autolatina Truck Service</h2>
                         <p class="about-text" id="about-text">
-                            A Autolatina Truck Service é especializada em peças e serviços para caminhões, oferecendo produtos de qualidade e atendimento personalizado. Com anos de experiência no mercado, nossa equipe está pronta para atender às necessidades dos nossos clientes com agilidade e profissionalismo.
+                            Especializada em peças e serviços para caminhões, a Autolatina Truck Service oferece produtos de qualidade e atendimento personalizado. Com anos de experiência no mercado, nossa equipe está pronta para atender às necessidades dos nossos clientes com agilidade e profissionalismo.
                         </p>
                         <p class="about-text">
-                            Trabalhamos com as melhores marcas do mercado, garantindo a satisfação e segurança dos nossos clientes. Nossa missão é fornecer soluções completas para o seu caminhão, desde peças originais até serviços especializados.
+                            Trabalhamos com as melhores marcas do mercado, garantindo a satisfação e segurança dos nossos clientes.
                         </p>
                     </div>
                 </div>
@@ -1867,24 +1422,24 @@
             <h1 class="main-title">Peças para Caminhões</h1>
             <p class="main-subtitle">Peças originais e serviços especializados para o seu caminhão</p>
             
-            <!-- Seção de Ofertas -->
+            <!-- Offers Section -->
             <section id="offers" class="offers-section">
                 <h2 class="section-title">Ofertas em Destaque</h2>
                 <div class="catalog" id="catalog">
-                    <!-- As peças serão adicionadas aqui via JavaScript -->
+                    <!-- Parts will be added by JavaScript -->
                     <p id="no-parts-message" style="grid-column: 1/-1; text-align: center; font-size: 1.1rem; color: var(--text-light);">Nenhuma oferta disponível no momento. Volte em breve!</p>
                 </div>
             </section>
             
-            <!-- Seção de Marcas -->
+            <!-- Brands Section -->
             <section class="brands-section">
                 <h2 class="section-title">Marcas que Trabalhamos</h2>
                 <div class="brands-grid" id="brands-grid">
-                    <!-- As marcas serão adicionadas aqui via JavaScript -->
+                    <!-- Brands will be added by JavaScript -->
                 </div>
             </section>
             
-            <!-- Seção de Serviços -->
+            <!-- Services Section -->
             <section class="services-section">
                 <h2 class="section-title">Nossos Serviços</h2>
                 <div class="services-grid">
@@ -1929,92 +1484,94 @@
                 </div>
             </section>
             
-            <!-- Seção de Equipe -->
-            <section class="team-section">
-                <h2 class="section-title">Nossa Equipe</h2>
-                <div class="team-grid" id="team-grid">
-                    <!-- Membros da equipe serão adicionados via JavaScript -->
-                </div>
-            </section>
-            
-            <!-- Seção de Localização Simplificada -->
-            <section class="location-section">
-                <h2 class="section-title">Contato</h2>
-                <div class="location-info">
-                    <div class="location-info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <h3>Endereço</h3>
-                        <p>Rua Gurgel 119, Universitário, Cascavel-PR</p>
+            <!-- Contact Boxes -->
+            <section class="contact-boxes">
+                <div class="boxes-grid">
+                    <div class="contact-box">
+                        <div class="contact-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <h3 class="contact-title">Visite nosso Instagram</h3>
+                        <p>Confira nossas últimas novidades e promoções</p>
+                        <a href="#" class="contact-btn">Acessar Instagram</a>
                     </div>
-                    <div class="location-info-item">
-                        <i class="fas fa-phone"></i>
-                        <h3>Telefone</h3>
-                        <p>(45) 99949-2711</p>
-                        <p>(45) 99971-1417</p>
+                    
+                    <div class="contact-box">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3 class="contact-title">Fale Conosco</h3>
+                        <p>Estamos prontos para atender suas necessidades</p>
+                        <a href="https://wa.me/5545999711417" class="contact-btn" target="_blank">WhatsApp</a>
                     </div>
-                    <div class="location-info-item">
-                        <i class="fas fa-envelope"></i>
-                        <h3>Email</h3>
-                        <p>autolatinacascavel@gmail.com</p>
-                    </div>
-                    <div class="location-info-item">
-                        <i class="fas fa-clock"></i>
-                        <h3>Horário</h3>
-                        <p>Seg-Sex: 08:00 - 18:00</p>
-                        <p>Sábado: 08:00 - 12:00</p>
+                    
+                    <div class="contact-box">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 class="contact-title">Visite-nos</h3>
+                        <p>Venha nos conhecer pessoalmente</p>
+                        <a href="https://goo.gl/maps/example" class="contact-btn" target="_blank">Ver no Mapa</a>
                     </div>
                 </div>
             </section>
         </main>
         
         <footer>
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-logo">
-                        <i class="fas fa-truck"></i>
-                        <span>Autolatina Truck Service</span>
-                    </div>
-                    
-                    <div class="footer-links">
-                        <a href="#offers" class="footer-link">Ofertas</a>
-                        <a href="#" class="footer-link">Serviços</a>
-                        <a href="about.html" class="footer-link">Sobre Nós</a>
-                        <a href="terms.html" class="footer-link">Termos</a>
-                    </div>
-                    
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                    
-                    <div class="copyright">
-                        &copy; 2025 Autolatina Truck Service. Todos os direitos reservados.
-                    </div>
-                    <div class="developer">
-                        Desenvolvido por POKAN
-                    </div>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-truck"></i>
+                    <span>Autolatina Truck Service</span>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#offers" class="footer-link">Ofertas</a>
+                    <a href="#" class="footer-link">Serviços</a>
+                    <a href="#" class="footer-link">Sobre Nós</a>
+                    <a href="#" class="footer-link">Termos</a>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                
+                <div class="copyright">
+                    &copy; 2025 Autolatina Truck Service. Todos os direitos reservados.
+                </div>
+                <div class="developer">
+                    Desenvolvido por POKAN
                 </div>
             </div>
         </footer>
     </div>
     
-    <!-- Admin Panel -->
-    <div id="admin-panel" class="hidden">
-        <header>
-            <div class="container">
-                <div class="logo">
-                    <i class="fas fa-truck"></i>
-                    <span>Autolatina Truck Service - Painel Admin</span>
+    <!-- Login Page -->
+    <div id="login-page" class="login-container">
+        <div class="login-form">
+            <h2><i class="fas fa-user-shield"></i> Painel Administrativo</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" required>
                 </div>
-                <button id="logout-btn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Sair</button>
-            </div>
-        </header>
-        
-        <main class="container admin-panel">
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="login-btn">Entrar</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Admin Panel -->
+    <div id="admin-panel" class="admin-panel">
+        <div class="container">
             <div class="admin-header">
-                <h2 class="admin-title">Gerenciamento de Conteúdo</h2>
-                <button id="view-public-catalog" class="submit-btn"><i class="fas fa-eye"></i> Ver Catálogo Público</button>
+                <h2 class="admin-title">Painel Administrativo</h2>
+                <button id="logout-btn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Sair</button>
+                <button id="view-public-btn" class="submit-btn"><i class="fas fa-eye"></i> Ver Site Público</button>
             </div>
             
             <div class="admin-tabs">
@@ -2022,13 +1579,11 @@
                 <div class="admin-tab" data-tab="brands">Marcas</div>
                 <div class="admin-tab" data-tab="categories">Categorias</div>
                 <div class="admin-tab" data-tab="about">Sobre a Empresa</div>
-                <div class="admin-tab" data-tab="team">Equipe</div>
-                <div class="admin-tab" data-tab="gallery">Galeria</div>
             </div>
             
-            <!-- Conteúdo da aba de Ofertas -->
+            <!-- Parts Tab -->
             <div id="parts-tab" class="tab-content active">
-                <div class="add-part-form">
+                <div class="add-form">
                     <h3>Adicionar Nova Oferta</h3>
                     <form id="add-part-form">
                         <div class="form-row">
@@ -2077,9 +1632,9 @@
                     </form>
                 </div>
                 
-                <div class="admin-parts-list">
+                <div class="admin-table-container">
                     <h3>Ofertas Cadastradas</h3>
-                    <table class="parts-table">
+                    <table class="admin-table">
                         <thead>
                             <tr>
                                 <th>Imagem</th>
@@ -2092,15 +1647,15 @@
                             </tr>
                         </thead>
                         <tbody id="admin-parts-list">
-                            <!-- Lista de peças para administração -->
+                            <!-- Parts will be added by JavaScript -->
                         </tbody>
                     </table>
                 </div>
             </div>
             
-            <!-- Conteúdo da aba de Marcas -->
+            <!-- Brands Tab -->
             <div id="brands-tab" class="tab-content">
-                <div class="add-brand-form">
+                <div class="add-form">
                     <h3>Adicionar Nova Marca</h3>
                     <form id="add-brand-form">
                         <div class="form-row">
@@ -2117,17 +1672,26 @@
                     </form>
                 </div>
                 
-                <div class="admin-parts-list">
+                <div class="admin-table-container">
                     <h3>Marcas Cadastradas</h3>
-                    <div class="brands-list" id="admin-brands-list">
-                        <!-- Lista de marcas para administração -->
-                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Imagem</th>
+                                <th>Nome</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-brands-list">
+                            <!-- Brands will be added by JavaScript -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
             
-            <!-- Conteúdo da aba de Categorias -->
+            <!-- Categories Tab -->
             <div id="categories-tab" class="tab-content">
-                <div class="add-category-form">
+                <div class="add-form">
                     <h3>Editar Categorias</h3>
                     <form id="add-category-form">
                         <div class="form-row">
@@ -2156,9 +1720,9 @@
                     </form>
                 </div>
                 
-                <div class="admin-categories-list">
+                <div class="admin-table-container">
                     <h3>Categorias Cadastradas</h3>
-                    <table class="categories-table">
+                    <table class="admin-table">
                         <thead>
                             <tr>
                                 <th>Imagem</th>
@@ -2167,15 +1731,15 @@
                             </tr>
                         </thead>
                         <tbody id="admin-categories-list">
-                            <!-- Lista de categorias para administração -->
+                            <!-- Categories will be added by JavaScript -->
                         </tbody>
                     </table>
                 </div>
             </div>
             
-            <!-- Conteúdo da aba Sobre a Empresa -->
+            <!-- About Tab -->
             <div id="about-tab" class="tab-content">
-                <div class="add-part-form">
+                <div class="add-form">
                     <h3>Editar Sobre a Empresa</h3>
                     <form id="add-about-form">
                         <div class="form-row">
@@ -2194,104 +1758,67 @@
                     </form>
                 </div>
             </div>
-            
-            <!-- Conteúdo da aba Equipe -->
-            <div id="team-tab" class="tab-content">
-                <div class="add-part-form">
-                    <h3>Adicionar Membro da Equipe</h3>
-                    <form id="add-team-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="team-name">Nome</label>
-                                <input type="text" id="team-name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="team-role">Função</label>
-                                <input type="text" id="team-role" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="team-phone">Telefone</label>
-                                <input type="text" id="team-phone" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="team-image">URL da Foto</label>
-                                <input type="url" id="team-image" required>
-                            </div>
-                        </div>
-                        <button type="submit" class="submit-btn"><i class="fas fa-plus"></i> Adicionar Membro</button>
-                    </form>
-                </div>
-                
-                <div class="admin-parts-list">
-                    <h3>Membros da Equipe</h3>
-                    <table class="team-table">
-                        <thead>
-                            <tr>
-                                <th>Foto</th>
-                                <th>Nome</th>
-                                <th>Função</th>
-                                <th>Telefone</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-team-list">
-                            <!-- Lista de membros da equipe para administração -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <!-- Conteúdo da aba de Galeria -->
-            <div id="gallery-tab" class="tab-content">
-                <div class="add-part-form">
-                    <h3>Adicionar Imagens à Galeria</h3>
-                    <form id="add-gallery-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="gallery-image1">URL da Imagem 1</label>
-                                <input type="url" id="gallery-image1" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="gallery-image2">URL da Imagem 2</label>
-                                <input type="url" id="gallery-image2" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="gallery-image3">URL da Imagem 3</label>
-                                <input type="url" id="gallery-image3" required>
-                            </div>
-                        </div>
-                        <button type="submit" class="submit-btn"><i class="fas fa-plus"></i> Atualizar Galeria</button>
-                    </form>
-                </div>
-                
-                <div class="admin-parts-list">
-                    <h3>Galeria Atual</h3>
-                    <div class="gallery-grid" id="admin-gallery-list">
-                        <div class="gallery-item">
-                            <img src="https://via.placeholder.com/600x400?text=Autolatina+1" alt="Autolatina" class="gallery-image">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="https://via.placeholder.com/600x400?text=Autolatina+2" alt="Autolatina" class="gallery-image">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="https://via.placeholder.com/600x400?text=Autolatina+3" alt="Autolatina" class="gallery-image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+        </div>
     </div>
     
     <script>
-        // Dados das peças (armazenamento local) - Inicialmente vazio
-        let parts = JSON.parse(localStorage.getItem('autolatinaParts')) || [];
-        
-        // Dados das marcas (armazenamento local) - Inicialmente vazio
-        let brands = JSON.parse(localStorage.getItem('autolatinaBrands')) || [];
-        
-        // Dados das categorias (armazenamento local)
+        // Credenciais de login
+        const ADMIN_CREDENTIALS = {
+            username: "admin",
+            password: "autolatina2024"
+        };
+
+        // WhatsApp number
+        const WHATSAPP_NUMBER = "5545999711417";
+
+        // Google Maps link
+        const GOOGLE_MAPS_LINK = "https://goo.gl/maps/example";
+
+        // Instagram link
+        const INSTAGRAM_LINK = "#";
+
+        // Google review link
+        const GOOGLE_REVIEW_LINK = "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID";
+
+        // Data storage
+        let parts = JSON.parse(localStorage.getItem('autolatinaParts')) || [
+            { 
+                id: 1, 
+                name: "Kit Embreagem Completo", 
+                code: "KE-1234", 
+                price: 1250.90, 
+                image: "https://via.placeholder.com/300x200?text=Kit+Embreagem", 
+                category: "Cambio",
+                isFlash: true
+            },
+            { 
+                id: 2, 
+                name: "Bomba de Óleo", 
+                code: "BO-5678", 
+                price: 450.50, 
+                image: "https://via.placeholder.com/300x200?text=Bomba+de+Óleo", 
+                category: "Motor",
+                isFlash: false
+            },
+            { 
+                id: 3, 
+                name: "Pastilha de Freio", 
+                code: "PF-9012", 
+                price: 320.75, 
+                image: "https://via.placeholder.com/300x200?text=Pastilha+de+Freio", 
+                category: "Freio/Cubo",
+                isFlash: true
+            }
+        ];
+
+        let brands = JSON.parse(localStorage.getItem('autolatinaBrands')) || [
+            { id: 1, name: "Mercedes", image: "https://via.placeholder.com/120x80?text=Mercedes" },
+            { id: 2, name: "Volvo", image: "https://via.placeholder.com/120x80?text=Volvo" },
+            { id: 3, name: "Scania", image: "https://via.placeholder.com/120x80?text=Scania" },
+            { id: 4, name: "DAF", image: "https://via.placeholder.com/120x80?text=DAF" },
+            { id: 5, name: "Iveco", image: "https://via.placeholder.com/120x80?text=Iveco" }
+        ];
+
         let categories = JSON.parse(localStorage.getItem('autolatinaCategories')) || [
             { name: "Motor", image: "https://cdn-icons-png.flaticon.com/512/2132/2132708.png" },
             { name: "Cambio", image: "https://cdn-icons-png.flaticon.com/512/2936/2936886.png" },
@@ -2304,158 +1831,81 @@
             { name: "Elétrica", image: "https://cdn-icons-png.flaticon.com/512/3659/3659899.png" },
             { name: "Outros", image: "https://cdn-icons-png.flaticon.com/512/3659/3659898.png" }
         ];
-        
-        // Dados sobre a empresa
+
         let aboutInfo = JSON.parse(localStorage.getItem('autolatinaAbout')) || {
-            image: "https://via.placeholder.com/600x400?text=Autolatina+Truck+Service",
-            text: "A Autolatina Truck Service é especializada em peças e serviços para caminhões, oferecendo produtos de qualidade e atendimento personalizado. Com anos de experiência no mercado, nossa equipe está pronta para atender às necessidades dos nossos clientes com agilidade e profissionalismo.\n\nTrabalhamos com as melhores marcas do mercado, garantindo a satisfação e segurança dos nossos clientes. Nossa missão é fornecer soluções completas para o seu caminhão, desde peças originais até serviços especializados."
+            image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+            text: "Especializada em peças e serviços para caminhões, a Autolatina Truck Service oferece produtos de qualidade e atendimento personalizado. Com anos de experiência no mercado, nossa equipe está pronta para atender às necessidades dos nossos clientes com agilidade e profissionalismo.\n\nTrabalhamos com as melhores marcas do mercado, garantindo a satisfação e segurança dos nossos clientes."
         };
-        
-        // Dados da equipe
-        let teamMembers = JSON.parse(localStorage.getItem('autolatinaTeam')) || [];
-        
-        // Dados da galeria
-        let galleryImages = JSON.parse(localStorage.getItem('autolatinaGallery')) || [
-            "https://via.placeholder.com/600x400?text=Autolatina+1",
-            "https://via.placeholder.com/600x400?text=Autolatina+2",
-            "https://via.placeholder.com/600x400?text=Autolatina+3"
-        ];
-        
-        // Credenciais de login (apenas um usuário)
-        const VALID_USER = {
-            username: "teste123",
-            password: "2022"
-        };
-        
-        // WhatsApp number
-        const WHATSAPP_NUMBER = "5545999711417";
-        
-        // Categorias disponíveis
-        const CATEGORIES_NAMES = [
-            "Motor",
-            "Cambio",
-            "Diferencial Cardan",
-            "Freio/Cubo",
-            "Cabine",
-            "Escapamento",
-            "Arrefecimento",
-            "Suspensão",
-            "Elétrica",
-            "Outros"
-        ];
-        
-        // Elementos da página
-        const loginPage = document.getElementById('login-page');
+
+        // DOM Elements
         const publicCatalog = document.getElementById('public-catalog');
+        const loginPage = document.getElementById('login-page');
         const adminPanel = document.getElementById('admin-panel');
         const loginForm = document.getElementById('login-form');
         const logoutBtn = document.getElementById('logout-btn');
-        const viewPublicCatalogBtn = document.getElementById('view-public-catalog');
+        const viewPublicBtn = document.getElementById('view-public-btn');
+        const legalWarning = document.getElementById('legal-warning');
+        const rateBtn = document.getElementById('rate-btn');
+        const contactBtn = document.querySelector('.contact-btn');
+        const dropdownContent = document.querySelector('.dropdown-content');
+
+        // Forms
         const addPartForm = document.getElementById('add-part-form');
         const addBrandForm = document.getElementById('add-brand-form');
         const addCategoryForm = document.getElementById('add-category-form');
         const addAboutForm = document.getElementById('add-about-form');
-        const addTeamForm = document.getElementById('add-team-form');
-        const addGalleryForm = document.getElementById('add-gallery-form');
+
+        // Lists
+        const categoriesGrid = document.getElementById('categories-grid');
         const catalogContainer = document.getElementById('catalog');
+        const brandsGrid = document.getElementById('brands-grid');
         const adminPartsList = document.getElementById('admin-parts-list');
         const adminBrandsList = document.getElementById('admin-brands-list');
         const adminCategoriesList = document.getElementById('admin-categories-list');
-        const adminTeamList = document.getElementById('admin-team-list');
-        const adminGalleryList = document.getElementById('admin-gallery-list');
         const noPartsMessage = document.getElementById('no-parts-message');
-        const legalWarning = document.getElementById('legal-warning');
-        const categoriesGrid = document.getElementById('categories-grid');
-        const brandsGrid = document.getElementById('brands-grid');
-        const teamGrid = document.getElementById('team-grid');
-        const searchForm = document.getElementById('search-form');
-        const searchInput = document.getElementById('search-input');
-        const contactBtn = document.querySelector('.contact-btn');
-        const dropdownContent = document.querySelector('.dropdown-content');
         const aboutImage = document.getElementById('about-image');
         const aboutText = document.getElementById('about-text');
-        
-        // Mostrar aviso legal se tentarem inspecionar o código
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
-                legalWarning.style.display = 'block';
-                setTimeout(() => {
-                    legalWarning.style.display = 'none';
-                }, 5000);
-            }
-            
-            // Atalho para o painel admin: Ctrl+Alt+A
-            if (e.ctrlKey && e.altKey && e.key === 'a') {
-                e.preventDefault();
-                showLoginPage();
-            }
-        });
-        
-        // Mostrar página inicial (catálogo público)
+
+        // Tabs
+        const adminTabs = document.querySelectorAll('.admin-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // Search
+        const searchForm = document.getElementById('search-form');
+        const searchInput = document.getElementById('search-input');
+
+        // Show public catalog
         function showPublicCatalog() {
-            loginPage.classList.add('hidden');
-            publicCatalog.classList.remove('hidden');
-            adminPanel.classList.add('hidden');
+            publicCatalog.style.display = 'block';
+            loginPage.style.display = 'none';
+            adminPanel.style.display = 'none';
             displayCategories();
             displayParts();
             displayBrands();
-            displayTeam();
-            displayGallery();
             updateAboutSection();
         }
-        
-        // Mostrar painel admin
-        function showAdminPanel() {
-            loginPage.classList.add('hidden');
-            publicCatalog.classList.add('hidden');
-            adminPanel.classList.remove('hidden');
-            displayAdminParts();
-            displayAdminBrands();
-            displayAdminCategories();
-            displayAdminTeam();
-            displayAdminGallery();
-            loadAboutForm();
-        }
-        
-        // Mostrar tela de login
+
+        // Show login page
         function showLoginPage() {
-            loginPage.classList.remove('hidden');
-            publicCatalog.classList.add('hidden');
-            adminPanel.classList.add('hidden');
+            publicCatalog.style.display = 'none';
+            loginPage.style.display = 'flex';
+            adminPanel.style.display = 'none';
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
         }
-        
-        // Alternar entre abas no painel admin
-        document.querySelectorAll('.admin-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remover classe active de todas as abas e conteúdos
-                document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
-                // Adicionar classe active à aba clicada e ao conteúdo correspondente
-                tab.classList.add('active');
-                const tabId = tab.dataset.tab + '-tab';
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-        
-        // Alternar dropdown de contato
-        contactBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            contactBtn.classList.toggle('active');
-            dropdownContent.classList.toggle('active');
-        });
-        
-        // Fechar dropdown quando clicar fora
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.contact-dropdown')) {
-                contactBtn.classList.remove('active');
-                dropdownContent.classList.remove('active');
-            }
-        });
-        
-        // Exibir categorias como quadradinhos pequenos
+
+        // Show admin panel
+        function showAdminPanel() {
+            publicCatalog.style.display = 'none';
+            loginPage.style.display = 'none';
+            adminPanel.style.display = 'block';
+            displayAdminParts();
+            displayAdminBrands();
+            displayAdminCategories();
+            loadAboutForm();
+        }
+
+        // Display categories
         function displayCategories() {
             categoriesGrid.innerHTML = '';
             
@@ -2469,8 +1919,6 @@
                 
                 categoryCard.addEventListener('click', () => {
                     displayParts(category.name);
-                    
-                    // Rolar suavemente até as ofertas
                     document.getElementById('offers').scrollIntoView({
                         behavior: 'smooth'
                     });
@@ -2479,101 +1927,17 @@
                 categoriesGrid.appendChild(categoryCard);
             });
         }
-        
-        // Exibir marcas no grid
-        function displayBrands() {
-            brandsGrid.innerHTML = '';
-            
-            if (brands.length === 0) {
-                // Se não houver marcas cadastradas, mostrar uma mensagem ou placeholder
-                const placeholder = document.createElement('div');
-                placeholder.className = 'brand-item';
-                placeholder.innerHTML = `
-                    <div class="brand-logo-container">
-                        <img src="https://via.placeholder.com/120x80?text=Sem+Marcas" class="brand-logo">
-                    </div>
-                    <div class="brand-name">Nenhuma marca</div>
-                `;
-                brandsGrid.appendChild(placeholder);
-                return;
-            }
-            
-            brands.forEach(brand => {
-                const brandItem = document.createElement('div');
-                brandItem.className = 'brand-item';
-                brandItem.innerHTML = `
-                    <div class="brand-logo-container">
-                        <img src="${brand.image}" alt="${brand.name}" class="brand-logo" onerror="this.src='https://via.placeholder.com/120x80?text=Logo+Não+Disponível'">
-                    </div>
-                    <div class="brand-name">${brand.name}</div>
-                `;
-                brandsGrid.appendChild(brandItem);
-            });
-        }
-        
-        // Exibir equipe
-        function displayTeam() {
-            teamGrid.innerHTML = '';
-            
-            if (teamMembers.length === 0) {
-                teamGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">Nenhum membro da equipe cadastrado.</p>';
-                return;
-            }
-            
-            teamMembers.forEach(member => {
-                const teamCard = document.createElement('div');
-                teamCard.className = 'team-card';
-                teamCard.innerHTML = `
-                    <img src="${member.image}" alt="${member.name}" class="team-avatar" onerror="this.src='https://via.placeholder.com/100x100?text=Sem+Imagem'">
-                    <h3 class="team-name">${member.name}</h3>
-                    <p class="team-role">${member.role}</p>
-                    <p class="team-phone"><i class="fas fa-phone"></i> ${member.phone}</p>
-                `;
-                teamGrid.appendChild(teamCard);
-            });
-        }
-        
-        // Exibir galeria
-        function displayGallery() {
-            const galleryGrid = document.querySelector('.gallery-grid');
-            if (!galleryGrid) return;
-            
-            galleryGrid.innerHTML = '';
-            
-            galleryImages.forEach(imageUrl => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.innerHTML = `
-                    <img src="${imageUrl}" alt="Autolatina" class="gallery-image" onerror="this.src='https://via.placeholder.com/600x400?text=Imagem+Não+Disponível'">
-                `;
-                galleryGrid.appendChild(galleryItem);
-            });
-        }
-        
-        // Atualizar seção sobre a empresa
-        function updateAboutSection() {
-            aboutImage.src = aboutInfo.image;
-            aboutText.innerHTML = aboutInfo.text.replace(/\n/g, '<br>');
-        }
-        
-        // Carregar dados no formulário sobre a empresa
-        function loadAboutForm() {
-            document.getElementById('about-image').value = aboutInfo.image;
-            document.getElementById('about-text').value = aboutInfo.text;
-        }
-        
-        // Exibir peças no catálogo público (com filtro opcional por categoria ou pesquisa)
+
+        // Display parts
         function displayParts(filter = null, searchTerm = '') {
             catalogContainer.innerHTML = '';
             
             let filteredParts = parts;
             
-            // Aplicar filtro por categoria se fornecido
-            if (filter && typeof filter === 'string') {
+            if (filter) {
                 filteredParts = parts.filter(part => part.category === filter);
             }
             
-            // Aplicar pesquisa se houver termo de busca
             if (searchTerm) {
                 const term = searchTerm.toLowerCase();
                 filteredParts = filteredParts.filter(part => 
@@ -2589,7 +1953,7 @@
             
             noPartsMessage.style.display = 'none';
             
-            // Ordenar para que ofertas relâmpago apareçam primeiro
+            // Sort to show flash offers first
             filteredParts.sort((a, b) => {
                 if (a.isFlash && !b.isFlash) return -1;
                 if (!a.isFlash && b.isFlash) return 1;
@@ -2600,14 +1964,10 @@
                 const partCard = document.createElement('div');
                 partCard.className = `part-card ${part.isFlash ? 'flash-offer-card' : ''}`;
                 
-                if (part.isFlash) {
-                    partCard.style.order = '-1'; // Garante que aparece primeiro
-                }
-                
                 partCard.innerHTML = `
                     <div class="part-image-container">
                         ${part.isFlash ? '<span class="flash-badge"><i class="fas fa-bolt"></i> OFERTA RELÂMPAGO</span>' : '<span class="badge">OFERTA</span>'}
-                        <img src="${part.image}" alt="${part.name}" class="part-image" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Não+Disponível'">
+                        <img src="${part.image}" alt="${part.name}" class="part-image">
                     </div>
                     <div class="part-info">
                         <h3>${part.name}</h3>
@@ -2623,8 +1983,31 @@
                 catalogContainer.appendChild(partCard);
             });
         }
-        
-        // Exibir peças no painel admin
+
+        // Display brands
+        function displayBrands() {
+            brandsGrid.innerHTML = '';
+            
+            brands.forEach(brand => {
+                const brandItem = document.createElement('div');
+                brandItem.className = 'brand-item';
+                brandItem.innerHTML = `
+                    <div class="brand-logo-container">
+                        <img src="${brand.image}" alt="${brand.name}" class="brand-logo">
+                    </div>
+                    <div class="brand-name">${brand.name}</div>
+                `;
+                brandsGrid.appendChild(brandItem);
+            });
+        }
+
+        // Update about section
+        function updateAboutSection() {
+            aboutImage.src = aboutInfo.image;
+            aboutText.innerHTML = aboutInfo.text.replace(/\n/g, '<br>');
+        }
+
+        // Display admin parts
         function displayAdminParts() {
             adminPartsList.innerHTML = '';
             
@@ -2632,7 +2015,7 @@
                 const row = document.createElement('tr');
                 
                 row.innerHTML = `
-                    <td><img src="${part.image}" alt="${part.name}" class="table-img" onerror="this.src='https://via.placeholder.com/80x60?text=Imagem+Não+Disponível'"></td>
+                    <td><img src="${part.image}" alt="${part.name}" class="table-img"></td>
                     <td>${part.name}</td>
                     <td>${part.code}</td>
                     <td>R$ ${part.price.toFixed(2).replace('.', ',')}</td>
@@ -2647,7 +2030,7 @@
                 adminPartsList.appendChild(row);
             });
             
-            // Adicionar eventos aos botões de ação
+            // Add event listeners to action buttons
             document.querySelectorAll('.edit-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => editPart(e.target.closest('button').dataset.id));
             });
@@ -2656,37 +2039,37 @@
                 btn.addEventListener('click', (e) => deletePart(e.target.closest('button').dataset.id));
             });
         }
-        
-        // Exibir marcas no painel admin
+
+        // Display admin brands
         function displayAdminBrands() {
             adminBrandsList.innerHTML = '';
             
-            if (brands.length === 0) {
-                adminBrandsList.innerHTML = '<p>Nenhuma marca cadastrada.</p>';
-                return;
-            }
-            
             brands.forEach(brand => {
-                const brandCard = document.createElement('div');
-                brandCard.className = 'brand-card';
-                brandCard.innerHTML = `
-                    <img src="${brand.image}" alt="${brand.name}" onerror="this.src='https://via.placeholder.com/200x100?text=Logo+Não+Disponível'">
-                    <div class="brand-name">${brand.name}</div>
-                    <div class="brand-actions">
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td><img src="${brand.image}" alt="${brand.name}" class="table-img"></td>
+                    <td>${brand.name}</td>
+                    <td>
+                        <button class="action-btn edit-btn" data-id="${brand.id}"><i class="fas fa-edit"></i> Editar</button>
                         <button class="action-btn delete-btn" data-id="${brand.id}"><i class="fas fa-trash"></i> Excluir</button>
-                    </div>
+                    </td>
                 `;
                 
-                adminBrandsList.appendChild(brandCard);
+                adminBrandsList.appendChild(row);
             });
             
-            // Adicionar eventos aos botões de exclusão
-            document.querySelectorAll('.brand-actions .delete-btn').forEach(btn => {
+            // Add event listeners to action buttons
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => editBrand(e.target.closest('button').dataset.id));
+            });
+            
+            document.querySelectorAll('.delete-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => deleteBrand(e.target.closest('button').dataset.id));
             });
         }
-        
-        // Exibir categorias no painel admin
+
+        // Display admin categories
         function displayAdminCategories() {
             adminCategoriesList.innerHTML = '';
             
@@ -2694,17 +2077,17 @@
                 const row = document.createElement('tr');
                 
                 row.innerHTML = `
-                    <td><img src="${category.image}" alt="${category.name}" class="category-table-img" onerror="this.src='https://via.placeholder.com/100x100?text=Imagem+Não+Disponível'"></td>
+                    <td><img src="${category.image}" alt="${category.name}" class="category-table-img"></td>
                     <td>${category.name}</td>
                     <td>
-                        <button class="action-btn edit-btn" data-name="${category.name}"><i class="fas fa-edit"></i> Editar Imagem</button>
+                        <button class="action-btn edit-btn" data-name="${category.name}"><i class="fas fa-edit"></i> Editar</button>
                     </td>
                 `;
                 
                 adminCategoriesList.appendChild(row);
             });
             
-            // Adicionar eventos aos botões de edição
+            // Add event listeners to edit buttons
             document.querySelectorAll('.edit-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const categoryName = e.target.closest('button').dataset.name;
@@ -2716,56 +2099,14 @@
                 });
             });
         }
-        
-        // Exibir equipe no painel admin
-        function displayAdminTeam() {
-            adminTeamList.innerHTML = '';
-            
-            if (teamMembers.length === 0) {
-                adminTeamList.innerHTML = '<tr><td colspan="5" style="text-align: center;">Nenhum membro da equipe cadastrado.</td></tr>';
-                return;
-            }
-            
-            teamMembers.forEach((member, index) => {
-                const row = document.createElement('tr');
-                
-                row.innerHTML = `
-                    <td><img src="${member.image}" alt="${member.name}" class="table-img" onerror="this.src='https://via.placeholder.com/80x60?text=Sem+Imagem'"></td>
-                    <td>${member.name}</td>
-                    <td>${member.role}</td>
-                    <td>${member.phone}</td>
-                    <td>
-                        <button class="action-btn delete-btn" data-index="${index}"><i class="fas fa-trash"></i> Excluir</button>
-                    </td>
-                `;
-                
-                adminTeamList.appendChild(row);
-            });
-            
-            // Adicionar eventos aos botões de exclusão
-            document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => deleteTeamMember(e.target.closest('button').dataset.index));
-            });
+
+        // Load about form
+        function loadAboutForm() {
+            document.getElementById('about-image').value = aboutInfo.image;
+            document.getElementById('about-text').value = aboutInfo.text;
         }
-        
-        // Exibir galeria no painel admin
-        function displayAdminGallery() {
-            adminGalleryList.innerHTML = '';
-            
-            galleryImages.forEach((imageUrl, index) => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.innerHTML = `
-                    <img src="${imageUrl}" alt="Autolatina" class="gallery-image" onerror="this.src='https://via.placeholder.com/600x400?text=Imagem+Não+Disponível'">
-                    <div class="gallery-actions">
-                        <button class="action-btn delete-btn" data-index="${index}"><i class="fas fa-trash"></i> Excluir</button>
-                    </div>
-                `;
-                adminGalleryList.appendChild(galleryItem);
-            });
-        }
-        
-        // Adicionar nova peça
+
+        // Add part
         function addPart(e) {
             e.preventDefault();
             
@@ -2785,11 +2126,41 @@
             addPartForm.reset();
             document.getElementById('is-flash').checked = false;
             
-            // Mostrar mensagem de sucesso
             alert('Oferta adicionada com sucesso!');
         }
-        
-        // Adicionar nova marca
+
+        // Edit part
+        function editPart(id) {
+            const part = parts.find(p => p.id == id);
+            if (!part) return;
+            
+            document.getElementById('part-name').value = part.name;
+            document.getElementById('part-code').value = part.code;
+            document.getElementById('part-price').value = part.price;
+            document.getElementById('part-image').value = part.image;
+            document.getElementById('part-category').value = part.category;
+            document.getElementById('is-flash').checked = part.isFlash;
+            
+            // Remove the old part
+            parts = parts.filter(p => p.id != id);
+            saveParts();
+            
+            alert('Oferta pronta para edição. Modifique os campos e clique em "Adicionar Oferta" para atualizar.');
+        }
+
+        // Delete part
+        function deletePart(id) {
+            if (confirm('Tem certeza que deseja excluir esta oferta?')) {
+                parts = parts.filter(p => p.id != id);
+                saveParts();
+                displayAdminParts();
+                displayParts();
+                
+                alert('Oferta excluída com sucesso!');
+            }
+        }
+
+        // Add brand
         function addBrand(e) {
             e.preventDefault();
             
@@ -2804,11 +2175,37 @@
             displayAdminBrands();
             addBrandForm.reset();
             
-            // Mostrar mensagem de sucesso
             alert('Marca adicionada com sucesso!');
         }
-        
-        // Adicionar/editar imagem de categoria
+
+        // Edit brand
+        function editBrand(id) {
+            const brand = brands.find(b => b.id == id);
+            if (!brand) return;
+            
+            document.getElementById('brand-name').value = brand.name;
+            document.getElementById('brand-image').value = brand.image;
+            
+            // Remove the old brand
+            brands = brands.filter(b => b.id != id);
+            saveBrands();
+            
+            alert('Marca pronta para edição. Modifique os campos e clique em "Adicionar Marca" para atualizar.');
+        }
+
+        // Delete brand
+        function deleteBrand(id) {
+            if (confirm('Tem certeza que deseja excluir esta marca?')) {
+                brands = brands.filter(b => b.id != id);
+                saveBrands();
+                displayAdminBrands();
+                displayBrands();
+                
+                alert('Marca excluída com sucesso!');
+            }
+        }
+
+        // Add/update category
         function addCategory(e) {
             e.preventDefault();
             
@@ -2820,14 +2217,14 @@
                 return;
             }
             
-            // Verificar se a categoria já existe
+            // Check if category already exists
             const existingCategoryIndex = categories.findIndex(c => c.name === categoryName);
             
             if (existingCategoryIndex !== -1) {
-                // Atualizar a imagem da categoria existente
+                // Update existing category image
                 categories[existingCategoryIndex].image = categoryImage;
             } else {
-                // Adicionar nova categoria (não deveria acontecer, pois só permitimos edição)
+                // Add new category (shouldn't happen as we only allow editing)
                 categories.push({
                     name: categoryName,
                     image: categoryImage
@@ -2836,13 +2233,12 @@
             
             saveCategories();
             displayAdminCategories();
-            displayCategories(); // Atualizar também no catálogo público
+            displayCategories();
             
-            // Mostrar mensagem de sucesso
             alert('Imagem da categoria atualizada com sucesso!');
         }
-        
-        // Adicionar/editar informações sobre a empresa
+
+        // Add/update about info
         function addAbout(e) {
             e.preventDefault();
             
@@ -2854,245 +2250,122 @@
             saveAbout();
             updateAboutSection();
             
-            // Mostrar mensagem de sucesso
             alert('Informações sobre a empresa atualizadas com sucesso!');
         }
-        
-        // Adicionar novo membro da equipe
-        function addTeamMember(e) {
-            e.preventDefault();
-            
-            const newMember = {
-                name: document.getElementById('team-name').value,
-                role: document.getElementById('team-role').value,
-                phone: document.getElementById('team-phone').value,
-                image: document.getElementById('team-image').value
-            };
-            
-            teamMembers.push(newMember);
-            saveTeam();
-            displayAdminTeam();
-            addTeamForm.reset();
-            
-            // Mostrar mensagem de sucesso
-            alert('Membro da equipe adicionado com sucesso!');
-        }
-        
-        // Adicionar/atualizar imagens da galeria
-        function addGallery(e) {
-            e.preventDefault();
-            
-            const image1 = document.getElementById('gallery-image1').value;
-            const image2 = document.getElementById('gallery-image2').value;
-            const image3 = document.getElementById('gallery-image3').value;
-            
-            if (!image1 || !image2 || !image3) {
-                alert('Por favor, preencha todos os campos de imagem.');
-                return;
-            }
-            
-            galleryImages = [image1, image2, image3];
-            saveGallery();
-            displayAdminGallery();
-            displayGallery(); // Atualizar também no catálogo público
-            addGalleryForm.reset();
-            
-            // Mostrar mensagem de sucesso
-            alert('Galeria atualizada com sucesso!');
-        }
-        
-        // Editar peça
-        function editPart(id) {
-            const part = parts.find(p => p.id == id);
-            if (!part) return;
-            
-            document.getElementById('part-name').value = part.name;
-            document.getElementById('part-code').value = part.code;
-            document.getElementById('part-price').value = part.price;
-            document.getElementById('part-image').value = part.image;
-            document.getElementById('part-category').value = part.category;
-            document.getElementById('is-flash').checked = part.isFlash || false;
-            
-            // Remover a peça antiga
-            parts = parts.filter(p => p.id != id);
-            saveParts();
-            
-            // Mostrar mensagem
-            alert('Oferta pronta para edição. Modifique os campos e clique em "Adicionar Oferta" para atualizar.');
-        }
-        
-        // Excluir peça
-        function deletePart(id) {
-            if (confirm('Tem certeza que deseja excluir esta oferta?')) {
-                parts = parts.filter(p => p.id != id);
-                saveParts();
-                displayAdminParts();
-                displayParts(); // Atualizar também o catálogo público
-                
-                // Mostrar mensagem de sucesso
-                alert('Oferta excluída com sucesso!');
-            }
-        }
-        
-        // Excluir marca
-        function deleteBrand(id) {
-            if (confirm('Tem certeza que deseja excluir esta marca?')) {
-                brands = brands.filter(b => b.id != id);
-                saveBrands();
-                displayAdminBrands();
-                displayBrands(); // Atualizar também o carrossel público
-                
-                // Mostrar mensagem de sucesso
-                alert('Marca excluída com sucesso!');
-            }
-        }
-        
-        // Excluir membro da equipe
-        function deleteTeamMember(index) {
-            if (confirm('Tem certeza que deseja excluir este membro da equipe?')) {
-                teamMembers.splice(index, 1);
-                saveTeam();
-                displayAdminTeam();
-                displayTeam();
-                
-                // Mostrar mensagem de sucesso
-                alert('Membro da equipe excluído com sucesso!');
-            }
-        }
-        
-        // Excluir imagem da galeria
-        function deleteGalleryImage(index) {
-            if (confirm('Tem certeza que deseja excluir esta imagem da galeria?')) {
-                galleryImages.splice(index, 1);
-                saveGallery();
-                displayAdminGallery();
-                displayGallery();
-                
-                // Mostrar mensagem de sucesso
-                alert('Imagem excluída com sucesso!');
-            }
-        }
-        
-        // Salvar peças no localStorage
+
+        // Save data to localStorage
         function saveParts() {
             localStorage.setItem('autolatinaParts', JSON.stringify(parts));
-            displayParts(); // Atualizar o catálogo público sempre que os dados mudam
         }
-        
-        // Salvar marcas no localStorage
+
         function saveBrands() {
             localStorage.setItem('autolatinaBrands', JSON.stringify(brands));
-            displayBrands(); // Atualizar o carrossel sempre que os dados mudam
         }
-        
-        // Salvar categorias no localStorage
+
         function saveCategories() {
             localStorage.setItem('autolatinaCategories', JSON.stringify(categories));
         }
-        
-        // Salvar informações sobre a empresa no localStorage
+
         function saveAbout() {
             localStorage.setItem('autolatinaAbout', JSON.stringify(aboutInfo));
         }
-        
-        // Salvar equipe no localStorage
-        function saveTeam() {
-            localStorage.setItem('autolatinaTeam', JSON.stringify(teamMembers));
-        }
-        
-        // Salvar galeria no localStorage
-        function saveGallery() {
-            localStorage.setItem('autolatinaGallery', JSON.stringify(galleryImages));
-        }
-        
+
         // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            showPublicCatalog();
+        });
+
+        // Login form
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            if (username === VALID_USER.username && password === VALID_USER.password) {
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
                 showAdminPanel();
             } else {
                 alert('Credenciais incorretas!');
                 document.getElementById('password').value = '';
             }
         });
-        
-        logoutBtn.addEventListener('click', () => {
-            showPublicCatalog();
+
+        // Logout button
+        logoutBtn.addEventListener('click', showLoginPage);
+
+        // View public button
+        viewPublicBtn.addEventListener('click', showPublicCatalog);
+
+        // Contact dropdown
+        contactBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            dropdownContent.classList.toggle('active');
         });
-        
-        viewPublicCatalogBtn.addEventListener('click', () => {
-            showPublicCatalog();
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.contact-dropdown')) {
+                dropdownContent.classList.remove('active');
+            }
         });
-        
+
+        // Admin tabs
+        adminTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                adminTabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                const tabId = tab.dataset.tab + '-tab';
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Forms
         addPartForm.addEventListener('submit', addPart);
         addBrandForm.addEventListener('submit', addBrand);
         addCategoryForm.addEventListener('submit', addCategory);
-        if (addAboutForm) {
-            addAboutForm.addEventListener('submit', addAbout);
-        }
-        if (addTeamForm) {
-            addTeamForm.addEventListener('submit', addTeamMember);
-        }
-        if (addGalleryForm) {
-            addGalleryForm.addEventListener('submit', addGallery);
-        }
-        
-        // Pesquisar peças
+        addAboutForm.addEventListener('submit', addAbout);
+
+        // Search
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const searchTerm = searchInput.value.trim();
             displayParts(null, searchTerm);
         });
-        
-        // Limpar pesquisa quando o campo for limpo
+
+        // Clear search when input is empty
         searchInput.addEventListener('input', () => {
             if (searchInput.value.trim() === '') {
                 displayParts();
             }
         });
-        
-        // Inicializar a página mostrando o catálogo público
-        showPublicCatalog();
-        
-        // Carregar categorias do localStorage se existirem
-        const savedCategories = JSON.parse(localStorage.getItem('autolatinaCategories'));
-        if (savedCategories && savedCategories.length > 0) {
-            categories = savedCategories;
-        } else {
-            // Salvar categorias padrão no localStorage
-            saveCategories();
-        }
-        
-        // Carregar informações sobre a empresa do localStorage se existirem
-        const savedAbout = JSON.parse(localStorage.getItem('autolatinaAbout'));
-        if (savedAbout) {
-            aboutInfo = savedAbout;
-        } else {
-            // Salvar informações padrão no localStorage
-            saveAbout();
-        }
-        
-        // Carregar equipe do localStorage se existirem
-        const savedTeam = JSON.parse(localStorage.getItem('autolatinaTeam'));
-        if (savedTeam && savedTeam.length > 0) {
-            teamMembers = savedTeam;
-        } else {
-            // Salvar equipe vazia no localStorage
-            saveTeam();
-        }
-        
-        // Carregar galeria do localStorage se existirem
-        const savedGallery = JSON.parse(localStorage.getItem('autolatinaGallery'));
-        if (savedGallery && savedGallery.length > 0) {
-            galleryImages = savedGallery;
-        } else {
-            // Salvar galeria padrão no localStorage
-            saveGallery();
-        }
+
+        // Rate button
+        rateBtn.addEventListener('click', () => {
+            window.open(GOOGLE_REVIEW_LINK, '_blank');
+        });
+
+        // Legal warning for F12
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+                e.preventDefault();
+                legalWarning.style.display = 'block';
+                setTimeout(() => {
+                    legalWarning.style.display = 'none';
+                }, 5000);
+            }
+        });
+
+        // Admin shortcut (Ctrl+Alt+A)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.altKey && e.key === 'a') {
+                e.preventDefault();
+                showLoginPage();
+            }
+        });
     </script>
 </body>
 </html>
