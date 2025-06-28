@@ -22,6 +22,7 @@
             --gradient-primary: linear-gradient(135deg, #08003a, #0c006c);
             --gradient-accent: linear-gradient(135deg, #ff0505, #ff5e5e);
             --flash-offer: #ffcc00;
+            --autolatina-gold: #D4AF37;
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -458,6 +459,41 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
+        .autolatina-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 60px;
+            height: 30px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+        
+        .autolatina-badge img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+        
+        .autolatina-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--autolatina-gold);
+            color: #000;
+            font-weight: bold;
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            z-index: 1;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
         .part-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
@@ -687,27 +723,6 @@
             position: relative;
         }
         
-        .autolatina-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            width: 60px;
-            height: 30px;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 2;
-        }
-        
-        .autolatina-badge img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-        }
-        
         /* Contact Boxes */
         .contact-boxes {
             padding: 2rem 0;
@@ -716,53 +731,28 @@
         
         .boxes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr;
             gap: 1.5rem;
         }
         
-        .contact-box {
+        .mission-statement {
             background: white;
             border-radius: 10px;
             padding: 1.5rem;
             box-shadow: var(--shadow);
             text-align: center;
             transition: var(--transition);
-            border-top: 4px solid var(--accent-color);
+            border-top: 4px solid var(--primary-color);
             background: linear-gradient(to bottom, white 80%, #f5f7ff);
         }
         
-        .contact-box:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .contact-icon {
-            font-size: 2rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-        
-        .contact-title {
-            font-weight: 600;
+        .mission-text {
             color: var(--primary-color);
-            margin-bottom: 0.8rem;
-        }
-        
-        .contact-btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            margin-top: 1rem;
-        }
-        
-        .contact-btn:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-3px);
+            font-weight: 600;
+            font-size: 1.2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         /* Footer */
@@ -943,6 +933,83 @@
             box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
         }
         
+        /* FAQ Button */
+        .faq-fixed {
+            position: fixed;
+            bottom: 90px;
+            right: 25px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 4px 20px rgba(8, 0, 58, 0.4);
+            z-index: 100;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .faq-fixed:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(8, 0, 58, 0.5);
+        }
+        
+        /* FAQ Modal */
+        .faq-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        
+        .faq-content {
+            background: white;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .close-faq {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--accent-color);
+        }
+        
+        .faq-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .faq-answer {
+            color: var(--text-color);
+        }
+        
         /* Search Results Page */
         .search-results-page {
             display: none;
@@ -1082,6 +1149,38 @@
         }
 
         .form-group input:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(12, 0, 108, 0.2);
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group textarea:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(12, 0, 108, 0.2);
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .form-group select:focus {
             border-color: var(--secondary-color);
             outline: none;
             box-shadow: 0 0 0 2px rgba(12, 0, 108, 0.2);
@@ -1403,6 +1502,11 @@
                 flex-direction: column;
                 gap: 0;
             }
+
+            .mission-text {
+                white-space: normal;
+                font-size: 1rem;
+            }
         }
         
         @media (max-width: 576px) {
@@ -1433,6 +1537,11 @@
             .login-form {
                 padding: 1.5rem;
             }
+
+            .faq-fixed {
+                bottom: 25px;
+                right: 85px;
+            }
         }
     </style>
 </head>
@@ -1446,6 +1555,49 @@
     <a href="https://wa.me/5545999711417" class="whatsapp-fixed" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
+    
+    <!-- FAQ Button -->
+    <a href="#" class="faq-fixed" id="faq-button">
+        <i class="fas fa-question"></i>
+    </a>
+    
+    <!-- FAQ Modal -->
+    <div id="faq-modal" class="faq-modal">
+        <div class="faq-content">
+            <span class="close-faq" id="close-faq">&times;</span>
+            <h2 class="faq-title">Perguntas Frequentes</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Como faço para comprar uma peça?</div>
+                <div class="faq-answer">Você pode entrar em contato diretamente pelo WhatsApp clicando no botão verde no canto inferior direito da tela ou visitar nossa loja física.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Os preços no site são definitivos?</div>
+                <div class="faq-answer">Todos os preços estão sujeitos a confirmação via WhatsApp ou telefone, pois podem variar de acordo com a disponibilidade e condições de pagamento.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Vocês fazem entregas?</div>
+                <div class="faq-answer">Sim, realizamos entregas em toda a região. Entre em contato para verificar as condições para seu endereço.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Qual o horário de funcionamento?</div>
+                <div class="faq-answer">Funcionamos de segunda a sexta das 8h às 18h e aos sábados das 8h às 12h.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Vocês aceitam cartões?</div>
+                <div class="faq-answer">Sim, aceitamos todas as bandeiras de cartões de crédito e débito, além de transferências bancárias e dinheiro.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Qual a garantia das peças?</div>
+                <div class="faq-answer">Todas as peças possuem garantia conforme legislação vigente. Peças Autolatina possuem garantia estendida - consulte condições.</div>
+            </div>
+        </div>
+    </div>
     
     <!-- Search Results Page -->
     <div id="search-results-page" class="search-results-page">
@@ -1514,16 +1666,13 @@
     <div id="public-catalog">
         <main class="container">
             <!-- About Section -->
-            <section class="about-section">
+            <section class="about-section" id="about-section">
                 <div class="about-container">
                     <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Autolatina Truck Service" class="about-image" id="about-image">
                     <div class="about-content">
                         <h2 class="about-title">Autolatina Truck Service</h2>
                         <p class="about-text" id="about-text">
                             Especializada em peças e serviços para caminhões, a Autolatina Truck Service oferece produtos de qualidade e atendimento personalizado. Com anos de experiência no mercado, nossa equipe está pronta para atender às necessidades dos nossos clientes com agilidade e profissionalismo.
-                        </p>
-                        <p class="about-text">
-                            Trabalhamos com as melhores marcas do mercado, garantindo a satisfação e segurança dos nossos clientes.
                         </p>
                     </div>
                 </div>
@@ -1606,31 +1755,8 @@
             <!-- Contact Boxes -->
             <section class="contact-boxes">
                 <div class="boxes-grid">
-                    <div class="contact-box">
-                        <div class="contact-icon">
-                            <i class="fab fa-instagram"></i>
-                        </div>
-                        <h3 class="contact-title">Visite nosso Instagram</h3>
-                        <p>Confira nossas últimas novidades e promoções especiais</p>
-                        <a href="#" class="contact-btn">Acessar Instagram</a>
-                    </div>
-                    
-                    <div class="contact-box">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <h3 class="contact-title">Fale Conosco</h3>
-                        <p>Estamos prontos para atender suas necessidades com excelência</p>
-                        <a href="https://wa.me/5545999711417" class="contact-btn" target="_blank">WhatsApp</a>
-                    </div>
-                    
-                    <div class="contact-box">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <h3 class="contact-title">Visite-nos</h3>
-                        <p>Venha nos conhecer pessoalmente em nossa loja</p>
-                        <a href="https://goo.gl/maps/example" class="contact-btn" target="_blank">Ver no Mapa</a>
+                    <div class="mission-statement">
+                        <p class="mission-text">Somos uma empresa que nasceu da união de pessoas e trabalhar em equipe é nosso diferencial</p>
                     </div>
                 </div>
             </section>
@@ -1671,10 +1797,9 @@
                     <h3 class="footer-title">Links Úteis</h3>
                     <div class="footer-links">
                         <a href="#offers" class="footer-link"><i class="fas fa-tags"></i> Ofertas</a>
-                        <a href="#" class="footer-link"><i class="fas fa-tools"></i> Serviços</a>
-                        <a href="#" class="footer-link"><i class="fas fa-info-circle"></i> Sobre Nós</a>
-                        <a href="#" class="footer-link"><i class="fas fa-question-circle"></i> FAQ</a>
-                        <a href="#" class="footer-link"><i class="fas fa-file-alt"></i> Termos e Condições</a>
+                        <a href="#about-section" class="footer-link"><i class="fas fa-info-circle"></i> Sobre Nós</a>
+                        <a href="#" id="faq-footer-link" class="footer-link"><i class="fas fa-question-circle"></i> FAQ</a>
+                        <a href="#" id="terms-link" class="footer-link"><i class="fas fa-file-alt"></i> Termos e Condições</a>
                     </div>
                 </div>
             </div>
@@ -1688,6 +1813,54 @@
                 </div>
             </div>
         </footer>
+    </div>
+    
+    <!-- Terms Modal -->
+    <div id="terms-modal" class="faq-modal">
+        <div class="faq-content">
+            <span class="close-faq" id="close-terms">&times;</span>
+            <h2 class="faq-title">Termos e Condições</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">1. Valores e Disponibilidade</div>
+                <div class="faq-answer">Todos os preços anunciados estão sujeitos a confirmação via WhatsApp ou telefone. A disponibilidade dos produtos deve ser verificada no momento da compra.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">2. Formas de Pagamento</div>
+                <div class="faq-answer">Aceitamos cartões de crédito (todas as bandeiras), débito, transferência bancária e dinheiro. Condições especiais podem ser negociadas diretamente com nossa equipe.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">3. Entrega</div>
+                <div class="faq-answer">Realizamos entregas em toda a região. O prazo e valor do frete serão informados após a confirmação do pedido. Retiradas podem ser feitas em nosso endereço comercial.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">4. Garantia</div>
+                <div class="faq-answer">Todas as peças possuem garantia conforme legislação vigente. Peças Autolatina possuem garantia estendida - consulte condições no ato da compra.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">5. Troca e Devolução</div>
+                <div class="faq-answer">As trocas e devoluções estão sujeitas às condições estabelecidas no Código de Defesa do Consumidor. Em caso de problemas, entre em contato imediatamente com nossa equipe.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">6. Privacidade</div>
+                <div class="faq-answer">Respeitamos sua privacidade. Seus dados pessoais serão utilizados apenas para processar seu pedido e melhorar sua experiência com nossa empresa.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">7. Atendimento</div>
+                <div class="faq-answer">Nosso horário de funcionamento é de segunda a sexta das 8h às 18h e sábados das 8h às 12h. Fora deste horário, você pode deixar sua mensagem pelo WhatsApp que retornaremos assim que possível.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">8. Contato</div>
+                <div class="faq-answer">Para qualquer dúvida sobre estes termos, entre em contato conosco pelo WhatsApp (45) 99971-1417 ou pelo e-mail autolatinacascavel@gmail.com.</div>
+            </div>
+        </div>
     </div>
     
     <!-- Login Page -->
@@ -2007,6 +2180,12 @@
                                 <input type="url" id="google-review-link" required>
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="mission-text">Texto da Missão</label>
+                                <input type="text" id="mission-text" required>
+                            </div>
+                        </div>
                         <button type="submit" class="submit-btn"><i class="fas fa-save"></i> Salvar Configurações</button>
                     </form>
                 </div>
@@ -2027,7 +2206,8 @@
             whatsappNumber: "5545999711417",
             googleMapsLink: "https://goo.gl/maps/example",
             instagramLink: "#",
-            googleReviewLink: "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID"
+            googleReviewLink: "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID",
+            missionText: "Somos uma empresa que nasceu da união de pessoas e trabalhar em equipe é nosso diferencial"
         };
 
         // Data storage
@@ -2039,7 +2219,8 @@
                 price: 1250.90, 
                 image: "https://via.placeholder.com/300x200?text=Kit+Embreagem", 
                 category: "Cambio",
-                isFlash: true
+                isFlash: true,
+                isAutolatina: false
             },
             { 
                 id: 2, 
@@ -2048,7 +2229,8 @@
                 price: 450.50, 
                 image: "https://via.placeholder.com/300x200?text=Bomba+de+Óleo", 
                 category: "Motor",
-                isFlash: false
+                isFlash: false,
+                isAutolatina: false
             },
             { 
                 id: 3, 
@@ -2057,7 +2239,8 @@
                 price: 320.75, 
                 image: "https://via.placeholder.com/300x200?text=Pastilha+de+Freio", 
                 category: "Freio/Cubo",
-                isFlash: true
+                isFlash: true,
+                isAutolatina: false
             }
         ];
 
@@ -2069,7 +2252,8 @@
                 price: 1350.90, 
                 image: "https://via.placeholder.com/300x200?text=Kit+Embreagem+Autolatina", 
                 category: "Cambio",
-                isFlash: true
+                isFlash: true,
+                isAutolatina: true
             },
             { 
                 id: 102, 
@@ -2078,7 +2262,8 @@
                 price: 550.50, 
                 image: "https://via.placeholder.com/300x200?text=Bomba+de+Óleo+Autolatina", 
                 category: "Motor",
-                isFlash: false
+                isFlash: false,
+                isAutolatina: true
             }
         ];
 
@@ -2105,7 +2290,7 @@
 
         let aboutInfo = JSON.parse(localStorage.getItem('autolatinaAbout')) || {
             image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-            text: "Especializada em peças e serviços para caminhões, a Autolatina Truck Service oferece produtos de qualidade e atendimento personalizado. Com anos de experiência no mercado, nossa equipe está pronta para atender às necessidades dos nossos clientes com agilidade e profissionalismo.\n\nTrabalhamos com as melhores marcas do mercado, garantindo a satisfação e segurança dos nossos clientes."
+            text: "Especializada em peças e serviços para caminhões, a Autolatina Truck Service oferece produtos de qualidade e atendimento personalizado. Com anos de experiência no mercado, nossa equipe está pronta para atender às necessidades dos nossos clientes com agilidade e profissionalismo."
         };
 
         // DOM Elements
@@ -2120,6 +2305,13 @@
         const searchResultsPage = document.getElementById('search-results-page');
         const closeSearchBtn = document.getElementById('close-search-btn');
         const searchResultsGrid = document.getElementById('search-results-grid');
+        const faqButton = document.getElementById('faq-button');
+        const faqModal = document.getElementById('faq-modal');
+        const closeFaq = document.getElementById('close-faq');
+        const faqFooterLink = document.getElementById('faq-footer-link');
+        const termsLink = document.getElementById('terms-link');
+        const termsModal = document.getElementById('terms-modal');
+        const closeTerms = document.getElementById('close-terms');
 
         // Forms
         const addPartForm = document.getElementById('add-part-form');
@@ -2142,6 +2334,7 @@
         const noAutolatinaPartsMessage = document.getElementById('no-autolatina-parts-message');
         const aboutImage = document.getElementById('about-image');
         const aboutText = document.getElementById('about-text');
+        const missionText = document.querySelector('.mission-text');
 
         // Tabs
         const adminTabs = document.querySelectorAll('.admin-tab');
@@ -2157,6 +2350,7 @@
         const googleMapsLinkInput = document.getElementById('google-maps-link');
         const instagramLinkInput = document.getElementById('instagram-link');
         const googleReviewLinkInput = document.getElementById('google-review-link');
+        const missionTextInput = document.getElementById('mission-text');
 
         // Show public catalog
         function showPublicCatalog() {
@@ -2164,6 +2358,8 @@
             loginPage.style.display = 'none';
             adminPanel.style.display = 'none';
             searchResultsPage.style.display = 'none';
+            faqModal.style.display = 'none';
+            termsModal.style.display = 'none';
             displayCategories();
             displayParts();
             displayAutolatinaParts();
@@ -2172,6 +2368,7 @@
             updateBackgroundImage();
             updateWhatsappLinks();
             updateSocialLinks();
+            updateMissionText();
         }
 
         // Show login page
@@ -2180,6 +2377,8 @@
             loginPage.style.display = 'flex';
             adminPanel.style.display = 'none';
             searchResultsPage.style.display = 'none';
+            faqModal.style.display = 'none';
+            termsModal.style.display = 'none';
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
         }
@@ -2190,6 +2389,8 @@
             loginPage.style.display = 'none';
             adminPanel.style.display = 'block';
             searchResultsPage.style.display = 'none';
+            faqModal.style.display = 'none';
+            termsModal.style.display = 'none';
             displayAdminParts();
             displayAdminAutolatinaParts();
             displayAdminBrands();
@@ -2204,6 +2405,8 @@
             loginPage.style.display = 'none';
             adminPanel.style.display = 'none';
             searchResultsPage.style.display = 'block';
+            faqModal.style.display = 'none';
+            termsModal.style.display = 'none';
             
             // Display search results
             searchResultsGrid.innerHTML = '';
@@ -2224,8 +2427,9 @@
                 
                 partCard.innerHTML = `
                     <div class="part-image-container">
-                        ${part.isFlash ? '<span class="flash-badge"><i class="fas fa-bolt"></i> OFERTA RELÂMPAGO</span>' : '<span class="badge">OFERTA</span>'}
-                        ${part.id > 100 ? '<div class="autolatina-badge"><img src="Simbolo Sem Escrita.png" alt="Peça Autolatina"></div>' : ''}
+                        ${part.isFlash ? '<span class="flash-badge"><i class="fas fa-bolt"></i> OFERTA RELÂMPAGO</span>' : ''}
+                        ${part.isAutolatina ? '<span class="autolatina-tag">AUTOLATINA</span>' : '<span class="badge">OFERTA</span>'}
+                        ${part.isAutolatina ? '<div class="autolatina-badge"><img src="Simbolo Sem Escrita.png" alt="Peça Autolatina"></div>' : ''}
                         <img src="${part.image}" alt="${part.name}" class="part-image">
                     </div>
                     <div class="part-info">
@@ -2277,6 +2481,11 @@
             });
         }
 
+        // Update mission text
+        function updateMissionText() {
+            missionText.textContent = siteSettings.missionText;
+        }
+
         // Display categories
         function displayCategories() {
             categoriesGrid.innerHTML = '';
@@ -2304,10 +2513,10 @@
         function displayParts(filter = null, searchTerm = '') {
             catalogContainer.innerHTML = '';
             
-            let filteredParts = parts;
+            let filteredParts = parts.filter(part => !part.isAutolatina);
             
             if (filter) {
-                filteredParts = parts.filter(part => part.category === filter);
+                filteredParts = filteredParts.filter(part => part.category === filter);
             }
             
             if (searchTerm) {
@@ -2360,7 +2569,7 @@
         function displayAutolatinaParts() {
             autolatinaCatalogContainer.innerHTML = '';
             
-            let filteredParts = autolatinaParts;
+            let filteredParts = autolatinaParts.filter(part => part.isAutolatina);
             
             if (filteredParts.length === 0) {
                 noAutolatinaPartsMessage.style.display = 'block';
@@ -2382,7 +2591,8 @@
                 
                 partCard.innerHTML = `
                     <div class="part-image-container">
-                        ${part.isFlash ? '<span class="flash-badge"><i class="fas fa-bolt"></i> OFERTA RELÂMPAGO</span>' : '<span class="badge">OFERTA</span>'}
+                        ${part.isFlash ? '<span class="flash-badge"><i class="fas fa-bolt"></i> OFERTA RELÂMPAGO</span>' : ''}
+                        <span class="autolatina-tag">AUTOLATINA</span>
                         <div class="autolatina-badge"><img src="Simbolo Sem Escrita.png" alt="Peça Autolatina"></div>
                         <img src="${part.image}" alt="${part.name}" class="part-image">
                     </div>
@@ -2563,6 +2773,7 @@
             googleMapsLinkInput.value = siteSettings.googleMapsLink;
             instagramLinkInput.value = siteSettings.instagramLink;
             googleReviewLinkInput.value = siteSettings.googleReviewLink;
+            missionTextInput.value = siteSettings.missionText;
         }
 
         // Add part
@@ -2576,7 +2787,8 @@
                 price: parseFloat(document.getElementById('part-price').value),
                 image: document.getElementById('part-image').value,
                 category: document.getElementById('part-category').value,
-                isFlash: document.getElementById('is-flash').checked
+                isFlash: document.getElementById('is-flash').checked,
+                isAutolatina: false
             };
             
             parts.push(newPart);
@@ -2631,7 +2843,8 @@
                 price: parseFloat(document.getElementById('autolatina-part-price').value),
                 image: document.getElementById('autolatina-part-image').value,
                 category: document.getElementById('autolatina-part-category').value,
-                isFlash: document.getElementById('autolatina-is-flash').checked
+                isFlash: document.getElementById('autolatina-is-flash').checked,
+                isAutolatina: true
             };
             
             autolatinaParts.push(newPart);
@@ -2778,13 +2991,15 @@
                 whatsappNumber: whatsappNumberInput.value,
                 googleMapsLink: googleMapsLinkInput.value,
                 instagramLink: instagramLinkInput.value,
-                googleReviewLink: googleReviewLinkInput.value
+                googleReviewLink: googleReviewLinkInput.value,
+                missionText: missionTextInput.value
             };
             
             saveSettings();
             updateBackgroundImage();
             updateWhatsappLinks();
             updateSocialLinks();
+            updateMissionText();
             
             alert('Configurações do site atualizadas com sucesso!');
         }
@@ -2843,6 +3058,34 @@
         // Close search results button
         closeSearchBtn.addEventListener('click', showPublicCatalog);
 
+        // FAQ button
+        faqButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            faqModal.style.display = 'block';
+        });
+
+        // Close FAQ button
+        closeFaq.addEventListener('click', () => {
+            faqModal.style.display = 'none';
+        });
+
+        // FAQ footer link
+        faqFooterLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            faqModal.style.display = 'block';
+        });
+
+        // Terms link
+        termsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            termsModal.style.display = 'block';
+        });
+
+        // Close terms button
+        closeTerms.addEventListener('click', () => {
+            termsModal.style.display = 'none';
+        });
+
         // Admin tabs
         adminTabs.forEach(tab => {
             tab.addEventListener('click', () => {
@@ -2900,6 +3143,16 @@
             if (e.ctrlKey && e.altKey && e.key === 'a') {
                 e.preventDefault();
                 showLoginPage();
+            }
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === faqModal) {
+                faqModal.style.display = 'none';
+            }
+            if (e.target === termsModal) {
+                termsModal.style.display = 'none';
             }
         });
     </script>
