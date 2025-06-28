@@ -25,9 +25,11 @@
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            --footer-color: #08003a; /* Alterado para combinar com o cabeçalho */
+            --footer-color: #08003a;
             --service-card-bg: #f5f7ff;
-            --background-color: #f5f5f5; /* Cor de fundo cinza */
+            --background-color: #f5f5f5;
+            --section-gray: #f9f9f9;
+            --section-white: #ffffff;
         }
         
         * {
@@ -38,7 +40,7 @@
         }
         
         body {
-            background-color: var(--background-color); /* Fundo cinza */
+            background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
@@ -226,7 +228,7 @@
         /* Categories */
         .categories-header {
             background: var(--primary-color);
-            padding: 0.8rem 0;
+            padding: 0.5rem 0;
             position: relative;
             z-index: 999;
         }
@@ -239,7 +241,7 @@
         
         .categories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
             gap: 0.5rem;
         }
         
@@ -254,7 +256,7 @@
             cursor: pointer;
             color: var(--primary-color);
             height: 100%;
-            min-height: 70px;
+            min-height: 60px;
             justify-content: center;
             position: relative;
             overflow: hidden;
@@ -267,15 +269,15 @@
         }
         
         .category-image {
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
             object-fit: contain;
             margin-bottom: 0.3rem;
             transition: var(--transition);
         }
         
         .category-name {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 500;
             text-align: center;
             transition: var(--transition);
@@ -289,7 +291,7 @@
         /* About Section */
         .about-section {
             padding: 2rem 0;
-            background-color: white;
+            background-color: var(--section-white);
         }
         
         .about-container {
@@ -388,7 +390,7 @@
         /* Offers Section */
         .offers-section {
             padding: 2rem 0;
-            background-color: var(--light-color);
+            background-color: var(--section-gray);
             position: relative;
         }
         
@@ -567,7 +569,7 @@
         /* Brands Section */
         .brands-section {
             padding: 2rem 0;
-            background-color: white;
+            background-color: var(--section-white);
             position: relative;
             overflow: hidden;
         }
@@ -625,7 +627,7 @@
         /* Services Section */
         .services-section {
             padding: 2rem 0;
-            background-color: var(--service-card-bg);
+            background-color: var(--section-gray);
             position: relative;
         }
         
@@ -681,7 +683,7 @@
         /* Peças Autolatina Section */
         .autolatina-parts-section {
             padding: 2rem 0;
-            background-color: white;
+            background-color: var(--section-white);
             position: relative;
         }
         
@@ -709,7 +711,7 @@
         /* Contact Boxes */
         .contact-boxes {
             padding: 2rem 0;
-            background-color: white;
+            background-color: var(--section-gray);
         }
         
         .boxes-grid {
@@ -767,61 +769,112 @@
         footer {
             background: var(--footer-color);
             color: white;
-            text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 0 1.5rem;
             margin-top: auto;
         }
         
-        .footer-content {
+        .footer-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            gap: 1rem;
         }
         
         .footer-logo {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
             display: flex;
             align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
         }
         
-        .footer-logo i {
-            margin-right: 8px;
-            color: var(--accent-color);
+        .footer-logo img {
+            height: 50px;
+        }
+        
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-logo-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .footer-logo-subtitle {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-color);
         }
         
         .footer-links {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.2rem;
-            margin: 1.2rem 0;
+            flex-direction: column;
+            gap: 0.6rem;
         }
         
         .footer-link {
-            color: white;
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
             transition: var(--transition);
             font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-link i {
+            width: 20px;
+            color: var(--accent-color);
         }
         
         .footer-link:hover {
-            color: var(--accent-color);
-            text-decoration: underline;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-text {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
         
         .social-links {
             display: flex;
-            gap: 1.2rem;
-            margin: 1.2rem 0;
+            gap: 1rem;
+            margin-top: 1rem;
         }
         
         .social-link {
             color: white;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             transition: var(--transition);
             width: 40px;
             height: 40px;
@@ -838,16 +891,31 @@
             transform: translateY(-3px);
         }
         
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding: 1rem 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
         .copyright {
-            margin-top: 1.5rem;
             font-size: 0.8rem;
-            opacity: 0.8;
+            color: rgba(255,255,255,0.6);
         }
         
         .developer {
-            margin-top: 0.4rem;
             font-size: 0.8rem;
-            opacity: 0.7;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .developer a {
+            color: var(--accent-color);
+            text-decoration: none;
         }
         
         /* WhatsApp Button */
@@ -1483,7 +1551,7 @@
             
             <!-- Peças Autolatina Section -->
             <section class="autolatina-parts-section">
-                <h2 class="section-title">Peças Autolatina</h2>
+                <h2 class="section-title">Peças com qualidade Autolatina Truck Service</h2>
                 <div class="catalog" id="autolatina-catalog">
                     <!-- Peças Autolatina will be added by JavaScript -->
                     <p id="no-autolatina-parts-message" style="grid-column: 1/-1; text-align: center; font-size: 1.1rem; color: var(--text-light);">Nenhuma peça Autolatina disponível no momento. Volte em breve!</p>
@@ -1569,30 +1637,54 @@
         </main>
         
         <footer>
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <i class="fas fa-truck"></i>
-                    <span>Autolatina Truck Service</span>
+            <div class="footer-container">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <img src="Logo Site Autolatina.png" alt="Autolatina Truck Service">
+                        <div class="footer-logo-text">
+                            <div class="footer-logo-title">Autolatina Truck Service</div>
+                            <div class="footer-logo-subtitle">Peças e serviços para caminhões</div>
+                        </div>
+                    </div>
+                    <p class="footer-text">
+                        Especializada em peças e serviços para caminhões, oferecendo produtos de qualidade e atendimento personalizado.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
                 
-                <div class="footer-links">
-                    <a href="#offers" class="footer-link">Ofertas</a>
-                    <a href="#" class="footer-link">Serviços</a>
-                    <a href="#" class="footer-link">Sobre Nós</a>
-                    <a href="#" class="footer-link">Termos</a>
+                <div class="footer-column">
+                    <h3 class="footer-title">Informações</h3>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link"><i class="fas fa-map-marker-alt"></i> Rua Gurgel 119, Cascavel-PR</a>
+                        <a href="tel:+5545999711417" class="footer-link"><i class="fas fa-phone"></i> (45) 99971-1417</a>
+                        <a href="mailto:autolatinacascavel@gmail.com" class="footer-link"><i class="fas fa-envelope"></i> autolatinacascavel@gmail.com</a>
+                        <a href="#" class="footer-link"><i class="fas fa-clock"></i> Seg-Sex: 8h às 18h</a>
+                    </div>
                 </div>
                 
-                <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                <div class="footer-column">
+                    <h3 class="footer-title">Links Úteis</h3>
+                    <div class="footer-links">
+                        <a href="#offers" class="footer-link"><i class="fas fa-tags"></i> Ofertas</a>
+                        <a href="#" class="footer-link"><i class="fas fa-tools"></i> Serviços</a>
+                        <a href="#" class="footer-link"><i class="fas fa-info-circle"></i> Sobre Nós</a>
+                        <a href="#" class="footer-link"><i class="fas fa-question-circle"></i> FAQ</a>
+                        <a href="#" class="footer-link"><i class="fas fa-file-alt"></i> Termos e Condições</a>
+                    </div>
                 </div>
-                
+            </div>
+            
+            <div class="footer-bottom">
                 <div class="copyright">
                     &copy; 2025 Autolatina Truck Service. Todos os direitos reservados.
                 </div>
                 <div class="developer">
-                    Desenvolvido por POKAN
+                    Desenvolvido por <a href="#" target="_blank">POKAN</a>
                 </div>
             </div>
         </footer>
